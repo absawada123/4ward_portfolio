@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- data-theme attribute will be added by JS -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandName - Opsuite Project</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Relative paths to global CSS -->
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/animations.css">
+    <!-- Link to the GLOBAL project stylesheet -->
+    <link rel="stylesheet" href="../../projects/style.css">
+</head>
+<body>
+    <div id="loader"><div class="spinner"></div></div>
+
+    <!-- Main Header (Consistent with homepage) -->
+    <header id="main-header">
+        <nav>
+            <div class="logo">BrandName</div>
+            <ul class="nav-links">
+                <li><a href="../../index.html">Home</a></li>
+                <li><a href="../../about.html">About</a></li>
+                <li class="active"><a href="../../index.html#projects">Projects</a></li>
+                <li><a href="../../index.html#services">Services</a></li>
+                <li><a href="../../contact.html" class="cta-button">Get in Touch</a></li>
+                <li>
+                    <button id="theme-toggle" title="Toggle dark/light mode">
+                        <i class="fas fa-sun sun-icon"></i>
+                        <i class="fas fa-moon moon-icon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Sticky Project Header -->
+    <header id="project-header" class="sticky-project-header">
+        <div class="container">
+            <div class="project-header-content">
+                <a href="../../index.html#projects" class="back-to-projects">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>Back to Projects</span>
+                </a>
+                <h1 class="project-title-sticky">Opsuite</h1>
+            </div>
+        </div>
+    </header>
+    
+    <main class="project-detail-page">
+        <section id="project-main">
+            <div class="container">
+                <div class="project-layout">
+                    <!-- Left Column: Text Content -->
+                    <div class="project-content">
+                        <h1 class="project-title-main">Opsuite</h1>
+                        <div class="project-tags">
+                            <span>Desktop App</span>
+                            <span>AI/ML</span>
+                            <span>Data Analytics</span>
+                            <span>SaaS</span>
+                        </div>
+                        <p class="project-description">Vivre Opsuite is a high-performance, integrated desktop application engineered for advanced operational management. It provides a unified platform for real-time monitoring, predictive analytics, asset lifecycle management, and strategic financial planning. By leveraging a local database, real-time simulations, and AI-driven insights, Opsuite transforms complex operational data into clear, actionable intelligence.</p>
+                        
+                        <h2>Core Modules</h2>
+                        <ul class="features-list">
+                            <li><strong>OpSense Dashboard:</strong> At-a-glance performance monitoring with real-time KPIs, live savings tracker, and a site health score.</li>
+                            <li><strong>AssetX Lifecycle Management:</strong> Comprehensive tool for tracking physical assets, including an AI-assisted "Fix vs. Replace" calculator.</li>
+                            <li><strong>RiskHorizon Forecasting:</strong> AI-powered engine for forecasting risks, simulating future energy demand, and monitoring grid stability.</li>
+                            <li><strong>GROWCORE Financial Suite:</strong> Strategic tools for simulating ROI, planning reinvestment of savings, and tracking financial goals.</li>
+                        </ul>
+                        
+                        <h2>Technologies Used</h2>
+                        <div class="tech-stack">
+                            <span class="tech-icon" title="Electron"><i class="fas fa-desktop"></i></span>
+                            <span class="tech-icon" title="React"><i class="fab fa-react"></i></span>
+                            <span class="tech-icon" title="Node.js"><i class="fab fa-node-js"></i></span>
+                            <span class="tech-icon" title="SQLite"><i class="fas fa-database"></i></span>
+                            <span class="tech-icon" title="AI / Machine Learning"><i class="fas fa-robot"></i></span>
+                        </div>
+
+                    </div>
+                    
+                    <!-- Right Column: Media Showcase -->
+                    <div class="project-media">
+                        <div class="main-image-container">
+                            <img src="media/opsuite-dashboard.png" alt="Opsuite dashboard view" class="main-project-image">
+                        </div>
+                        <div class="thumbnail-gallery">
+                            <img src="media/opsuite-dashboard.png" alt="Opsuite dashboard thumbnail" class="thumbnail active">
+                            <img src="media/opsuite-reports.png" alt="Opsuite reports page thumbnail" class="thumbnail">
+                            <img src="media/opsuite-tasks.png" alt="Opsuite tasks page thumbnail" class="thumbnail">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Image Zoom Modal -->
+    <div id="image-modal" class="image-modal">
+        <span class="close-modal-btn">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+
+    <!-- Footer (Consistent with homepage) -->
+    <footer>
+        <div class="container">
+            <div class="brand-text">BrandName</div>
+            <div class="quick-links">
+                <a href="../../index.html#hero">Home</a>
+                <a href="../../about.html">About</a>
+                <a href="../../index.html#projects">Projects</a>
+                <a href="../../index.html#services">Services</a>
+            </div>
+            <p class="copyright">&copy; 2025 Powered by Tekmakon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="scroll-to-top" title="Go to top">&uarr;</button>
+
+    <!-- Relative paths to global JS -->
+    <script src="../../assets/js/main.js"></script>
+    <!-- Link to the GLOBAL project script -->
+    <script src="../../projects/project.js"></script>
+</body>
+</html>

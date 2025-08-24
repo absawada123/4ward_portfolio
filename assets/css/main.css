@@ -332,7 +332,81 @@ section {
 #about-preview .cta-button:hover { background-color: var(--secondary-color); }
 #projects { text-align: center; }
 .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
-.project-item { height: 250px; background-color: var(--light-gray); display: flex; justify-content: center; align-items: center; border-radius: 8px; box-shadow: var(--box-shadow); }
+
+/* UPDATED PROJECT ITEM STYLES */
+.project-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+}
+
+.project-item { 
+    height: 250px; 
+    background-color: var(--dark-gray);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center; 
+    align-items: flex-end; /* Align content to the bottom */
+    border-radius: 8px; 
+    transition: transform var(--transition-speed);
+}
+
+.project-item-link:hover .project-item {
+    transform: scale(1.05);
+}
+
+.project-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 60%);
+    opacity: 0.8;
+    transition: opacity var(--transition-speed);
+}
+
+.project-item-link:hover .project-item::after {
+    opacity: 1;
+}
+
+.project-item-content {
+    color: var(--white);
+    z-index: 2;
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+    transform: translateY(30%);
+    opacity: 0;
+    transition: transform var(--transition-speed), opacity var(--transition-speed);
+}
+
+.project-item-link:hover .project-item-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.project-item-content h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+}
+
+.project-item-content p {
+    margin: 0 0 10px 0;
+    font-size: 0.9rem;
+}
+
+.view-project-btn {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
 #services { text-align: center; }
 .service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 .card { background: var(--background-color); padding: 40px 20px; border-radius: 8px; box-shadow: var(--box-shadow); }

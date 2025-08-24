@@ -1,9 +1,9 @@
-
+// MainCom/index.html
 <!DOCTYPE html>
 <html lang="en"> <!-- data-theme attribute will be added by JS -->
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale-1.0">
     <title>BrandName - Home</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
@@ -43,7 +43,41 @@
             <div class="container"><h2>About Us</h2><p>A brief introduction to the company.</p><a href="about.html" class="cta-button">Learn More</a></div>
         </section>
         <section id="projects" data-aos="fade-up">
-            <div class="container"><h2>Our Projects</h2><div class="project-grid"><div class="project-item" data-aos="zoom-in">Project 1</div><div class="project-item" data-aos="zoom-in" data-aos-delay="100">Project 2</div><div class="project-item" data-aos="zoom-in" data-aos-delay="200">Project 3</div></div></div>
+            <div class="container">
+                <h2>Our Projects</h2>
+                <div class="project-grid">
+                    <!-- Project 1: Opsuite -->
+                    <a href="projects/opsuite/index.html" class="project-item-link" data-aos="zoom-in">
+                        <div class="project-item" style="background-image: url('projects/opsuite/media/cover.png');">
+                            <div class="project-item-content">
+                                <h3>Opsuite</h3>
+                                <p>A streamlined operations management tool.</p>
+                                <span class="view-project-btn">View Project</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Updated Project 2: TMS -->
+                    <a href="projects/tms/index.html" class="project-item-link" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="project-item" style="background-image: url('projects/tms/media/cover.png');">
+                             <div class="project-item-content">
+                                <h3>Tenant Management System</h3>
+                                <p>An offline-first desktop app for property managers.</p>
+                                <span class="view-project-btn">View Project</span>
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Placeholder Project 3 -->
+                    <a href="#" class="project-item-link" data-aos="zoom-in" data-aos-delay="200">
+                        <div class="project-item" style="background-image: url('assets/media/placeholder-cover3.png');">
+                             <div class="project-item-content">
+                                <h3>Project Three</h3>
+                                <p>Description for the third project.</p>
+                                <span class="view-project-btn">View Project</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </section>
         <section id="services" data-aos="fade-up">
             <div class="container"><h2>Our Services</h2><div class="service-cards"><div class="card" data-aos="fade-up" data-aos-delay="100">Service 1</div><div class="card" data-aos="fade-up" data-aos-delay="200">Service 2</div><div class="card" data-aos="fade-up" data-aos-delay="300">Service 3</div></div></div>
