@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en"> <!-- data-theme attribute will be added by JS -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrandName - Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+    <div id="loader"><div class="spinner"></div></div>
+    <header id="main-header">
+        <nav>
+            <div class="logo">BrandName</div>
+            <ul class="nav-links">
+                <li class="active"><a href="#hero">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="contact.html" class="cta-button">Get in Touch</a></li>
+                <!-- Theme Toggle Button -->
+                <li>
+                    <button id="theme-toggle" title="Toggle dark/light mode">
+                        <i class="fas fa-sun sun-icon"></i>
+                        <i class="fas fa-moon moon-icon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="hero" class="full-viewport">
+            <div class="hero-content"><h1>Main Title or Tagline</h1><p>A catchy subheading to describe the brand.</p></div>
+            <div class="animated-background"></div>
+        </section>
+        <section id="about-preview" data-aos="fade-up">
+            <div class="container"><h2>About Us</h2><p>A brief introduction to the company.</p><a href="about.html" class="cta-button">Learn More</a></div>
+        </section>
+        <section id="projects" data-aos="fade-up">
+            <div class="container"><h2>Our Projects</h2><div class="project-grid"><div class="project-item" data-aos="zoom-in">Project 1</div><div class="project-item" data-aos="zoom-in" data-aos-delay="100">Project 2</div><div class="project-item" data-aos="zoom-in" data-aos-delay="200">Project 3</div></div></div>
+        </section>
+        <section id="services" data-aos="fade-up">
+            <div class="container"><h2>Our Services</h2><div class="service-cards"><div class="card" data-aos="fade-up" data-aos-delay="100">Service 1</div><div class="card" data-aos="fade-up" data-aos-delay="200">Service 2</div><div class="card" data-aos="fade-up" data-aos-delay="300">Service 3</div></div></div>
+        </section>
+
+    </main>
+    <footer>
+        <div class="container">
+            <div class="brand-text">BrandName</div>
+            <div class="quick-links"><a href="#hero">Home</a><a href="about.html">About</a><a href="#projects">Projects</a><a href="#services">Services</a></div>
+            <p class="copyright">&copy; 2025 Powered by Tekmakon. All rights reserved.</p>
+        </div>
+    </footer>
+    <button id="scroll-to-top" title="Go to top">&uarr;</button>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

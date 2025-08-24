@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - BrandName</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS.js Stylesheet -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+<body>
+
+    <!-- Header / Sticky Navigation -->
+    <header id="main-header">
+        <nav>
+            <div class="logo">BrandName</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li class="active"><a href="contact.html" class="cta-button">Get in Touch</a></li>
+                <!-- Theme Toggle Button -->
+                <li>
+                    <button id="theme-toggle" title="Toggle dark/light mode">
+                        <i class="fas fa-sun sun-icon"></i>
+                        <i class="fas fa-moon moon-icon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="contact-page-section">
+            <div class="container contact-page-container">
+                <!-- Left Column: Form -->
+                <div class="contact-form-wrapper" data-aos="fade-right">
+                    <h2>Get in Touch</h2>
+                    <p>Have a project in mind? We’d love to hear from you.</p>
+                    <form class="modern-form">
+                        <div class="form-group modern">
+                            <label for="name">Your Name*</label>
+                            <input type="text" id="name" name="name" placeholder="YOUR NAME*" required>
+                        </div>
+                        <div class="form-group modern">
+                            <label for="email">Email*</label>
+                            <input type="email" id="email" name="email" placeholder="YOUR EMAIL*" required>
+                        </div>
+                        <div class="form-group modern">
+                            <label for="company">Your company</label>
+                            <input type="text" id="company" name="company" placeholder="COMPANY NAME">
+                        </div>
+                        <div class="form-group modern">
+                            <label for="service">Choose a service*</label>
+                            <select id="service" name="service" required>
+                                <option value="" disabled selected hidden>APPLICATION DESIGN</option>
+                                <option value="app-design">APPLICATION DESIGN</option>
+                                <option value="web-dev">WEB DEVELOPMENT</option>
+                                <option value="consulting">CONSULTING</option>
+                                <option value="other">OTHER</option>
+                            </select>
+                        </div>
+                        <div class="form-group modern">
+                            <label for="currency-select">Currency*</label>
+                            <select id="currency-select" name="currency" required>
+                                <option value="usd" selected>International (USD)</option>
+                                <option value="php">Local (PHP)</option>
+                            </select>
+                        </div>
+                        <div class="form-group modern">
+                            <label for="budget-select">What is your estimate budget?*</label>
+                            <select id="budget-select" name="budget" required>
+                                <!-- Budget options will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group modern" id="custom-budget-group">
+                            <label for="custom-budget">Please specify your budget</label>
+                            <input type="text" id="custom-budget" name="custom-budget" placeholder="e.g., $50,000 - $75,000">
+                        </div>
+                        <div class="form-group modern">
+                            <label for="message">Describe Your project</label>
+                            <textarea id="message" name="message" placeholder="WRITE HERE*" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Submit</button>
+                    </form>
+                </div>
+                
+                <!-- Right Column: Info -->
+                <div class="contact-info-wrapper" data-aos="fade-left" data-aos-delay="200">
+                    <div class="info-block">
+                        <h4>General Contact</h4>
+                        <p><i class="fas fa-phone"></i> <a href="tel:619-363-4749">09123334221</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:hi@oylia@gmail.com">sample@gmail.com</a></p>
+                    </div>
+    
+                    <div class="info-block">
+                        <h4>Office</h4>
+                        <p><i class="fas fa-map-marker-alt"></i> Philippines</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Social Media</h4>
+                        <div class="social-links-contact">
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="brand-text">BrandName</div>
+            <div class="quick-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#services">Services</a>
+            </div>
+            <p class="copyright">&copy; 2025 Powered by Tekmakon. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- AOS.js Script -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <!-- Local Script -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

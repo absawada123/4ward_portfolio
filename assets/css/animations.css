@@ -1,0 +1,41 @@
+
+/* --- Loader Spinner Animation --- */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* --- Hero Section Animations --- */
+/* Animated Gradient for Hero Background */
+@keyframes gradient-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.animated-background {
+    background: linear-gradient(-45deg, #0a74da, #053b70, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient-animation 15s ease infinite;
+}
+
+/* Fade-in + Slide-up for Hero Text */
+.hero-content h1, .hero-content p {
+    animation: fadeInSlideUp 1s ease-out forwards;
+    opacity: 0;
+}
+
+.hero-content p {
+    animation-delay: 0.3s; /* Stagger the animation */
+}
+
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
