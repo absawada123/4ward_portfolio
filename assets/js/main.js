@@ -78,6 +78,58 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // ========================================================================
+    // ================= NEW: ADVANCED HOMEPAGE ANIMATIONS ====================
+    // ========================================================================
+    const empoweringSection = document.getElementById('empowering-business');
+    if (empoweringSection && !prefersReducedMotion.matches) {
+
+        // 1. Letter-by-letter headline animation
+        const headline = empoweringSection.querySelector('.section-headline');
+        if (headline) {
+            const text = headline.textContent;
+            headline.innerHTML = ''; // Clear original text
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.style.display = 'inline-block';
+                span.style.willChange = 'transform, opacity';
+                span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space
+                headline.appendChild(span);
+            });
+
+            gsap.from(headline.querySelectorAll('span'), {
+                y: 50,
+                opacity: 0,
+                rotationX: -90,
+                stagger: 0.02,
+                ease: 'back.out(1.7)',
+                scrollTrigger: {
+                    trigger: headline,
+                    start: 'top 85%', // Start animation when headline is 85% from top of viewport
+                    toggleActions: 'play none none none',
+                }
+            });
+        }
+
+        // 2. Scroll-triggered parallax effect for the image
+        const image = empoweringSection.querySelector('.visual-content img');
+        if (image) {
+            gsap.to(image, {
+                yPercent: -15, // Move image up by 15% of its height
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: empoweringSection,
+                    start: 'top bottom', // Start when section top hits viewport bottom
+                    end: 'bottom top',   // End when section bottom hits viewport top
+                    scrub: true // Smoothly scrubs the animation
+                }
+            });
+        }
+    }
+    // ========================================================================
+    // ======================= END OF NEW ANIMATIONS ==========================
+    // ========================================================================
+
 
     // --- SHARED LOGIC: This runs on ALL pages ---
 

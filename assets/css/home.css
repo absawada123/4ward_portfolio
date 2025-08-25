@@ -1,0 +1,217 @@
+/* ======================================================================== */
+/* ==================== EMPOWERING BUSINESS SECTION ======================= */
+/* ======================================================================== */
+
+.split-layout-section {
+    padding: 100px 0;
+    overflow: hidden;
+    position: relative;
+    /* Option A: Gradient Background */
+    background: linear-gradient(135deg, rgba(245, 247, 250, 1) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+[data-theme="dark"] .split-layout-section {
+    background: linear-gradient(135deg, #1a1a1a 0%, #121212 100%);
+}
+
+.split-layout-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+/* Left Side: Text Content */
+.text-content {
+    flex: 1;
+    max-width: 50%;
+    padding-right: 30px; /* Add some space between text and image */
+}
+
+.section-headline {
+    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -1px; /* Premium feel */
+    margin-bottom: 25px;
+    color: var(--secondary-color);
+}
+
+[data-theme="dark"] .section-headline {
+    color: var(--white);
+}
+
+.section-paragraph {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.7;
+    color: var(--dark-gray);
+}
+
+[data-theme="dark"] .section-paragraph {
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+.highlight {
+    font-weight: 600;
+    color: var(--primary-color);
+     margin-left: 4px; /* Adds spacing before the word */
+    margin-right: 4px;
+}
+
+/* Key Benefits List */
+.key-benefits {
+    margin-bottom: 40px;
+}
+
+.key-benefits-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.key-benefits ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.key-benefits li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    color: var(--dark-gray);
+}
+
+[data-theme="dark"] .key-benefits li {
+     color: var(--text-color);
+     opacity: 0.8;
+}
+
+.key-benefits .fa-check-circle {
+    color: var(--primary-color);
+    margin-right: 12px;
+    font-size: 1.1rem;
+}
+
+/* Modern CTA Button */
+.modern-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 30px;
+    border-radius: 50px; /* Pill shape */
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: 2px solid var(--primary-color);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(10, 116, 218, 0.3);
+}
+
+.modern-button .arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.modern-button:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translateY(-3px) scale(1.02); /* Scale up on hover */
+    box-shadow: 0 6px 20px rgba(10, 116, 218, 0.4);
+}
+
+.modern-button:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* Right Side: Visual Content */
+.visual-content {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.visual-content img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    z-index: 2;
+    position: relative;
+}
+
+/* Visual Accents */
+.visual-accent-dots, .visual-accent-lines {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.3;
+}
+
+.visual-accent-dots {
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(var(--primary-color) 2px, transparent 2px);
+    background-size: 15px 15px;
+    top: -20px;
+    left: -20px;
+    animation: pulse 5s infinite ease-in-out;
+}
+
+.visual-accent-lines {
+    width: 150px;
+    height: 150px;
+    border: 2px solid var(--primary-color);
+    border-radius: 15px;
+    bottom: -30px;
+    right: -30px;
+    transform: rotate(-30deg);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.05); opacity: 0.5; }
+}
+
+/* --- Responsive Styles for Empowering Business Section --- */
+@media (max-width: 992px) {
+    .section-headline {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .split-layout-section {
+        padding: 60px 0;
+    }
+
+    .split-layout-container {
+        flex-direction: column; /* Stack vertically */
+        text-align: center;
+    }
+
+    .text-content, .visual-content {
+        max-width: 100%;
+        padding-right: 0;
+    }
+
+    .visual-content {
+        margin-top: 40px;
+    }
+
+    .key-benefits ul {
+        justify-content: center;
+        text-align: left;
+    }
+
+    .modern-button {
+        margin: 0 auto; /* Center button */
+    }
+}

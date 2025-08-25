@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="assets/css/main.css">
     <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
@@ -57,14 +59,37 @@
             </div>
             <div class="animated-background"></div>
         </section>
-        <section id="about-preview">
-            <div class="container"><h2>About Us</h2><p>4ward People Connect (4PC) provides HR Services, Accounting Services, and IT Solutions designed to support businesses in building stronger systems and achieving sustainable growth.
 
-We also operate a Virtual Assistant Agency that offers reliable support in customer service, sales, and other business functions tailored to your company’s needs.
+        <section id="empowering-business" class="split-layout-section" data-aos="fade-up">
+            <div class="container split-layout-container">
+                <!-- Left Side: Text Content -->
+                <div class="text-content">
+                    <h2 class="section-headline">Empowering Businesses Through People, Technology, and Expertise.</h2>
+                    <p class="section-paragraph">
+                        4ward People Connect (4PC) provides comprehensive <strong class="highlight">HR Services</strong>, meticulous <strong class="highlight">Accounting</strong>, and innovative <strong class="highlight">IT Solutions</strong> designed to build stronger systems and drive sustainable growth.
+                    </p>
+                    <div class="key-benefits">
+                        <h3 class="key-benefits-title">Key Benefits:</h3>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Streamline operations and reduce costs.</li>
+                            <li><i class="fas fa-check-circle"></i> Focus on your core business goals.</li>
+                            <li><i class="fas fa-check-circle"></i> Access reliable support from our <strong class="highlight">Virtual Assistant</strong> agency.</li>
+                        </ul>
+                    </div>
+                    <a href="about.html" class="cta-button modern-button">
+                        Learn More <span class="arrow-icon">→</span>
+                    </a>
+                </div>
 
-At 4PC, we are committed to helping organizations streamline operations, reduce costs, and stay focused on their core business goals, while we handle the rest.
-</p><a href="about.html" class="cta-button">Learn More</a></div>
+                <!-- Right Side: Image/Visual -->
+                <div class="visual-content">
+                    <img src="assets/media/123.png" alt="A professional team collaborating in a modern office environment.">
+                    <div class="visual-accent-dots"></div>
+                    <div class="visual-accent-lines"></div>
+                </div>
+            </div>
         </section>
+
         <section id="projects">
             <div class="container">
                 <h2>Our Projects</h2>
@@ -92,10 +117,7 @@ At 4PC, we are committed to helping organizations streamline operations, reduce 
                 </div>
             </div>
         </section>
-        
-        <!-- ================================================================= -->
-        <!-- ================== NEW SERVICES SECTION START =================== -->
-        <!-- ================================================================= -->
+
         <section id="services">
             <div class="animated-background-shapes">
                 <!-- Decorative shapes will be added via CSS -->
@@ -171,26 +193,63 @@ At 4PC, we are committed to helping organizations streamline operations, reduce 
                 </div>
             </div>
         </section>
-        <!-- =============================================================== -->
-        <!-- ================== NEW SERVICES SECTION END =================== -->
-        <!-- =============================================================== -->
 
     </main>
-    <footer>
-        <div class="container">
-            <div class="brand-text">4ward People Connect</div>
-            <div class="quick-links"><a href="#hero">Home</a><a href="about.html">About</a><a href="#projects">Projects</a><a href="#services">Services</a></div>
-            <p class="copyright">&copy; 2025 Powered by Tekmakon. All rights reserved.</p>
+
+    <footer id="main-footer-new">
+        <div class="container footer-container">
+            <div class="footer-main">
+                <!-- Column 1: Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#hero">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Our Services -->
+                <div class="footer-column">
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#services">HR Services</a></li>
+                        <li><a href="#services">Accounting</a></li>
+                        <li><a href="#services">IT Solutions</a></li>
+                        <li><a href="#services">Virtual Assistant</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact Info -->
+                <div class="footer-column">
+                    <h4>Get in Touch</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                    </div>
+                    <div class="footer-social-links">
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 4ward People Connect | Powered by Tekmakon. All rights reserved.</p>
+            </div>
         </div>
     </footer>
+
     <button id="scroll-to-top" title="Go to top">&uarr;</button>
 
     <!-- Animation & Smooth Scroll Libraries -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap-utils.min.js"></script>
-
+    
     <!-- AOS and Main Scripts -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="assets/js/main.js"></script>
