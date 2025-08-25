@@ -1,4 +1,3 @@
-
 /* --- Loader Spinner Animation --- */
 @keyframes spin {
     0% { transform: rotate(0deg); }
@@ -6,36 +5,24 @@
 }
 
 /* --- Hero Section Animations --- */
-/* Animated Gradient for Hero Background */
-@keyframes gradient-animation {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
+/* The gradient background is prepared for a scroll-driven parallax effect via GSAP. */
 .animated-background {
     background: linear-gradient(-45deg, #0a74da, #053b70, #23a6d5, #23d5ab);
     background-size: 400% 400%;
-    animation: gradient-animation 15s ease infinite;
 }
 
-/* Fade-in + Slide-up for Hero Text */
-.hero-content h1, .hero-content p {
-    animation: fadeInSlideUp 1s ease-out forwards;
-    opacity: 0;
+/* --- NEW: Style for the subheading to ensure it's ready for animation --- */
+.kinetic-subheading {
+    margin-top: 20px; /* Add some space below the main headline */
+    font-weight: 400; /* Lighter weight to contrast with the headline */
+    display: inline-block; /* Ensures proper layout */
 }
 
-.hero-content p {
-    animation-delay: 0.3s; /* Stagger the animation */
-}
-
-@keyframes fadeInSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* --- UPDATED: Interactive Hover Effect for ALL Kinetic Text --- */
+/* This now targets any character inside the hero-content container. */
+.hero-content .char:hover {
+    transform: scale(1.2) rotate(5deg);
+    color: var(--primary-color);
+    transition: transform 0.2s ease, color 0.2s ease;
+    cursor: default;
 }
