@@ -6,7 +6,7 @@
     background-color: #1a1a1a; /* Dark background */
     color: #a9a9a9; /* Softer text color for paragraphs/links */
     padding: 60px 0 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 [data-theme="dark"] #main-footer-new {

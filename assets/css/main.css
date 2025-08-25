@@ -37,7 +37,7 @@
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     background-color: var(--background-color);
     color: var(--text-color);
@@ -302,19 +302,41 @@ section {
 /* --- ABOUT PAGE STYLES --- */
 #about-hero { color: var(--white); }
 #about-hero .tagline { font-size: 1.5rem; font-weight: 300; margin-top: 10px; }
-#story, #team { text-align: center; }
+
+/* NEW Story Section Styles */
+.story-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+}
+.story-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);
+}
+.story-content h2 {
+    font-size: 2.5rem;
+}
+.story-content .subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-top: -15px;
+    margin-bottom: 25px;
+}
+.story-content p {
+    margin-bottom: 15px;
+    font-size: 1.05rem;
+}
+
+
+#team { text-align: center; }
 [data-theme="dark"] #story, [data-theme="dark"] #team { background-color: var(--background-color); }
-#story p { max-width: 800px; margin: 0 auto; font-size: 1.1rem; }
 #vision-mission { background-color: var(--light-gray); }
-.vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+.vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
 .vision-card, .mission-card { background: var(--background-color); padding: 30px; border-radius: 8px; box-shadow: var(--box-shadow); }
 .vision-card h3, .mission-card h3 { color: var(--primary-color); }
-.skills-section h3 { text-align: center; font-size: 1.8rem; margin-bottom: 40px; }
-.skill-bar-container { margin-bottom: 20px; }
-.skill-bar-container p { margin-bottom: 5px; font-weight: bold; }
-.skill-bar { width: 100%; background-color: #e0e0e0; border-radius: 20px; padding: 3px; position: relative; color: var(--white); font-weight: bold; text-align: right; padding-right: 10px; }
-.skill-bar::before { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 0; border-radius: 20px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); transition: width 1.5s cubic-bezier(0.25, 1, 0.5, 1); }
-.aos-animate[data-aos="progress-bar"]::before { width: calc(var(--width) * 1%); }
 .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 .team-member-card { background: var(--background-color); border-radius: 10px; box-shadow: var(--box-shadow); text-align: center; overflow: hidden; transition: transform var(--transition-speed), box-shadow var(--transition-speed); }
 .team-member-card:hover { transform: translateY(-10px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
@@ -571,6 +593,8 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     .values-grid { grid-template-columns: repeat(2, 1fr); }
     .contact-page-container { grid-template-columns: 1fr; gap: 40px; }
     .contact-info-wrapper { padding: 30px; }
+    .story-grid { grid-template-columns: 1fr; } /* Story section responsive */
+    .story-image { margin-bottom: 30px; }
 }
 
 @media (max-width: 768px) {
@@ -592,6 +616,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     .values-grid { grid-template-columns: 1fr; }
     #contact-page-section { padding-top: 100px; }
     .contact-form-wrapper h2 { font-size: 2rem; }
+    .story-content h2 { font-size: 2rem; } /* Responsive heading */
 }
 
 /* ======================================================================== */
@@ -755,7 +780,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 
 .card-title {
     font-size: 1.5rem;
-    font-family: "Georgia", serif; /* Example elegant serif font */
+    font-family: 'Poppins', sans-serif;
 }
 
 .animated-divider {
