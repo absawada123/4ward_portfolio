@@ -593,3 +593,259 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     #contact-page-section { padding-top: 100px; }
     .contact-form-wrapper h2 { font-size: 2rem; }
 }
+
+/* ======================================================================== */
+/* ========================= NEW SERVICES SECTION ========================= */
+/* ======================================================================== */
+
+#services {
+    position: relative;
+    overflow: hidden; /* Contains the animated shapes */
+    background: linear-gradient(170deg, var(--background-color) 0%, var(--light-gray) 100%);
+    text-align: center;
+}
+
+[data-theme="dark"] #services {
+    background: linear-gradient(170deg, var(--background-color) 0%, #1a1a1a 100%);
+}
+
+#services .section-subtitle {
+    margin-top: -15px;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    color: var(--dark-gray);
+}
+
+[data-theme="dark"] #services .section-subtitle {
+     color: var(--text-color);
+     opacity: 0.7;
+}
+
+/* --- Animated Background Shapes --- */
+.animated-background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.animated-background-shapes::before,
+.animated-background-shapes::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    opacity: 0.1;
+    z-index: -1;
+}
+
+.animated-background-shapes::before {
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 15%;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+.animated-background-shapes::after {
+    width: 300px;
+    height: 300px;
+    bottom: 5%;
+    right: 10%;
+    animation: float 12s infinite alternate-reverse ease-in-out;
+}
+
+@keyframes float {
+    from { transform: translateY(0px) rotate(0deg); }
+    to { transform: translateY(-30px) rotate(45deg); }
+}
+
+
+/* --- Filter Buttons --- */
+.filters {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.filter-btn {
+    background: transparent;
+    border: 1px solid var(--form-border-color);
+    color: var(--text-color);
+    padding: 10px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+}
+
+.filter-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(10, 116, 218, 0.4);
+}
+
+
+/* --- Services Grid --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- Service Card (Glassmorphism) --- */
+.service-card {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    text-align: left;
+    padding: 30px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+
+    /* Glassmorphism Effect */
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .service-card {
+    background: rgba(40, 40, 40, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .service-card:hover {
+     box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* --- Card Content --- */
+.card-icon {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    transition: transform 0.4s ease;
+}
+
+.service-card:hover .card-icon {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-family: "Georgia", serif; /* Example elegant serif font */
+}
+
+.animated-divider {
+    height: 2px;
+    width: 30px;
+    background-color: var(--primary-color);
+    margin: 15px 0;
+    transition: width 0.4s ease;
+}
+
+.service-card:hover .animated-divider {
+    width: 100%;
+}
+
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 30px 0;
+}
+
+.service-list li {
+    margin-bottom: 12px;
+    position: relative;
+    padding-left: 20px;
+    transition: color var(--transition-speed);
+}
+
+.service-list li::before {
+    content: '✓';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.service-list li:hover {
+    color: var(--primary-color);
+    cursor: default;
+}
+
+.service-card .cta-button {
+    text-align: center;
+    width: 100%;
+}
+
+/* --- "Recommended" Badge --- */
+.popular-badge {
+    position: absolute;
+    top: 15px;
+    right: -40px;
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 5px 40px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transform: rotate(45deg);
+    box-shadow: 0 0 15px var(--primary-color);
+    z-index: 3;
+}
+
+
+/* --- Card Filtering Animation --- */
+.service-card.hide {
+    transform: scale(0);
+    opacity: 0;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    transition: transform 0.4s ease, opacity 0.4s ease, width 0.4s ease, height 0.4s ease, padding 0.4s ease, margin 0.4s ease;
+}
+
+
+/* --- Responsive Grid for Services --- */
+@media (max-width: 1200px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    .filter-btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+/* --- Fix for old services styles, can be removed if old HTML is gone --- */
+#services .service-cards { display: none; }

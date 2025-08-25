@@ -228,4 +228,35 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         populateBudgetOptions(currencySelect.value);
     }
+    
+    // --- 8. Services Section Filtering Logic ---
+    const filtersContainer = document.getElementById('service-filters');
+    if (filtersContainer) {
+        const filterBtns = filtersContainer.querySelectorAll('.filter-btn');
+        const serviceCards = document.querySelectorAll('.services-grid .service-card');
+
+        filtersContainer.addEventListener('click', (e) => {
+            const target = e.target;
+            // Check if a filter button was actually clicked
+            if (!target.classList.contains('filter-btn')) {
+                return;
+            }
+
+            // Remove active class from all buttons and add to the clicked one
+            filterBtns.forEach(btn => btn.classList.remove('active'));
+            target.classList.add('active');
+
+            const filterValue = target.getAttribute('data-filter');
+
+            serviceCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+
+                if (filterValue === 'all' || filterValue === cardCategory) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
+        });
+    }
 });
