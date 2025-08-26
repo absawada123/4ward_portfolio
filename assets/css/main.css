@@ -220,6 +220,9 @@ section {
     color: var(--header-text-initial);
     transition: color var(--transition-speed), transform 0.2s ease;
     padding: 5px;
+    position: relative; /* Set as container for the icons */
+    width: 24px;  /* Define a fixed size */
+    height: 24px; /* Define a fixed size */
 }
 
 #theme-toggle:hover {
@@ -227,11 +230,15 @@ section {
     color: var(--primary-color);
 }
 #theme-toggle i {
-    position: absolute;
+    position:absolute;
     top: 50%;
     left: 50%;
+    right: 50%;
     transform: translate(-50%, -50%);
     transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.sun-icon {
+    opacity: 1; /* Sun is visible in light mode */
 }
 
 .moon-icon {
