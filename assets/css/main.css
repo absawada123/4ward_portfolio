@@ -1,7 +1,7 @@
 /* --- CSS Variables --- */
 :root {
-    --primary-color: #0a74da;
-    --secondary-color: #053b70;
+    --primary-color: #6A0DAD; /* New Purple */
+    --secondary-color: #5A009D; /* Darker Purple */
     --background-color: #ffffff;
     --text-color: #333333;
     --header-bg-initial: transparent;
@@ -17,8 +17,8 @@
 }
 
 [data-theme="dark"] {
-    --primary-color: #1a8cff;
-    --secondary-color: #0a6bbf;
+    --primary-color: #b300ff; /* Lighter purple for dark mode */
+    --secondary-color: #6A0DAD;
     --background-color: #121212;
     --text-color: #e0e0e0;
     --header-bg-scrolled: #1e1e1e;
@@ -28,7 +28,6 @@
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     --form-border-color: #555;
 }
-
 /* --- Basic Reset & Global Styles --- */
 * {
     margin: 0;
@@ -153,6 +152,7 @@ section {
 .nav-links li.active a {
     color: var(--primary-color);
     font-weight: 700; /* Bold for active link */
+    border-bottom: 2px solid var(--primary-color); /* Ensure underline is always visible */
 }
 
 #main-header.scrolled .nav-links li.active a {
@@ -160,10 +160,10 @@ section {
 }
 
 .cta-button {
-    background-color: var(--primary-color);
+    background-color: #6A0DAD; /* Changed from var(--primary-color) to purple */
     color: var(--white);
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 8px; /* Increased from 5px for a rounder look */
     transition: background-color var(--transition-speed), transform 0.2s ease;
     border: none;
     cursor: pointer;
@@ -173,11 +173,10 @@ section {
 }
 
 .cta-button:hover {
-    background-color: var(--secondary-color);
+    background-color: #5A009D; /* Darker purple for hover */
     color: var(--white);
     transform: translateY(-2px);
 }
-
 #main-header.scrolled {
     background-color: var(--header-bg-scrolled);
     box-shadow: var(--box-shadow);
@@ -217,20 +216,16 @@ section {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.5rem; /* Larger icon */
     color: var(--header-text-initial);
     transition: color var(--transition-speed), transform 0.2s ease;
     padding: 5px;
-    position: relative;
-    width: 24px;
-    height: 24px;
 }
 
 #theme-toggle:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(22deg); /* Add rotation effect */
     color: var(--primary-color);
 }
-
 #theme-toggle i {
     position: absolute;
     top: 50%;
@@ -258,20 +253,33 @@ section {
 /* --- Hero Section (Homepage) --- */
 #hero {
     color: var(--white);
+    background-color: #1a1a1a; /* Fallback background for when video is loading */
 }
 
+#hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    z-index: 0; /* Positioned between video and text */
+}
 .animated-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    object-fit: cover; /* Ensures video covers the entire area */
     z-index: -1;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    /* The gradient background is removed to let the video show */
 }
 
+
 .hero-content {
-    z-index: 2; /* Increased z-index */
+    z-index: 1; /* Increased z-index */
     padding: 0 10px;
     position: relative; /* Added for stacking context */
     isolation: isolate; /* <<<< FIXED: This prevents the text from disappearing */
@@ -751,11 +759,11 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     padding: 30px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 
-    /* Glassmorphism Effect */
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Glassmorphism Effect - Made Lighter */
+    background: rgba(255, 255, 255, 0.7); /* Increased opacity from 0.4 to 0.7 */
+    backdrop-filter: blur(12px); /* Increased blur for a softer look */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Made border slightly more visible */
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
 }
 
@@ -886,3 +894,61 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 
 /* --- Fix for old services styles, can be removed if old HTML is gone --- */
 #services .service-cards { display: none; }
+
+/* --- Main Content Background Video --- */
+.main-content-wrapper {
+  position: relative;
+  isolation: isolate; /* Creates a new stacking context to contain the z-indexed video */
+}
+
+.main-content-wrapper > .animated-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1; /* Place video behind the section content */
+  filter: brightness(0.6); /* Darken video for better text contrast */
+}
+
+/* Make sections transparent and set a base text color for readability */
+.main-content-wrapper section {
+  background: transparent !important; /* Override any inline or specific styles */
+  color: var(--white);
+}
+
+/* Ensure headings are also white */
+.main-content-wrapper section h2,
+.main-content-wrapper section h3,
+.main-content-wrapper section p {
+  color: var(--white);
+}
+
+/* The project items already have a dark overlay and white text, so they are fine. */
+/* However, the service cards have their own light/blurry background, so the text inside them should revert to the default theme text color. */
+.main-content-wrapper .service-card,
+.main-content-wrapper .service-card h3,
+.main-content-wrapper .service-card li {
+    color: var(--text-color);
+}
+
+/* Keep the highlight color visible */
+.main-content-wrapper .highlight {
+    color: #8ec8ff; /* A lighter blue that works on dark backgrounds */
+    font-weight: 600;
+}
+
+.main-content-wrapper .visual-content img {
+    border: 3px solid rgba(255, 255, 255, 0.9);
+}
+
+.project-item-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0; /* Behind the overlay and content */
+}

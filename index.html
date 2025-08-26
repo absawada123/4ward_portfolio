@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="assets/css/animations.css">
     <link rel="stylesheet" href="assets/css/home.css">
     <link rel="stylesheet" href="assets/css/footer.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="httpshttps://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
     <div id="loader"><div class="spinner"></div></div>
@@ -31,8 +31,7 @@
                 <!-- Theme Toggle Button -->
                 <li>
                     <button id="theme-toggle" title="Toggle dark/light mode">
-                        <i class="fas fa-sun sun-icon"></i>
-                        <i class="fas fa-moon moon-icon"></i>
+                        <i class="fas fa-cog"></i>
                     </button>
                 </li>
             </ul>
@@ -63,142 +62,156 @@
                     <span class="char">W</span><span class="char">h</span><span class="char">e</span><span class="char">r</span><span class="char">e</span><span class="char">&nbsp;</span><span class="char">P</span><span class="char">e</span><span class="char">o</span><span class="char">p</span><span class="char">l</span><span class="char">e</span><span class="char">&nbsp;</span><span class="char">a</span><span class="char">n</span><span class="char">d</span><span class="char">&nbsp;</span><span class="char">P</span><span class="char">o</span><span class="char">t</span><span class="char">e</span><span class="char">n</span><span class="char">t</span><span class="char">i</span><span class="char">a</span><span class="char">l</span><span class="char">&nbsp;</span><span class="char">M</span><span class="char">e</span><span class="char">e</span><span class="char">t</span>
                 </p>
             </div>
-            <div class="animated-background"></div>
+            <video autoplay loop muted playsinline class="animated-background">
+                <source src="assets/media/Intro.mp4" type="video/mp4">
+            </video>
         </section>
 
-        <section id="empowering-business" class="split-layout-section" data-aos="fade-up">
-            <div class="container split-layout-container">
-                <!-- Left Side: Text Content -->
-                <div class="text-content">
-                    <h2 class="section-headline">Empowering Businesses Through People, Technology, and Expertise.</h2>
-                    <p class="section-paragraph">
-                        4ward People Connect (4PC) provides comprehensive <strong class="highlight">HR Services</strong>, meticulous <strong class="highlight">Accounting</strong>, and innovative <strong class="highlight">IT Solutions</strong> designed to build stronger systems and drive sustainable growth.
-                    </p>
-                    <div class="key-benefits">
-                        <h3 class="key-benefits-title">Key Benefits:</h3>
-                        <ul>
-                            <li><i class="fas fa-check-circle"></i> Simplify processes and reduce expenses.</li>
-                            <li><i class="fas fa-check-circle"></i> Focus on your core business goals.</li>
-                            <li><i class="fas fa-check-circle"></i> Access reliable support from our Virtual Assistant agency.</li>
-                        </ul>
+     
+            
+            <section id="empowering-business" class="split-layout-section" data-aos="fade-up">
+                <div class="container split-layout-container">
+                    <!-- Left Side: Text Content -->
+                    <div class="text-content">
+                        <h2 class="section-headline">About 4PC</h2>
+                        <p class="section-paragraph">
+                            4ward People Connect (4PC) provides comprehensive <strong class="highlight">HR Services</strong>, meticulous <strong class="highlight">Accounting</strong>, and innovative <strong class="highlight">IT Solutions</strong> designed to build stronger systems and drive sustainable growth.
+                        </p>
+                        <div class="key-benefits">
+                            <h3 class="key-benefits-title">Key Benefits:</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Simplify processes and reduce expenses.</li>
+                                <li><i class="fas fa-check-circle"></i> Focus on your core business goals.</li>
+                                <li><i class="fas fa-check-circle"></i> Get reliable support from our <strong class="highlight">Virtual Assistant</strong> agency.</li>
+
+                            </ul>
+                        </div>
+                        <a href="about.html" class="cta-button modern-button">
+                            Learn More <span class="arrow-icon">→</span>
+                        </a>
                     </div>
-                    <a href="about.html" class="cta-button modern-button">
-                        Learn More <span class="arrow-icon">→</span>
-                    </a>
-                </div>
 
-                <!-- Right Side: Image/Visual -->
-                <div class="visual-content">
-                    <img src="assets/media/placeholder.png" alt="A professional team collaborating in a modern office environment.">
-                    <div class="visual-accent-dots"></div>
-                    <div class="visual-accent-lines"></div>
+                    <!-- Right Side: Image/Visual -->
+                    <div class="visual-content">
+                        <video autoplay loop muted playsinline>
+                            <source src="assets/media/about.mp4" type="video/mp4">
+                        </video>
+                        <div class="visual-accent-dots"></div>
+                        <div class="visual-accent-lines"></div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+   <div class="main-content-wrapper">
+            <video autoplay loop muted playsinline class="animated-background">
+                <source src="assets/media/background.mp4" type="video/mp4">
+            </video>
+            <section id="projects">
+                <div class="container">
+                    <h2>Our Projects</h2>
+                    <div class="project-grid">
+                        <!-- Project 1: Opsuite -->
+                        <a href="projects/opsuite/index.html" class="project-item-link">
+                            <div class="project-item" style="background-image: url('projects/opsuite/media/cover.png');">
+                                <div class="project-item-content">
+                                    <h3>Opsuite</h3>
+                                    <p>A streamlined operations management tool.</p>
+                                    <span class="view-project-btn">View Project</span>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Project 2: TMS -->
+                        <a href="projects/tms/index.html" class="project-item-link">
+                            <div class="project-item">
+                                 <video autoplay loop muted playsinline class="project-item-video">
+                                    <source src="assets/media/tms.mp4" type="video/mp4">
+                                </video>
+                                 <div class="project-item-content">
+                                    <h3>Tenant Management System</h3>
+                                    <p>An offline-first desktop app for property managers.</p>
+                                    <span class="view-project-btn">View Project</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
 
-        <section id="projects">
-            <div class="container">
-                <h2>Our Projects</h2>
-                <div class="project-grid">
-                    <!-- Project 1: Opsuite -->
-                    <a href="projects/opsuite/index.html" class="project-item-link">
-                        <div class="project-item" style="background-image: url('projects/opsuite/media/cover.png');">
-                            <div class="project-item-content">
-                                <h3>Opsuite</h3>
-                                <p>A streamlined operations management tool.</p>
-                                <span class="view-project-btn">View Project</span>
+            <section id="services">
+                <div class="animated-background-shapes">
+                    <!-- Decorative shapes will be added via CSS -->
+                </div>
+                <div class="container">
+                    <h2>Our Services</h2>
+
+                    <!-- Services Grid -->
+                    <div class="services-grid">
+                        <!-- HR Services Card -->
+                        <div class="service-card" data-category="hr" data-aos="fade-up">
+                            <div class="card-content">
+                                <div class="card-icon"><i class="fas fa-users-cog"></i></div>
+                                <h3 class="card-title">HR Services</h3>
+                                <div class="animated-divider"></div>
+                                <ul class="service-list">
+                                    <li>Recruitment and Staffing</li>
+                                    <li>Employee Relations & Compliance</li>
+                                    <li>Payroll & Benefits Administration</li>
+                                    <li>Employee Handbook Creation</li>
+                                    <li>HR Consultancy & Outsourcing</li>
+                                </ul>
                             </div>
                         </div>
-                    </a>
-                    <!-- Project 2: TMS -->
-                    <a href="projects/tms/index.html" class="project-item-link">
-                        <div class="project-item" style="background-image: url('projects/tms/media/cover.png');">
-                             <div class="project-item-content">
-                                <h3>Tenant Management System</h3>
-                                <p>An offline-first desktop app for property managers.</p>
-                                <span class="view-project-btn">View Project</span>
+
+                        <!-- Accounting Services Card -->
+                        <div class="service-card" data-category="accounting" data-aos-delay="100">
+                            <div class="card-content">
+                                <div class="card-icon"><i class="fas fa-calculator"></i></div>
+                                <h3 class="card-title">Accounting Services</h3>
+                                <div class="animated-divider"></div>
+                                <ul class="service-list">
+                                    <li>Bookkeeping & Reporting</li>
+                                    <li>Tax Compliance</li>
+                                    <li>Accounts Payable & Receivable</li>
+                                    <li>Payroll Processing</li>
+                                    <li>Budgeting & Forecasting</li>
+                                </ul>
                             </div>
                         </div>
-                    </a>
-                </div>
-            </div>
-        </section>
 
-        <section id="services">
-            <div class="animated-background-shapes">
-                <!-- Decorative shapes will be added via CSS -->
-            </div>
-            <div class="container">
-                <h2>Our Services</h2>
-
-                <!-- Services Grid -->
-                <div class="services-grid">
-                    <!-- HR Services Card -->
-                    <div class="service-card" data-category="hr" data-aos="fade-up">
-                        <div class="card-content">
-                            <div class="card-icon"><i class="fas fa-users-cog"></i></div>
-                            <h3 class="card-title">HR Services</h3>
-                            <div class="animated-divider"></div>
-                            <ul class="service-list">
-                                <li>Recruitment and Staffing</li>
-                                <li>Employee Relations & Compliance</li>
-                                <li>Payroll & Benefits Administration</li>
-                                <li>Employee Handbook Creation</li>
-                                <li>HR Consultancy & Outsourcing</li>
-                            </ul>
+                        <!-- IT Solutions Card -->
+                        <div class="service-card" data-category="it" data-aos-delay="200">
+                            <div class="card-content">
+                                <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                                <h3 class="card-title">IT Solutions</h3>
+                                <div class="animated-divider"></div>
+                                <ul class="service-list">
+                                    <li>System Setup & Maintenance</li>
+                                    <li>Network & Data Security</li>
+                                    <li>Software Development</li>
+                                    <li>Website Development & Support</li>
+                                    <li>IT Consultancy</li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Accounting Services Card -->
-                    <div class="service-card" data-category="accounting" data-aos="fade-up" data-aos-delay="100">
-                        <div class="card-content">
-                            <div class="card-icon"><i class="fas fa-calculator"></i></div>
-                            <h3 class="card-title">Accounting Services</h3>
-                            <div class="animated-divider"></div>
-                            <ul class="service-list">
-                                <li>Bookkeeping & Reporting</li>
-                                <li>Tax Compliance</li>
-                                <li>Accounts Payable & Receivable</li>
-                                <li>Payroll Processing</li>
-                                <li>Budgeting & Forecasting</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- IT Solutions Card -->
-                    <div class="service-card" data-category="it" data-aos="fade-up" data-aos-delay="200">
-                        <div class="card-content">
-                            <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
-                            <h3 class="card-title">IT Solutions</h3>
-                            <div class="animated-divider"></div>
-                            <ul class="service-list">
-                                <li>System Setup & Maintenance</li>
-                                <li>Network & Data Security</li>
-                                <li>Software Development</li>
-                                <li>Website Development & Support</li>
-                                <li>IT Consultancy</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Virtual Assistant Services Card -->
-                    <div class="service-card" data-category="va" data-aos="fade-up" data-aos-delay="300">
-                        <div class="card-content">
-                            <div class="card-icon"><i class="fas fa-headset"></i></div>
-                            <h3 class="card-title">Virtual Assistant Services</h3>
-                            <div class="animated-divider"></div>
-                            <ul class="service-list">
-                                <li>Data Entry & Research</li>
-                                <li>Admin Assistance</li>
-                                <li>Sales & Lead Generation</li>
-                                <li>Customer Service</li>
-                                <li>Social Media Management</li>
-                            </ul>
+                        <!-- Virtual Assistant Services Card -->
+                        <div class="service-card" data-category="va" data-aos-delay="300">
+                            <div class="card-content">
+                                <div class="card-icon"><i class="fas fa-headset"></i></div>
+                                <h3 class="card-title">Virtual Assistant Services</h3>
+                                <div class="animated-divider"></div>
+                                <ul class="service-list">
+                                    <li>Data Entry & Research</li>
+                                    <li>Admin Assistance</li>
+                                    <li>Sales & Lead Generation</li>
+                                    <li>Customer Service</li>
+                                    <li>Social Media Management</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
     </main>
 
