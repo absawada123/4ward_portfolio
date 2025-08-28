@@ -3,7 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - 4PC</title>
+
+    <!-- SEO: Basic Meta Tags -->
+    <title>About 4ward People Connect | Our Story, Mission, and Team</title>
+    <meta name="description" content="Learn about 4ward People Connect. Discover our story, mission, vision, and the expert team dedicated to providing top-tier HR, Accounting, and IT solutions.">
+    <link rel="canonical" href="https://www.4wardph.com/about" />
+
+    <!-- SEO: Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="About 4ward People Connect | Our Story, Mission, and Team" />
+    <meta property="og:description" content="Discover our story, mission, and the expert team behind our HR, Accounting, and IT solutions." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.4wardph.com/about" />
+    <meta property="og:image" content="https://www.4wardph.com/assets/media/placeholder.png" />
+    <meta property="og:site_name" content="4ward People Connect" />
+
+    <!-- SEO: Schema.org Markup (for rich snippets) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "4ward People Connect",
+      "url": "https://www.4wardph.com/",
+      "logo": "https://www.4wardph.com/assets/media/placeholder.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "0495608835",
+        "contactType": "Customer Service",
+        "email": "contact@4pc.com"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Calamba City",
+        "addressCountry": "PH"
+      },
+      "sameAs": [
+        "https://www.facebook.com/4wardPeopleConnect",
+        "https://twitter.com/4wardPeopleConnect",
+        "https://www.linkedin.com/company/4ward-people-connect"
+      ]
+    }
+    </script>
     
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,11 +63,11 @@
         <nav>
             <div class="logo">4ward People Connect</div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li class="active"><a href="about.html">About</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="contact.html" class="cta-button">Get in Touch</a></li>
+                <li><a href="/">Home</a></li>
+                <li class="active"><a href="/about">About</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li><a href="/contact" class="cta-button">Get in Touch</a></li>
                 <!-- Theme Toggle Button -->
                 <li>
                     <button id="theme-toggle" title="Toggle dark/light mode">
@@ -60,7 +99,7 @@
             <div class="container">
                 <div class="story-grid">
                     <div class="story-image" data-aos="fade-right">
-                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2574&auto=format&fit=crop" alt="Our Team Collaborating">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2574&auto=format&fit=crop" alt="Our Team Collaborating in a modern office">
                     </div>
                     <div class="story-content" data-aos="fade-left">
                         <h2>Our Story</h2>
@@ -95,9 +134,9 @@
             <div class="container">
                 <h2 data-aos="fade-up">Meet Our Team</h2>
                 <div class="team-grid">
-                    <!-- Team members here (paths are now corrected) -->
+                    <!-- Team members here -->
                     <div class="team-member-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member-image"><a href="https://absawada123.github.io/absawada"><img src="assets/media/liam.png" alt="Team Member"></a></div>
+                        <div class="member-image"><a href="https://absawada123.github.io/absawada"><img src="assets/media/liam.png" alt="Ab, CTO"></a></div>
                         <div class="member-info">
                             <h3>Ab</h3><p class="role">CTO</p>
                             <div class="social-links">
@@ -108,7 +147,7 @@
                         </div>
                     </div>
                     <div class="team-member-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member-image"><img src="assets/media/ngos.png" alt="Team Member"></div>
+                        <div class="member-image"><img src="assets/media/ngos.png" alt="Ivan, Team Member"></div>
                         <div class="member-info">
                             <h3>Ivan</h3><p class="role">May bitaw</p>
                             <div class="social-links">
@@ -119,7 +158,7 @@
                         </div>
                     </div>
                     <div class="team-member-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member-image"><img src="assets/media/wae.png" alt="Team Member"></div>
+                        <div class="member-image"><img src="assets/media/wae.png" alt="Austin, R&D Engineer"></div>
                         <div class="member-info">
                             <h3>Austin</h3><p class="role">R&D Engineer</p>
                             <div class="social-links">
@@ -130,7 +169,7 @@
                         </div>
                     </div>
                      <div class="team-member-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member-image"><img src="assets/media/123.png" alt="Team Member"></div>
+                        <div class="member-image"><img src="assets/media/123.png" alt="OTITS1, HR"></div>
                         <div class="member-info">
                             <h3>OTITS1</h3><p class="role">HR</p>
                             <div class="social-links">
@@ -141,7 +180,7 @@
                         </div>
                     </div>
                      <div class="team-member-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member-image"><img src="assets/media/bats.png" alt="Team Member"></div>
+                        <div class="member-image"><img src="assets/media/bats.png" alt="OTITS2, HR"></div>
                         <div class="member-info">
                             <h3>OTITS2</h3><p class="role">HR</p>
                             <div class="social-links">
@@ -197,25 +236,25 @@
         <section id="about-cta">
             <div class="container" data-aos="fade-up">
                 <h2>Ready to work with 4ward People Connect?</h2>
-                <a href="contact.html" class="cta-button">Get in Touch!</a>
+                <a href="/contact" class="cta-button">Get in Touch!</a>
             </div>
         </section>
 
     </main>
 
     <!-- Footer -->
-              <footer id="main-footer-new">
+    <footer id="main-footer-new">
         <div class="container footer-container">
             <div class="footer-main">
                 <!-- Column 1: Quick Links -->
                 <div class="footer-column">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="/index.html">Home</a></li>
-                        <li><a href="/about.html">About Us</a></li>
-                        <li><a href="/index.html#projects">Projects</a></li>
-                        <li><a href="/index.html#services">Services</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/#projects">Projects</a></li>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
 
@@ -223,10 +262,10 @@
                 <div class="footer-column">
                     <h4>Our Services</h4>
                     <ul>
-                        <li><a href="/index.html#services">HR Services</a></li>
-                        <li><a href="/index.html#services">Accounting</a></li>
-                        <li><a href="/index.html#services">IT Solutions</a></li>
-                        <li><a href="/index.html#services">Virtual Assistant</a></li>
+                        <li><a href="/#services">HR Services</a></li>
+                        <li><a href="/#services">Accounting</a></li>
+                        <li><a href="/#services">IT Solutions</a></li>
+                        <li><a href="/#services">Virtual Assistant</a></li>
                     </ul>
                 </div>
 

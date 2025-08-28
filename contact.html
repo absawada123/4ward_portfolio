@@ -3,11 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - 4PC</title>
+    
+    <!-- SEO: Basic Meta Tags -->
+    <title>Contact 4ward People Connect | Get in Touch for Services</title>
+    <meta name="description" content="Contact 4ward People Connect for expert HR, accounting, and IT solutions. Fill out our form, call, or email us to start empowering your business today.">
+    <link rel="canonical" href="https://www.4wardph.com/contact" />
+
+    <!-- SEO: Open Graph Tags (for social media sharing) -->
+    <meta property="og:title" content="Contact 4ward People Connect | Get in Touch for Services" />
+    <meta property="og:description" content="Contact 4ward People Connect for expert HR, accounting, and IT solutions. We're here to help you grow." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.4wardph.com/contact" />
+    <meta property="og:image" content="https://www.4wardph.com/assets/media/placeholder.png" />
+    <meta property="og:site_name" content="4ward People Connect" />
+
+    <!-- SEO: Schema.org Markup (for rich snippets) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "4ward People Connect",
+      "url": "https://www.4wardph.com/",
+      "logo": "https://www.4wardph.com/assets/media/placeholder.png",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "0495608835",
+        "contactType": "Customer Service",
+        "email": "contact@4pc.com"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Calamba City",
+        "addressCountry": "PH"
+      },
+      "sameAs": [
+        "https://www.facebook.com/4wardPeopleConnect",
+        "https://twitter.com/4wardPeopleConnect",
+        "https://www.linkedin.com/company/4ward-people-connect"
+      ]
+    }
+    </script>
 
     <!-- Google Fonts: Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="assets/css/main.css">
@@ -25,11 +64,11 @@
         <nav>
             <div class="logo">4ward People Connect</div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li class="active"><a href="contact.html" class="cta-button">Get in Touch</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li class="active"><a href="/contact" class="cta-button">Get in Touch</a></li>
                 <!-- Theme Toggle Button -->
                 <li>
                     <button id="theme-toggle" title="Toggle dark/light mode">
@@ -70,10 +109,11 @@
                             <label for="service">Choose a service*</label>
                             <select id="service" name="service" required>
                                 <option value="" disabled selected hidden>APPLICATION DESIGN</option>
-                                <option value="app-design">APPLICATION DESIGN</option>
-                                <option value="web-dev">WEB DEVELOPMENT</option>
-                                <option value="consulting">CONSULTING</option>
-                                <option value="other">OTHER</option>
+                                <option value="hr-services">HR Services</option>
+                                <option value="accounting">Accounting</option>
+                                <option value="it-solutions">IT Solutions</option>
+                                <option value="virtual-assistant">Virtual Assistant</option>
+                                <option value="other">Other</option>
                             </select>
                         </div>
                         <div class="form-group modern">
@@ -105,21 +145,20 @@
                 <div class="contact-info-wrapper" data-aos="fade-left" data-aos-delay="200">
                     <div class="info-block">
                         <h4>General Contact</h4>
-                        <p><i class="fas fa-phone"></i> <a href="tel:619-363-4749">09123334221</a></p>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:hi@oylia@gmail.com">sample@gmail.com</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
                     </div>
     
                     <div class="info-block">
                         <h4>Office</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Philippines</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
                     </div>
                     <div class="info-block">
                         <h4>Social Media</h4>
                         <div class="social-links-contact">
-                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                            <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://www.linkedin.com/company/4ward-people-connect" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://twitter.com/4wardPeopleConnect" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/4wardPeopleConnect" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
                         </div>
                     </div>
                 </div>
@@ -128,18 +167,18 @@
     </main>
 
     <!-- Footer -->
-          <footer id="main-footer-new">
+    <footer id="main-footer-new">
         <div class="container footer-container">
             <div class="footer-main">
                 <!-- Column 1: Quick Links -->
                 <div class="footer-column">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="/index.html">Home</a></li>
-                        <li><a href="/about.html">About Us</a></li>
-                        <li><a href="/index.html#projects">Projects</a></li>
-                        <li><a href="/index.html#services">Services</a></li>
-                        <li><a href="/contact.html">Contact</a></li>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/#projects">Projects</a></li>
+                        <li><a href="/#services">Services</a></li>
+                        <li><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
 
@@ -147,10 +186,10 @@
                 <div class="footer-column">
                     <h4>Our Services</h4>
                     <ul>
-                        <li><a href="/index.html#services">HR Services</a></li>
-                        <li><a href="/index.html#services">Accounting</a></li>
-                        <li><a href="/index.html#services">IT Solutions</a></li>
-                        <li><a href="/index.html#services">Virtual Assistant</a></li>
+                        <li><a href="/#services">HR Services</a></li>
+                        <li><a href="/#services">Accounting</a></li>
+                        <li><a href="/#services">IT Solutions</a></li>
+                        <li><a href="/#services">Virtual Assistant</a></li>
                     </ul>
                 </div>
 
@@ -160,12 +199,12 @@
                     <div class="contact-info">
                         <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
                         <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
                     </div>
                     <div class="footer-social-links">
-                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/company/4ward-people-connect" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://twitter.com/4wardPeopleConnect" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/4wardPeopleConnect" title="Facebook"><i class="fab fa-facebook"></i></a>
                     </div>
                 </div>
             </div>
