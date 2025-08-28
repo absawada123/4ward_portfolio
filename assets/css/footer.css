@@ -1,16 +1,28 @@
-/* ======================================================================== */
-/* ============================ NEW FOOTER CSS ============================ */
-/* ======================================================================== */
-
 #main-footer-new {
-    background-color: #1a1a1a; /* Dark background */
-    color: #a9a9a9; /* Softer text color for paragraphs/links */
+    /* Applying Glassmorphism */
+    background: rgba(20, 20, 20, 0.5); /* Dark, semi-transparent base */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    
+    color: rgba(255, 255, 255, 0.7); /* Softer text color for paragraphs/links */
     padding: 60px 0 0;
     font-family: 'Poppins', sans-serif;
+    position: relative; /* Ensures footer stacks correctly */
+    z-index: 10;
+}
+
+[data-theme="light"] #main-footer-new {
+    /* In light mode, a dark footer still looks best for this design */
+    background: rgba(30, 30, 30, 0.7); 
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
 }
 
 [data-theme="dark"] #main-footer-new {
-     background-color: #0d0d0d; /* Even darker for dark mode */
+     background: rgba(18, 18, 18, 0.5); /* Even darker for dark mode */
+     border-top: 1px solid rgba(255, 255, 255, 0.1);
+     color: rgba(255, 255, 255, 0.7);
 }
 
 .footer-container {
@@ -24,7 +36,8 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 40px;
     padding-bottom: 40px;
-    border-bottom: 1px solid #333;
+    /* Updated to a more subtle border color */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .footer-column h4 {
@@ -47,13 +60,13 @@
 
 .footer-column ul a {
     text-decoration: none;
-    color: #a9a9a9;
-    transition: color 0.3s ease, padding-left 0.3s ease;
+    color: rgba(255, 255, 255, 0.7); /* Use rgba for consistency */
+    transition: color 0.3s ease, transform 0.3s ease; /* Updated transition */
 }
 
 .footer-column ul a:hover {
-    color: #ffffff;
-    padding-left: 5px; /* Slight indent on hover */
+    color: var(--primary-color); /* Hover color is primary purple */
+    transform: translateX(5px); /* Modern indent effect */
 }
 
 /* Contact Info Column */
@@ -74,12 +87,12 @@
 
 .contact-info a {
     text-decoration: none;
-    color: #a9a9a9;
+    color: rgba(255, 255, 255, 0.7); /* Use rgba for consistency */
     transition: color 0.3s ease;
 }
 
 .contact-info a:hover {
-    color: #ffffff;
+    color: var(--primary-color); /* Hover color is primary purple */
 }
 
 /* Social Links */
@@ -88,7 +101,7 @@
 }
 
 .footer-social-links a {
-    color: #a9a9a9;
+    color: rgba(255, 255, 255, 0.7); /* Use rgba for consistency */
     font-size: 1.4rem;
     margin-right: 20px;
     transition: color 0.3s ease, transform 0.3s ease;
@@ -107,7 +120,7 @@
 
 .footer-bottom p {
     font-size: 0.9rem;
-    color: #777;
+    color: rgba(255, 255, 255, 0.5); /* More subtle color */
 }
 
 /* Responsive Styles */
@@ -122,6 +135,6 @@
     }
 
     .footer-column ul a:hover {
-        padding-left: 0; /* Disable indent on mobile */
+        transform: translateX(0); /* Disable indent on mobile */
     }
 }

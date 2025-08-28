@@ -58,6 +58,11 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
+    <div id="page-loader">
+    <div class="loader-content">
+        <span id="zoom-text"></span>
+    </div>
+</div>
 
     <!-- Header / Sticky Navigation -->
     <header id="main-header">
@@ -86,84 +91,89 @@
     </header>
 
     <main>
-        <section id="contact-page-section">
-            <div class="container contact-page-container">
-                <!-- Left Column: Form -->
-                <div class="contact-form-wrapper" data-aos="fade-right">
-                    <h2>Get in Touch</h2>
-                    <p>Have a project in mind? We’d love to hear from you.</p>
-                    <form class="modern-form" id="contact-form">
-                        <div class="form-group modern">
-                            <label for="name">Your Name*</label>
-                            <input type="text" id="name" name="name" placeholder="YOUR NAME*" required>
+        <div class="main-content-wrapper">
+            <video autoplay loop muted playsinline class="animated-background">
+                <source src="assets/media/background.mp4" type="video/mp4">
+            </video>
+            <section id="contact-page-section">
+                <div class="container contact-page-container">
+                    <!-- Left Column: Form -->
+                    <div class="contact-form-wrapper glassmorphism-effect" data-aos="fade-right">
+                        <h2>Get in Touch</h2>
+                        <p>Have a project in mind? We’d love to hear from you.</p>
+                        <form class="modern-form" id="contact-form">
+                            <div class="form-group modern">
+                                <label for="name">Your Name*</label>
+                                <input type="text" id="name" name="name" placeholder="YOUR NAME*" required>
+                            </div>
+                            <div class="form-group modern">
+                                <label for="email">Email*</label>
+                                <input type="email" id="email" name="email" placeholder="YOUR EMAIL*" required>
+                            </div>
+                            <div class="form-group modern">
+                                <label for="company">Your company</label>
+                                <input type="text" id="company" name="company" placeholder="COMPANY NAME">
+                            </div>
+                            <div class="form-group modern">
+                                <label for="service">Choose a service*</label>
+                                <select id="service" name="service" required>
+                                    <option value="" disabled selected hidden>APPLICATION DESIGN</option>
+                                    <option value="hr-services">HR Services</option>
+                                    <option value="accounting">Accounting</option>
+                                    <option value="it-solutions">IT Solutions</option>
+                                    <option value="virtual-assistant">Virtual Assistant</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group modern">
+                                <label for="currency-select">Currency*</label>
+                                <select id="currency-select" name="currency" required>
+                                    <option value="usd" selected>International (USD)</option>
+                                    <option value="php">Local (PHP)</option>
+                                </select>
+                            </div>
+                            <div class="form-group modern">
+                                <label for="budget-select">What is your estimate budget?*</label>
+                                <select id="budget-select" name="budget" required>
+                                    <!-- Budget options will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-group modern" id="custom-budget-group">
+                                <label for="custom-budget">Please specify your budget</label>
+                                <input type="text" id="custom-budget" name="custom-budget" placeholder="e.g., $50,000 - $75,000">
+                            </div>
+                            <div class="form-group modern">
+                                <label for="message">Describe Your project</label>
+                                <textarea id="message" name="message" placeholder="WRITE HERE*" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="cta-button modern-button">Submit</button>
+                        </form>
+                    </div>
+                    
+                    <!-- Right Column: Info -->
+                    <div class="contact-info-wrapper glassmorphism-effect" data-aos="fade-left" data-aos-delay="200">
+                        <div class="info-block">
+                            <h4>General Contact</h4>
+                            <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
+                            <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
                         </div>
-                        <div class="form-group modern">
-                            <label for="email">Email*</label>
-                            <input type="email" id="email" name="email" placeholder="YOUR EMAIL*" required>
+        
+                        <div class="info-block">
+                            <h4>Office</h4>
+                            <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
                         </div>
-                        <div class="form-group modern">
-                            <label for="company">Your company</label>
-                            <input type="text" id="company" name="company" placeholder="COMPANY NAME">
+                        <div class="info-block">
+                            <h4>Social Media</h4>
+                            <div class="social-links-contact">
+                                <a href="https://www.linkedin.com/company/4ward-people-connect" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://twitter.com/4wardPeopleConnect" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                <a href="https://www.facebook.com/4wardPeopleConnect" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            </div>
                         </div>
-                        <div class="form-group modern">
-                            <label for="service">Choose a service*</label>
-                            <select id="service" name="service" required>
-                                <option value="" disabled selected hidden>APPLICATION DESIGN</option>
-                                <option value="hr-services">HR Services</option>
-                                <option value="accounting">Accounting</option>
-                                <option value="it-solutions">IT Solutions</option>
-                                <option value="virtual-assistant">Virtual Assistant</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-                        <div class="form-group modern">
-                            <label for="currency-select">Currency*</label>
-                            <select id="currency-select" name="currency" required>
-                                <option value="usd" selected>International (USD)</option>
-                                <option value="php">Local (PHP)</option>
-                            </select>
-                        </div>
-                        <div class="form-group modern">
-                            <label for="budget-select">What is your estimate budget?*</label>
-                            <select id="budget-select" name="budget" required>
-                                <!-- Budget options will be populated by JavaScript -->
-                            </select>
-                        </div>
-                        <div class="form-group modern" id="custom-budget-group">
-                            <label for="custom-budget">Please specify your budget</label>
-                            <input type="text" id="custom-budget" name="custom-budget" placeholder="e.g., $50,000 - $75,000">
-                        </div>
-                        <div class="form-group modern">
-                            <label for="message">Describe Your project</label>
-                            <textarea id="message" name="message" placeholder="WRITE HERE*" rows="4" required></textarea>
-                        </div>
-                        <button type="submit" class="cta-button">Submit</button>
-                    </form>
+                    </div>
                 </div>
-                
-                <!-- Right Column: Info -->
-                <div class="contact-info-wrapper" data-aos="fade-left" data-aos-delay="200">
-                    <div class="info-block">
-                        <h4>General Contact</h4>
-                        <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
-                    </div>
-    
-                    <div class="info-block">
-                        <h4>Office</h4>
-                        <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
-                    </div>
-                    <div class="info-block">
-                        <h4>Social Media</h4>
-                        <div class="social-links-contact">
-                            <a href="https://www.linkedin.com/company/4ward-people-connect" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="https://twitter.com/4wardPeopleConnect" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="https://www.facebook.com/4wardPeopleConnect" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <!-- Footer -->

@@ -55,7 +55,11 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <div id="loader"><div class="spinner"></div></div>
+    <div id="page-loader">
+    <div class="loader-content">
+        <span id="zoom-text"></span>
+    </div>
+</div>
     <header id="main-header">
         <nav>
             <div class="logo">4ward People Connect</div>
@@ -113,15 +117,14 @@
                     <div class="text-content">
                         <h2 class="section-headline">About 4PC</h2>
                         <p class="section-paragraph">
-                            4ward People Connect (4PC) provides comprehensive <strong class="highlight">HR Services</strong>, meticulous <strong class="highlight">Accounting</strong>, and innovative <strong class="highlight">IT Solutions</strong> designed to build stronger systems and drive sustainable growth.
+                            4ward People Connect (4PC) provides comprehensive <strong class="highlight">HR&nbsp;Services</strong>, meticulous <strong class="highlight">Accounting</strong>, and innovative <strong class="highlight">IT&nbsp;Solutions</strong> designed to build stronger systems and drive sustainable growth.
                         </p>
                         <div class="key-benefits">
                             <h3 class="key-benefits-title">Key Benefits:</h3>
                             <ul>
                                 <li><i class="fas fa-check-circle"></i> Simplify processes and reduce expenses.</li>
                                 <li><i class="fas fa-check-circle"></i> Focus on your core business goals.</li>
-                                <li><i class="fas fa-check-circle"></i> Get reliable support from our <strong class="highlight">Virtual Assistant</strong> agency.</li>
-
+                                <li><i class="fas fa-check-circle"></i> Get reliable support from our <strong class="highlight">Virtual&nbsp;Assistant</strong> agency.</li>
                             </ul>
                         </div>
                         <a href="/about" class="cta-button modern-button">
@@ -147,22 +150,29 @@
                 <div class="container">
                     <h2>Our Projects</h2>
                     <div class="project-grid">
-                          <div class="project-item coming-soon">
-            <div class="project-item-content">
-                <h3>Coming Soon</h3>
-                <p>Stay tuned for our next project!</p>
-                <span class="view-project-btn disabled">Coming Soon</span>
-            </div>
-        </div>
+                        <!-- Coming Soon Project 1 - Updated Structure -->
+                        <a href="#" class="project-item-link">
+                            <div class="project-item coming-soon">
+                                <!-- Background Image/Video can go here, e.g., <img src="..."/> -->
+                                <div class="project-item-content">
+                                    <h3>Coming Soon</h3>
+                                    <p>Stay tuned for our next project!</p>
+                                    <span class="view-project-btn disabled">Details Unavailable</span>
+                                </div>
+                            </div>
+                        </a>
 
-        <!-- Coming Soon Project 2 -->
-        <div class="project-item coming-soon">
-            <div class="project-item-content">
-                <h3>Coming Soon</h3>
-                <p>Another exciting project is on the way!</p>
-                <span class="view-project-btn disabled">Coming Soon</span>
-            </div>
-        </div>
+                        <!-- Coming Soon Project 2 - Updated Structure -->
+                        <a href="#" class="project-item-link">
+                            <div class="project-item coming-soon">
+                                <!-- Background Image/Video can go here -->
+                                <div class="project-item-content">
+                                    <h3>Coming Soon</h3>
+                                    <p>Another exciting project is on the way!</p>
+                                    <span class="view-project-btn disabled">Details Unavailable</span>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </section>

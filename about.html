@@ -57,6 +57,11 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
+    <div id="page-loader">
+    <div class="loader-content">
+        <span id="zoom-text"></span>
+    </div>
+</div>
 
     <!-- Header / Sticky Navigation -->
     <header id="main-header">
@@ -91,147 +96,155 @@
                 <h1>About Us</h1>
                 <p class="tagline">Powered by Tekmakon – Technology with Consideration.</p>
             </div>
-            <div class="animated-background"></div>
+            <video autoplay loop muted playsinline class="animated-background">
+                <source src="assets/media/about.mp4" type="video/mp4">
+            </video>
         </section>
 
-        <!-- Our Story Section -->
-        <section id="story">
-            <div class="container">
-                <div class="story-grid">
-                    <div class="story-image" data-aos="fade-right">
-                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2574&auto=format&fit=crop" alt="Our Team Collaborating in a modern office">
-                    </div>
-                    <div class="story-content" data-aos="fade-left">
-                        <h2>Our Story</h2>
-                        <p class="subtitle">Connecting People, Technology, and Opportunities.</p>
-                        <p>4ward People Connect (4PC) is a business solutions provider dedicated to helping organizations streamline operations, reduce costs, and achieve sustainable growth. We offer a comprehensive range of services, including HR Solutions, Accounting Services, IT Solutions, and Virtual Assistant Support, tailored to meet the unique needs of businesses across industries.</p>
-                        <p>Founded in August 2025, 4PC was established to address a common challenge faced by many companies: managing essential business functions efficiently while staying focused on core objectives. By leveraging expertise across multiple fields, we provide integrated solutions that enable businesses to operate smoothly and scale effectively.</p>
-                        <p>At 4PC, our philosophy is simple — every problem has a solution. Through innovation, strategic partnerships, and reliable outsourcing, we aim to be the trusted partner that connects people, technology, and opportunities to drive business success.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="main-content-wrapper">
+            <video autoplay loop muted playsinline class="animated-background">
+                <source src="assets/media/background.mp4" type="video/mp4">
+            </video>
 
-        <!-- Vision & Mission Section -->
-        <section id="vision-mission">
-            <div class="container">
-                <div class="vision-mission-grid">
-                    <div class="vision-card" data-aos="fade-right">
-                        <h3>Our Vision</h3>
-                        <p>To be a globally trusted partner in business outsourcing and digital transformation connecting people, technology, and opportunities to create sustainable success for organizations of all sizes.</p>
-                    </div>
-                    <div class="mission-card" data-aos="fade-left">
-                        <h3>Our Mission</h3>
-                        <p>To empower businesses worldwide by providing innovative HR, Accounting, IT, and Virtual Assistant solutions that optimize performance, reduce costs, and accelerate growth. We are committed to delivering reliable outsourcing and digital services that allow our clients to focus on what they do best growing their business.</p>
-                    </div>
-                </div>
-               
-            </div>
-        </section>
-
-        <!-- Meet Our Team Section -->
-        <section id="team">
-            <div class="container">
-                <h2 data-aos="fade-up">Meet Our Team</h2>
-                <div class="team-grid">
-                    <!-- Team members here -->
-                    <div class="team-member-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member-image"><a href="https://absawada123.github.io/absawada"><img src="assets/media/liam.png" alt="Ab, CTO"></a></div>
-                        <div class="member-info">
-                            <h3>Ab</h3><p class="role">CTO</p>
-                            <div class="social-links">
-                                <a href="https://www.linkedin.com/in/ab-sawada-2b3482378/"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="https://github.com/absawada123"><i class="fab fa-github"></i></a>
-                                <a href="https://api.whatsapp.com/send?1=pt_BR&phone=639692303235"><i class="fas fa-envelope"></i></a>
-                            </div>
+            <!-- Our Story Section -->
+            <section id="story">
+                <div class="container">
+                    <div class="story-grid">
+                        <div class="story-image" data-aos="fade-right">
+                            <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=2574&auto=format&fit=crop" alt="Our Team Collaborating in a modern office">
                         </div>
-                    </div>
-                    <div class="team-member-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member-image"><img src="assets/media/ngos.png" alt="Ivan, Team Member"></div>
-                        <div class="member-info">
-                            <h3>Ivan</h3><p class="role">May bitaw</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="team-member-card" data-aos="fade-up" data-aos-delay="300">
-                        <div class="member-image"><img src="assets/media/wae.png" alt="Austin, R&D Engineer"></div>
-                        <div class="member-info">
-                            <h3>Austin</h3><p class="role">R&D Engineer</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="team-member-card" data-aos="fade-up" data-aos-delay="100">
-                        <div class="member-image"><img src="assets/media/123.png" alt="OTITS1, HR"></div>
-                        <div class="member-info">
-                            <h3>OTITS1</h3><p class="role">HR</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="team-member-card" data-aos="fade-up" data-aos-delay="200">
-                        <div class="member-image"><img src="assets/media/bats.png" alt="OTITS2, HR"></div>
-                        <div class="member-info">
-                            <h3>OTITS2</h3><p class="role">HR</p>
-                            <div class="social-links">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-github"></i></a>
-                                <a href="#"><i class="fas fa-envelope"></i></a>
-                            </div>
+                        <div class="story-content glassmorphism-effect" data-aos="fade-left">
+                            <h2>Our Story</h2>
+                            <p class="subtitle">Connecting People, Technology, and Opportunities.</p>
+                            <p>4ward People Connect (4PC) is a business solutions provider dedicated to helping organizations streamline operations, reduce costs, and achieve sustainable growth. We offer a comprehensive range of services, including HR Solutions, Accounting Services, IT Solutions, and Virtual Assistant Support, tailored to meet the unique needs of businesses across industries.</p>
+                            <p>Founded in August 2025, 4PC was established to address a common challenge faced by many companies: managing essential business functions efficiently while staying focused on core objectives. By leveraging expertise across multiple fields, we provide integrated solutions that enable businesses to operate smoothly and scale effectively.</p>
+                            <p>At 4PC, our philosophy is simple — every problem has a solution. Through innovation, strategic partnerships, and reliable outsourcing, we aim to be the trusted partner that connects people, technology, and opportunities to drive business success.</p>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- Vision & Mission Section -->
+            <section id="vision-mission">
+                <div class="container">
+                    <div class="vision-mission-grid">
+                        <div class="vision-card glassmorphism-effect" data-aos="fade-right">
+                            <h3>Our Vision</h3>
+                            <p>To be a globally trusted partner in business outsourcing and digital transformation connecting people, technology, and opportunities to create sustainable success for organizations of all sizes.</p>
+                        </div>
+                        <div class="mission-card glassmorphism-effect" data-aos="fade-left">
+                            <h3>Our Mission</h3>
+                            <p>To empower businesses worldwide by providing innovative HR, Accounting, IT, and Virtual Assistant solutions that optimize performance, reduce costs, and accelerate growth. We are committed to delivering reliable outsourcing and digital services that allow our clients to focus on what they do best growing their business.</p>
+                        </div>
+                    </div>
+                
+                </div>
+            </section>
+
+            <!-- Meet Our Team Section -->
+            <section id="team">
+                <div class="container">
+                    <h2 data-aos="fade-up">Meet Our Team</h2>
+                    <div class="team-grid">
+                        <!-- Team members here -->
+                        <div class="team-member-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="100">
+                            <div class="member-image"><a href="https://absawada123.github.io/absawada"><img src="assets/media/liam.png" alt="Ab, CTO"></a></div>
+                            <div class="member-info">
+                                <h3>Ab</h3><p class="role">CTO</p>
+                                <div class="social-links">
+                                    <a href="https://www.linkedin.com/in/ab-sawada-2b3482378/"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://github.com/absawada123"><i class="fab fa-github"></i></a>
+                                    <a href="https://api.whatsapp.com/send?1=pt_BR&phone=639692303235"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-member-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="200">
+                            <div class="member-image"><img src="assets/media/ngos.png" alt="Ivan, Team Member"></div>
+                            <div class="member-info">
+                                <h3>Ivan</h3><p class="role">May bitaw</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-member-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="300">
+                            <div class="member-image"><img src="assets/media/wae.png" alt="Austin, R&D Engineer"></div>
+                            <div class="member-info">
+                                <h3>Austin</h3><p class="role">R&D Engineer</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-member-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="100">
+                            <div class="member-image"><img src="assets/media/123.png" alt="OTITS1, HR"></div>
+                            <div class="member-info">
+                                <h3>OTITS1</h3><p class="role">HR</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="team-member-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="200">
+                            <div class="member-image"><img src="assets/media/bats.png" alt="OTITS2, HR"></div>
+                            <div class="member-info">
+                                <h3>OTITS2</h3><p class="role">HR</p>
+                                <div class="social-links">
+                                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#"><i class="fab fa-github"></i></a>
+                                    <a href="#"><i class="fas fa-envelope"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Values & Culture Section -->
+            <section id="values">
+                <div class="container">
+                    <h2 data-aos="fade-up">Our Values</h2>
+                    <div class="values-grid">
+                        <div class="value-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="100">
+                            <i class="fas fa-lightbulb"></i>
+                            <h3>Innovation</h3>
+                            <p>We constantly seek new and better ways to solve problems and create value.</p>
+                        </div>
+                        <div class="value-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="200">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Integrity</h3>
+                            <p>We operate with transparency and honesty in everything we do.</p>
+                        </div>
+                        <div class="value-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="300">
+                            <i class="fas fa-users"></i>
+                            <h3>Collaboration</h3>
+                            <p>We believe the best results come from working together as a team.</p>
+                        </div>
+                        <div class="value-card glassmorphism-effect" data-aos="fade-up" data-aos-delay="400">
+                            <i class="fas fa-chart-line"></i>
+                            <h3>Growth</h3>
+                            <p>We are dedicated to the continuous growth of our clients and our team.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div> <!-- End main-content-wrapper -->
         
         <!-- Tekmakon Partnership Highlight -->
         <section id="partnership">
             <div class="container" data-aos="zoom-in">
                 <h2 class="tekmakon-title">Powered by Tekmakon</h2>
                 <p>Our strategic partnership with Tekmakon allows us to leverage industry-leading technology and innovation.</p>
-                <a href="#" class="btn-tekmakon">Learn More About Tekmakon</a>
+                <a href="#" class="cta-button modern-button">Learn More</a>
             </div>
         </section>
         
-        <!-- Values & Culture Section -->
-        <section id="values">
-            <div class="container">
-                <h2 data-aos="fade-up">Our Values</h2>
-                <div class="values-grid">
-                    <div class="value-card" data-aos="fade-up" data-aos-delay="100">
-                        <i class="fas fa-lightbulb"></i>
-                        <h3>Innovation</h3>
-                        <p>We constantly seek new and better ways to solve problems and create value.</p>
-                    </div>
-                    <div class="value-card" data-aos="fade-up" data-aos-delay="200">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Integrity</h3>
-                        <p>We operate with transparency and honesty in everything we do.</p>
-                    </div>
-                    <div class="value-card" data-aos="fade-up" data-aos-delay="300">
-                        <i class="fas fa-users"></i>
-                        <h3>Collaboration</h3>
-                        <p>We believe the best results come from working together as a team.</p>
-                    </div>
-                    <div class="value-card" data-aos="fade-up" data-aos-delay="400">
-                        <i class="fas fa-chart-line"></i>
-                        <h3>Growth</h3>
-                        <p>We are dedicated to the continuous growth of our clients and our team.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Call-to-Action Section -->
         <section id="about-cta">
             <div class="container" data-aos="fade-up">
@@ -275,7 +288,7 @@
                     <div class="contact-info">
                         <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
                         <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
                     </div>
                     <div class="footer-social-links">
                         <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>

@@ -3,153 +3,80 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const body = document.body;
-    const heroSection = document.getElementById('hero'); // Check if the hero section exists
+    const heroSection = document.getElementById('hero');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-    // --- Page-Specific Logic: Run animations ONLY on the homepage ---
-    if (heroSection && !prefersReducedMotion.matches) {
-        
-        // --- Lenis Smooth Scroll Initialization ---
-        const lenis = new Lenis();
-        lenis.on('scroll', ScrollTrigger.update);
-        gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
-        });
-        gsap.ticker.lagSmoothing(0);
-
-        // --- Kinetic Typography & Parallax Animation with GSAP ---
-        gsap.registerPlugin(ScrollTrigger);
-
-        const heroContent = document.querySelector('.hero-content');
-        if (heroContent) {
-            const chars = heroContent.querySelectorAll('.char');
-
-            // 1. Kinetic Typography Animation
-            gsap.fromTo(chars, {
-                y: 0, x: 0, rotation: 0, opacity: 1, filter: 'blur(0px)',
-            }, {
-                y: gsap.utils.random(-250, 250, true), 
-                x: gsap.utils.random(-250, 250, true), 
-                rotation: gsap.utils.random(-90, 90, true), 
-                opacity: 0.1,
-                filter: 'blur(10px)', 
-                ease: 'none',
-                stagger: 0.02,
-                scrollTrigger: {
-                    trigger: '#hero',
-                    start: 'top top',      
-                    end: '+=500', 
-                    scrub: 0.5,
-                    pin: true,             
-                }
-            });
-
-            // 2. Parallax Background Animation
-            gsap.to('.animated-background', {
-                backgroundPosition: '100% 50%', 
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: '#hero',
-                    start: 'top top',
-                    end: '+=500', 
-                    scrub: 0.5,
-                }
-            });
-        }
-
-        // --- UPDATE Scroll-to-Top to use Lenis ---
-        const scrollToTopBtn = document.getElementById('scroll-to-top');
-        if (scrollToTopBtn) {
-            scrollToTopBtn.addEventListener('click', () => {
-                lenis.scrollTo(0, { duration: 1.5 });
-            });
-        }
-
-    } else {
-        // --- Fallback for non-homepage or reduced motion: Use native smooth scroll ---
-        const scrollToTopBtn = document.getElementById('scroll-to-top');
-        if (scrollToTopBtn) {
-            scrollToTopBtn.addEventListener('click', () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth'
-                });
-            });
-        }
-    }
-
-    // ========================================================================
-    // ================= NEW: ADVANCED HOMEPAGE ANIMATIONS ====================
-    // ========================================================================
-    const empoweringSection = document.getElementById('empowering-business');
-    if (empoweringSection && !prefersReducedMotion.matches) {
-
-        // 1. Letter-by-letter headline animation
-        const headline = empoweringSection.querySelector('.section-headline');
-        if (headline) {
-            const text = headline.textContent;
-            headline.innerHTML = ''; // Clear original text
-            text.split('').forEach(char => {
-                const span = document.createElement('span');
-                span.style.display = 'inline-block';
-                span.style.willChange = 'transform, opacity';
-                span.textContent = char === ' ' ? '\u00A0' : char; // Use non-breaking space
-                headline.appendChild(span);
-            });
-
-            gsap.from(headline.querySelectorAll('span'), {
-                y: 50,
-                opacity: 0,
-                rotationX: -90,
-                stagger: 0.02,
-                ease: 'back.out(1.7)',
-                scrollTrigger: {
-                    trigger: headline,
-                    start: 'top 85%', // Start animation when headline is 85% from top of viewport
-                    toggleActions: 'play none none none',
-                }
-            });
-        }
-
-        // 2. Scroll-triggered parallax effect for the image
-        const image = empoweringSection.querySelector('.visual-content img');
-        if (image) {
-            gsap.to(image, {
-                yPercent: -15, // Move image up by 15% of its height
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: empoweringSection,
-                    start: 'top bottom', // Start when section top hits viewport bottom
-                    end: 'bottom top',   // End when section bottom hits viewport top
-                    scrub: true // Smoothly scrubs the animation
-                }
-            });
-        }
-    }
-    // ========================================================================
-    // ======================= END OF NEW ANIMATIONS ==========================
-    // ========================================================================
-
 
     // --- SHARED LOGIC: This runs on ALL pages ---
 
-    // --- 1. Loading Screen Logic ---
-    const loader = document.getElementById('loader');
-    if (loader) {
-        // Use a shorter timeout for non-animated pages
-        const loaderTimeout = heroSection ? 500 : 100;
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            loader.addEventListener('transitionend', () => {
-                loader.style.display = 'none';
-            });
-        }, loaderTimeout); 
+    // --- 1. NEW Custom Zoom Page Loader ---
+    const pageLoader = document.getElementById('page-loader');
+    const zoomText = document.getElementById('zoom-text');
+
+    if (pageLoader && zoomText) {
+
+        // Hides the loader and resets its state for the next use.
+        const hideLoader = () => {
+            pageLoader.classList.add('hidden');
+            // Reset classes after hiding so it's ready for the next navigation
+            setTimeout(() => {
+                pageLoader.classList.remove('is-visible', 'is-zooming');
+            }, 500);
+        };
+
+        // Runs the new zoom animation sequence.
+        const runLoader = (destinationUrl = null) => {
+            pageLoader.classList.remove('hidden');
+
+            // --- Animation Sequence ---
+            
+            // 1. Start: Set text to '0' and fade it in.
+            setTimeout(() => {
+                zoomText.textContent = '0';
+                pageLoader.classList.add('is-visible');
+            }, 100); // Small delay to start
+
+            // 2. Middle: After a pause, change text to '100' and trigger the zoom.
+            setTimeout(() => {
+                zoomText.textContent = '100';
+                pageLoader.classList.add('is-zooming');
+            }, 800); // This happens partway through the total duration
+
+            // 3. End: After 2 seconds, either go to the new page or hide the loader.
+            setTimeout(() => {
+                if (destinationUrl) {
+                    window.location.href = destinationUrl;
+                } else {
+                    hideLoader();
+                }
+            }, 2000); // Total animation duration
+        };
+        
+        // --- Trigger for Page Navigation ---
+        const handleLinkClick = (e) => {
+            const link = e.currentTarget;
+            if (link.target === '_blank' || link.protocol.startsWith('mailto') || link.protocol.startsWith('tel') || link.getAttribute('href').startsWith('#')) {
+                return;
+            }
+            if (link.href === window.location.href) {
+                e.preventDefault();
+                return;
+            }
+            e.preventDefault();
+            runLoader(link.href);
+        };
+
+        const internalLinks = document.querySelectorAll('a[href]:not([href^="#"]):not([target="_blank"])');
+        internalLinks.forEach(link => {
+            link.addEventListener('click', handleLinkClick);
+        });
+
+        // --- Trigger for Initial Page Load ---
+        runLoader();
     }
 
     // --- 2. Sticky Header Logic ---
     const header = document.getElementById('main-header');
     if (header) {
-        // Immediately check header state on page load for non-home pages
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
         }
@@ -172,11 +99,12 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleNav();
         });
         navLinksItems.forEach(item => {
-            item.addEventListener('click', () => {
-                if (navLinks.classList.contains('nav-active')) {
+            const link = item.querySelector('a');
+            if (link && link.getAttribute('href').startsWith('#')) {
+                 if (navLinks.classList.contains('nav-active')) {
                     toggleNav();
                 }
-            });
+            }
         });
         function toggleNav() {
             navLinks.classList.toggle('nav-active');
@@ -235,8 +163,8 @@ document.addEventListener('DOMContentLoaded', () => {
         themeToggle.addEventListener('click', toggleTheme);
     }
     applyInitialTheme();
-
-    // --- 7. Contact Form Dynamic Budget Logic (will only run if form elements are on the page) ---
+    
+    // --- 7. Contact Form Dynamic Budget Logic ---
     const currencySelect = document.getElementById('currency-select');
     const budgetSelect = document.getElementById('budget-select');
     const customBudgetGroup = document.getElementById('custom-budget-group');
@@ -289,12 +217,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filtersContainer.addEventListener('click', (e) => {
             const target = e.target;
-            // Check if a filter button was actually clicked
             if (!target.classList.contains('filter-btn')) {
                 return;
             }
-
-            // Remove active class from all buttons and add to the clicked one
             filterBtns.forEach(btn => btn.classList.remove('active'));
             target.classList.add('active');
 
@@ -310,5 +235,113 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+    }
+
+    // --- Page-Specific Logic: Run animations ONLY on the homepage ---
+    if (heroSection && !prefersReducedMotion.matches) {
+        
+        const lenis = new Lenis();
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
+        gsap.ticker.lagSmoothing(0);
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) {
+            const chars = heroContent.querySelectorAll('.char');
+            gsap.fromTo(chars, {
+                y: 0, x: 0, rotation: 0, opacity: 1, filter: 'blur(0px)',
+            }, {
+                y: gsap.utils.random(-250, 250, true), 
+                x: gsap.utils.random(-250, 250, true), 
+                rotation: gsap.utils.random(-90, 90, true), 
+                opacity: 0.1,
+                filter: 'blur(10px)', 
+                ease: 'none',
+                stagger: 0.02,
+                scrollTrigger: {
+                    trigger: '#hero',
+                    start: 'top top',      
+                    end: '+=500', 
+                    scrub: 0.5,
+                    pin: true,             
+                }
+            });
+
+            gsap.to('.animated-background', {
+                backgroundPosition: '100% 50%', 
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: '#hero',
+                    start: 'top top',
+                    end: '+=500', 
+                    scrub: 0.5,
+                }
+            });
+        }
+
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        if (scrollToTopBtn) {
+            scrollToTopBtn.addEventListener('click', () => {
+                lenis.scrollTo(0, { duration: 1.5 });
+            });
+        }
+
+    } else {
+        const scrollToTopBtn = document.getElementById('scroll-to-top');
+        if (scrollToTopBtn) {
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+    }
+
+    const empoweringSection = document.getElementById('empowering-business');
+    if (empoweringSection && !prefersReducedMotion.matches) {
+        const headline = empoweringSection.querySelector('.section-headline');
+        if (headline) {
+            const text = headline.textContent;
+            headline.innerHTML = '';
+            text.split('').forEach(char => {
+                const span = document.createElement('span');
+                span.style.display = 'inline-block';
+                span.style.willChange = 'transform, opacity';
+                span.textContent = char === ' ' ? '\u00A0' : char;
+                headline.appendChild(span);
+            });
+
+            gsap.from(headline.querySelectorAll('span'), {
+                y: 50,
+                opacity: 0,
+                rotationX: -90,
+                stagger: 0.02,
+                ease: 'back.out(1.7)',
+                scrollTrigger: {
+                    trigger: headline,
+                    start: 'top 85%',
+                    toggleActions: 'play none none none',
+                }
+            });
+        }
+
+        const image = empoweringSection.querySelector('.visual-content img');
+        if (image) {
+            gsap.to(image, {
+                yPercent: -15,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: empoweringSection,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true
+                }
+            });
+        }
     }
 });

@@ -1,11 +1,12 @@
 /* --- CSS Variables --- */
 :root {
     --primary-color: #6A0DAD; /* New Purple */
+    --primary-color-rgb: 106, 13, 173; /* RGB for primary-color */
     --secondary-color: #5A009D; /* Darker Purple */
     --background-color: #ffffff;
     --text-color: #333333;
     --header-bg-initial: transparent;
-    --header-bg-scrolled: #ffffff;
+    --header-bg-scrolled: transparent; /* Will be overridden by glassmorphism */
     --header-text-initial: #ffffff;
     --header-text-scrolled: #333333;
     --white: #fff;
@@ -14,19 +15,29 @@
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --transition-speed: 0.3s ease;
     --form-border-color: #ccc;
-}
+
+    /* Glassmorphism Variables (Light Mode) - UPDATED */
+    --glass-bg-light: rgba(255, 255, 255, 0.65); /* Reduced opacity from 0.65 to 0.3 for more transparency */
+    --glass-border-light: rgba(255, 255, 255, 0.5); 
+    --glass-shadow-light: 0 8px 32px 0 rgba(0, 0, 0, 0.1); }
 
 [data-theme="dark"] {
     --primary-color: #b300ff; /* Lighter purple for dark mode */
+    --primary-color-rgb: 179, 0, 255; /* RGB for dark mode primary-color */
     --secondary-color: #6A0DAD;
     --background-color: #121212;
     --text-color: #e0e0e0;
-    --header-bg-scrolled: #1e1e1e;
+    --header-bg-scrolled: transparent; /* Will be overridden by glassmorphism */
     --header-text-scrolled: #e0e0e0;
     --dark-gray: #333333;
     --light-gray: #1e1e1e;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     --form-border-color: #555;
+
+    /* Glassmorphism Variables (Dark Mode) */
+    --glass-bg-dark: rgba(40, 40, 40, 0.2); /* Darker glass effect */
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
+    --glass-shadow-dark: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
 }
 /* --- Basic Reset & Global Styles --- */
 * {
@@ -96,6 +107,23 @@ section {
     border-radius: 50%;
     border-left-color: var(--primary-color);
     animation: spin 1s ease infinite;
+}
+
+/* --- Glassmorphism Base Class --- */
+.glassmorphism-effect {
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(15px); /* Increased blur */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border-light);
+    border-radius: 15px; /* Consistent rounded corners */
+    box-shadow: var(--glass-shadow-light);
+    transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .glassmorphism-effect {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
 }
 
 /* --- Header / Navigation --- */
@@ -178,9 +206,19 @@ section {
     transform: translateY(-2px);
 }
 #main-header.scrolled {
-    background-color: var(--header-bg-scrolled);
-    box-shadow: var(--box-shadow);
+    /* Existing styles are now part of glassmorphism effect for consistency */
+    background-color: var(--glass-bg-light); /* Use glass bg for header */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border-light); /* Subtle border */
+    box-shadow: var(--glass-shadow-light);
     padding: 15px 0;
+}
+
+[data-theme="dark"] #main-header.scrolled {
+    background-color: var(--glass-bg-dark);
+    border-bottom: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
 }
 
 #main-header.scrolled .logo,
@@ -350,14 +388,61 @@ section {
     font-size: 1.05rem;
 }
 
+/* Empowering Business Section (About 4PC) - Glassmorphism applied to text content */
+#empowering-business .text-content {
+    padding: 40px; /* Add padding for the glassmorphism card */
+    /* Apply the glassmorphism effect */
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border-light);
+    border-radius: 15px;
+    box-shadow: var(--glass-shadow-light);
+    transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] #empowering-business .text-content {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
+}
+
+#empowering-business .section-headline {
+    color: var(--primary-color); /* Ensure headline stands out */
+}
+#empowering-business .section-paragraph {
+    color: var(--text-color); /* Ensure good contrast */
+}
+#empowering-business .key-benefits-title {
+    color: var(--text-color);
+}
+#empowering-business .key-benefits li {
+    color: var(--text-color);
+}
+#empowering-business .key-benefits i {
+    color: var(--primary-color); /* Checkmark color */
+}
+#empowering-business .highlight {
+    color: var(--primary-color); /* Keep highlights purple */
+    font-weight: 600;
+}
+
 
 #team { text-align: center; }
 [data-theme="dark"] #story, [data-theme="dark"] #team { background-color: var(--background-color); }
 #vision-mission { background-color: var(--light-gray); }
 .vision-mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.vision-card, .mission-card { background: var(--background-color); padding: 30px; border-radius: 8px; box-shadow: var(--box-shadow); }
+.vision-card, .mission-card {padding: 30px;  }
 .vision-card h3, .mission-card h3 { color: var(--primary-color); }
-.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+.team-grid {
+    display: grid;
+    /* This is the key change: we use a fixed width for columns, not a flexible one. */
+    grid-template-columns: repeat(auto-fit, 280px); 
+    gap: 30px;
+    margin-top: 40px;
+    /* This property will now correctly center the entire block of cards. */
+    justify-content: center; 
+}
 .team-member-card { background: var(--background-color); border-radius: 10px; box-shadow: var(--box-shadow); text-align: center; overflow: hidden; transition: transform var(--transition-speed), box-shadow var(--transition-speed); }
 .team-member-card:hover { transform: translateY(-10px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 .member-image img { width: 100%; height: auto; display: block; transition: transform var(--transition-speed); }
@@ -386,81 +471,176 @@ section {
 #about-preview .cta-button { margin-top: 20px; }
 #about-preview .cta-button:hover { background-color: var(--secondary-color); }
 #projects { text-align: center; }
-.project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-top: 40px; }
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Increased gap for better spacing */
+    margin-top: 40px;
+}
 
-/* UPDATED PROJECT ITEM STYLES */
+/* UPDATED PROJECT ITEM STYLES FOR GLASSMORPHISM */
 .project-item-link {
     text-decoration: none;
     color: inherit;
     display: block;
     overflow: hidden;
-    border-radius: 8px;
-    box-shadow: var(--box-shadow);
+    border-radius: 15px; /* Consistent with glassmorphism */
+    position: relative;
+    isolation: isolate; /* For stacking context of pseudo-elements */
 }
 
-.project-item { 
-    height: 250px; 
-    background-color: var(--dark-gray);
+.project-item {
+    height: 300px; /* Slightly taller for more visual impact */
+    background-color: var(--dark-gray); /* Fallback */
     background-size: cover;
     background-position: center;
     position: relative;
     display: flex;
-    justify-content: center; 
-    align-items: flex-end; /* Align content to the bottom */
-    border-radius: 8px; 
-    transition: transform var(--transition-speed);
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-end; /* Align content to the bottom */
+    align-items: flex-start; /* Align text to the left */
+    border-radius: 15px; /* Important for visual consistency */
+    transition: transform 0.4s ease;
+    overflow: hidden; /* Ensure content stays within borders */
 }
 
 .project-item-link:hover .project-item {
-    transform: scale(1.05);
+    transform: translateY(-10px);
 }
 
-.project-item::after {
+.project-item .project-item-video,
+.project-item img { /* For images as well */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Behind the glass overlay */
+    filter: brightness(0.7); /* Darken media slightly */
+    transition: filter 0.4s ease;
+}
+
+.project-item-link:hover .project-item .project-item-video,
+.project-item-link:hover .project-item img {
+    filter: brightness(0.9); /* Brighten on hover */
+}
+
+/* Glassmorphism overlay for content */
+.project-item-content {
+    position: relative; /* To be above the media and internal overlay */
+    z-index: 2;
+    padding: 25px; /* Increased padding */
+    width: 100%;
+    text-align: left;
+    color: var(--white); /* Text color over dark background/glass */
+
+    /* Glassmorphism for the content box itself */
+    background: var(--glass-bg-dark); /* Darker glass for contrast over media */
+    backdrop-filter: blur(20px); /* Stronger blur for content */
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--glass-border-dark); /* Only top border for subtle separation */
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+
+    transform: translateY(100%); /* Start completely hidden */
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+}
+
+.project-item-link:hover .project-item-content {
+    transform: translateY(0); /* Slide up into view */
+    opacity: 1;
+}
+
+/* Inner subtle overlay to enhance contrast for text, within the glassmorphism block */
+.project-item-content::before {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 60%);
-    opacity: 0.8;
-    transition: opacity var(--transition-speed);
-}
-
-.project-item-link:hover .project-item::after {
-    opacity: 1;
-}
-
-.project-item-content {
-    color: var(--white);
-    z-index: 2;
-    padding: 20px;
     width: 100%;
-    text-align: left;
-    transform: translateY(30%);
+    height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 70%); /* Darker gradient */
+    z-index: -1;
     opacity: 0;
-    transition: transform var(--transition-speed), opacity var(--transition-speed);
+    transition: opacity 0.5s ease;
 }
 
-.project-item-link:hover .project-item-content {
-    transform: translateY(0);
+.project-item-link:hover .project-item-content::before {
     opacity: 1;
 }
+
 
 .project-item-content h3 {
-    margin: 0 0 5px 0;
-    font-size: 1.5rem;
+    margin: 0 0 8px 0; /* Adjusted margin */
+    font-size: 1.8rem; /* Larger title */
+    font-weight: 700;
+    line-height: 1.2;
 }
 
 .project-item-content p {
-    margin: 0 0 10px 0;
-    font-size: 0.9rem;
+    margin: 0 0 15px 0; /* Adjusted margin */
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9); /* Lighter text for contrast */
 }
 
 .view-project-btn {
-    font-weight: 700; /* Bold */
-    color: var(--primary-color);
+    font-weight: 600; /* Semi-bold */
+    color: var(--primary-color); /* Maintain purple */
+    display: inline-block;
+    padding: 5px 0;
+    position: relative;
 }
+
+.view-project-btn::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.project-item-link:hover .view-project-btn::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.project-item-link .view-project-btn.disabled {
+    color: var(--dark-gray); /* Gray out disabled button */
+    cursor: not-allowed;
+}
+.project-item-link .view-project-btn.disabled::after {
+    background-color: var(--dark-gray);
+}
+.project-item.coming-soon .project-item-content {
+    background: rgba(0,0,0,0.7); /* Solid background for coming soon */
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border: none;
+    box-shadow: none;
+    transform: translateY(0); /* Always visible */
+    opacity: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.project-item.coming-soon::after {
+    content: none; /* Remove overlay for coming soon */
+}
+.project-item.coming-soon .project-item-video,
+.project-item.coming-soon img {
+    filter: brightness(0.4); /* Darken background significantly */
+}
+.project-item.coming-soon h3 { font-size: 2rem; }
+.project-item.coming-soon p { margin-bottom: 20px; }
+
 
 #services { text-align: center; }
 .service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
@@ -556,9 +736,20 @@ section {
 }
 .contact-info-wrapper {
     padding: 40px;
-    border-radius: 10px;
-    background-color: var(--light-gray);
-    border: 1px solid var(--form-border-color);
+    border-radius: 15px; /* Consistent border-radius */
+    /* Apply glassmorphism */
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border-light);
+    box-shadow: var(--glass-shadow-light);
+    transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .contact-info-wrapper {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
 }
 .info-block {
     margin-bottom: 30px;
@@ -613,20 +804,41 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 
 /* --- Responsive Styles --- */
 @media (max-width: 992px) {
-    .vision-mission-grid { grid-template-columns: 1fr; }
-    .values-grid { grid-template-columns: repeat(2, 1fr); }
-    .contact-page-container { grid-template-columns: 1fr; gap: 40px; }
-    .contact-info-wrapper { padding: 30px; }
-    .story-grid { grid-template-columns: 1fr; } /* Story section responsive */
-    .story-image { margin-bottom: 30px; }
+    .vision-mission-grid {
+        grid-template-columns: 1fr;
+        gap: 30px; 
+    }
+    .vision-card, .mission-card {
+        max-width: 600px;
+        width: 100%;
+        /* THIS IS THE DEFINITIVE FIX */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .values-grid { 
+        grid-template-columns: repeat(2, 1fr); 
+    }
+    .contact-page-container { 
+        grid-template-columns: 1fr; 
+        gap: 40px; 
+    }
+    .contact-info-wrapper { 
+        padding: 30px; 
+    }
+    .story-grid { 
+        grid-template-columns: 1fr; 
+    }
+    .story-image { 
+        margin-bottom: 30px; 
+    }
 }
+
 
 @media (max-width: 768px) {
     section { padding: 60px 0; }
     h2 { font-size: 1.8rem; }
     .nav-links { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--header-bg-scrolled); flex-direction: column; justify-content: center; align-items: center; box-shadow: -2px 0 10px rgba(0,0,0,0.1); transition: right 0.5s ease-in-out; }
     .nav-links.nav-active { right: 0; }
-    .nav-links li { margin: 20px 0; }
     .nav-links a, #main-header.scrolled .nav-links li.active a { color: var(--header-text-scrolled); border-bottom: none;}
     .hamburger { display: block; }
     .hamburger.toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
@@ -723,14 +935,22 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 }
 
 .filter-btn {
-    background: transparent;
-    border: 1px solid var(--form-border-color);
+    background: var(--glass-bg-light); /* Make filter buttons glassmorphic */
+    border: 1px solid var(--glass-border-light);
     color: var(--text-color);
     padding: 10px 25px;
     border-radius: 30px;
     cursor: pointer;
-    font-weight: 600; /* Semi-bold */
+    font-weight: 600;
     transition: all var(--transition-speed);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+[data-theme="dark"] .filter-btn {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .filter-btn:hover {
@@ -738,13 +958,14 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     color: var(--white);
     border-color: var(--primary-color);
     transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.4); /* Use RGB variable */
 }
 
 .filter-btn.active {
     background-color: var(--primary-color);
     color: var(--white);
     border-color: var(--primary-color);
-    box-shadow: 0 4px 15px rgba(10, 116, 218, 0.4);
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.4); /* Use RGB variable */
 }
 
 
@@ -766,25 +987,23 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     padding: 30px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
 
-    /* Glassmorphism Effect - Made Lighter */
-    background: rgba(255, 255, 255, 0.7); /* Increased opacity from 0.4 to 0.7 */
-    backdrop-filter: blur(12px); /* Increased blur for a softer look */
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.4); /* Made border slightly more visible */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+    /* Glassmorphism Effect - Using new variables */
+    background: var(--glass-bg-light);
+    backdrop-filter: blur(15px); /* Consistent blur */
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border-light);
+    box-shadow: var(--glass-shadow-light);
 }
 
 [data-theme="dark"] .service-card {
-    background: rgba(40, 40, 40, 0.4);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
 }
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
 }
 
 [data-theme="dark"] .service-card:hover {
@@ -922,7 +1141,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 /* Make sections transparent and set a base text color for readability */
 .main-content-wrapper section {
   background: transparent !important; /* Override any inline or specific styles */
-  color: var(--white);
+  /* color: var(--white); Removed to allow individual elements to define color */
 }
 
 /* Ensure headings are also white */
@@ -938,6 +1157,10 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 .main-content-wrapper .service-card h3,
 .main-content-wrapper .service-card li {
     color: var(--text-color);
+}
+
+.main-content-wrapper .service-card .card-icon {
+    color: var(--primary-color); /* Icons should remain primary color */
 }
 
 /* Keep the highlight color visible */
@@ -958,4 +1181,243 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     height: 100%;
     object-fit: cover;
     z-index: 0; /* Behind the overlay and content */
+}
+
+/* ======================================================================== */
+/* ========================= ABOUT PAGE REDESIGN ========================== */
+/* ======================================================================== */
+
+/* --- General Adjustments for Glass Cards on About Page --- */
+.main-content-wrapper .story-content,
+.main-content-wrapper .vision-card,
+.main-content-wrapper .mission-card,
+.main-content-wrapper .value-card {
+    padding: 40px;
+}
+
+/* --- Story Section --- */
+.main-content-wrapper .story-content .subtitle {
+    color: rgba(255, 255, 255, 0.8); /* Softer white for the subtitle */
+    opacity: 1;
+}
+
+.story-image img {
+    border: 2px solid var(--glass-border-dark); /* Cohesive border style */
+    box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.2); /* Subtle glow */
+}
+
+/* --- Vision & Mission Section --- */
+.main-content-wrapper .vision-card h3,
+.main-content-wrapper .mission-card h3 {
+    color: var(--white); /* Ensure headings are white */
+}
+
+/* --- Team Section --- */
+.team-member-card {
+    /* Base styles are now handled by .glassmorphism-effect, remove conflicting old styles */
+    background: transparent;
+    box-shadow: none;
+    overflow: hidden;
+    transition: transform var(--transition-speed);
+}
+
+.team-member-card:hover {
+    transform: translateY(-10px);
+    /* Box-shadow is now handled by the glassmorphism hover state */
+}
+
+.main-content-wrapper .team-member-card {
+    border-color: var(--glass-border-dark); /* Ensure border is visible in dark theme wrapper */
+}
+
+.main-content-wrapper .member-info h3 {
+    color: var(--white);
+}
+
+.main-content-wrapper .member-info .role {
+    color: var(--primary-color); /* Keep role color for brand consistency */
+}
+
+.main-content-wrapper .social-links a {
+    color: rgba(255, 255, 255, 0.7); /* Use a softer white for icons */
+}
+
+.main-content-wrapper .social-links a:hover {
+    color: var(--primary-color);
+}
+
+.member-image img {
+    border-radius: 0; /* Image fits flush inside the card */
+}
+
+.member-info {
+    padding: 30px 20px;
+}
+
+/* --- Values Section --- */
+.main-content-wrapper .value-card i {
+    color: var(--primary-color); /* This already looks great, no change needed */
+}
+
+.main-content-wrapper .value-card h3,
+.main-content-wrapper .value-card p {
+    color: var(--white);
+}
+
+/* --- Partnership & CTA Sections --- */
+#partnership {
+    /* These sections look good, no changes needed */
+    /* .btn-tekmakon is replaced by .modern-button in HTML */
+}
+
+#about-cta .cta-button {
+    background: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--white);
+    transition: all 0.3s ease;
+}
+
+#about-cta .cta-button:hover {
+    background: transparent;
+    color: var(--white);
+    transform: translateY(-3px) scale(1.05);
+}
+
+
+.main-content-wrapper .contact-form-wrapper,
+.main-content-wrapper .contact-info-wrapper {
+    padding: 40px;
+    border-color: var(--glass-border-dark); /* Ensure border is visible in dark theme wrapper */
+}
+
+/* --- Form Text --- */
+.main-content-wrapper .contact-form-wrapper h2,
+.main-content-wrapper .contact-form-wrapper p,
+.main-content-wrapper .form-group.modern label {
+    color: var(--white);
+}
+
+.main-content-wrapper .contact-form-wrapper p,
+.main-content-wrapper .form-group.modern label {
+    opacity: 0.8; /* Slightly softer for secondary text */
+}
+
+/* --- Form Inputs --- */
+.main-content-wrapper .form-group.modern input,
+.main-content-wrapper .form-group.modern textarea,
+.main-content-wrapper .form-group.modern select {
+    color: var(--white);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Softer bottom border */
+}
+
+.main-content-wrapper .form-group.modern input:focus,
+.main-content-wrapper .form-group.modern textarea:focus,
+.main-content-wrapper .form-group.modern select:focus {
+    border-bottom-color: var(--primary-color); /* Highlight with purple on focus */
+}
+
+.main-content-wrapper .form-group.modern ::placeholder {
+    color: var(--white);
+    opacity: 0.6; /* More subtle placeholder */
+}
+
+/* --- Select Dropdown Options & Arrow --- */
+.main-content-wrapper .form-group.modern select option {
+    background: var(--background-color); /* Keep this dark */
+    color: var(--text-color); /* But use the theme's text color */
+}
+
+[data-theme="dark"] .main-content-wrapper .form-group.modern select {
+    /* Override the default dark theme arrow to be white */
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+[data-theme="light"] .main-content-wrapper .form-group.modern select {
+    /* In light mode, the default black arrow is fine, but we'll make it white for consistency on this dark background */
+     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+}
+
+
+/* --- Info Block --- */
+.main-content-wrapper .info-block h4,
+.main-content-wrapper .info-block p,
+.main-content-wrapper .info-block a,
+.main-content-wrapper .social-links-contact a {
+    color: var(--white);
+}
+
+.main-content-wrapper .info-block h4 {
+    opacity: 0.7;
+}
+
+.main-content-wrapper .info-block i {
+    color: var(--primary-color); /* Keep icons purple for branding */
+}
+
+.main-content-wrapper .info-block a:hover,
+.main-content-wrapper .social-links-contact a:hover {
+    color: var(--primary-color);
+}
+
+[data-theme="light"] .main-content-wrapper .story-content h2,
+[data-theme="light"] .main-content-wrapper .story-content p,
+[data-theme="light"] .main-content-wrapper .vision-card h3,
+[data-theme="light"] .main-content-wrapper .vision-card p,
+[data-theme="light"] .main-content-wrapper .mission-card h3,
+[data-theme="light"] .main-content-wrapper .mission-card p {
+    color: var(--text-color); /* Uses the theme's dark text color for light mode */
+}
+
+[data-theme="light"] .main-content-wrapper .story-content .subtitle {
+    color: var(--text-color);
+    opacity: 0.7; /* Keep the subtitle slightly faded for hierarchy */
+}
+
+#page-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: var(--background-color);
+    transition: opacity 0.5s ease, visibility 0.5s ease; /* No more delay */
+    opacity: 1;
+    visibility: visible;
+}
+
+#page-loader.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 0s; /* No delay when hiding immediately */
+}
+
+.loader-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    overflow: hidden; /* Prevent scrollbars during zoom */
+}
+
+#zoom-text {
+    font-size: 10vw; /* Responsive base size */
+    font-weight: 800; /* Extra bold for impact */
+    color: var(--primary-color);
+    text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.5);
+    transform: scale(0.5); /* Start small */
+    opacity: 0; /* Start invisible */
+    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.5s ease; /* Main transition for zoom */
+    will-change: transform, opacity; /* Performance optimization */
+}
+
+/* State 1: The '0' becomes visible and correctly sized */
+#page-loader.is-visible #zoom-text {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* State 2: The '100' zooms up to fill the screen and fades out */
+#page-loader.is-zooming #zoom-text {
+    transform: scale(25); /* Massive scale value for full-screen effect */
+    opacity: 0;
 }
