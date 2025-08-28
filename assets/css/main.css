@@ -85,29 +85,7 @@ section {
     overflow: hidden;
 }
 
-/* --- Loader --- */
-#loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: var(--white);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: opacity 0.5s ease;
-}
 
-.spinner {
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    border-left-color: var(--primary-color);
-    animation: spin 1s ease infinite;
-}
 
 /* --- Glassmorphism Base Class --- */
 .glassmorphism-effect {
@@ -128,11 +106,11 @@ section {
 
 /* --- Header / Navigation --- */
 #main-header {
-    position: fixed;
+    position: fixed; /* (or just 'z-index: 10000;' for the second instance) */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100;
+    z-index: 10000; /* Set very high to be above the page loader (9999) */
     padding: 20px 0;
     transition: background-color var(--transition-speed), padding var(--transition-speed);
 }
@@ -233,7 +211,7 @@ section {
 .hamburger {
     display: none;
     cursor: pointer;
-    z-index: 101;
+    z-index: 10000; /* Set very high to be above the page loader (9999) */
 }
 
 .hamburger .bar {
@@ -367,6 +345,7 @@ section {
     grid-template-columns: 1fr 1.2fr;
     gap: 60px;
     align-items: center;
+     will-change: grid-template-columns, gap;
 }
 .story-image img {
     width: 100%;
@@ -442,6 +421,7 @@ section {
     margin-top: 40px;
     /* This property will now correctly center the entire block of cards. */
     justify-content: center; 
+    will-change: grid-template-columns, gap; 
 }
 .team-member-card { background: var(--background-color); border-radius: 10px; box-shadow: var(--box-shadow); text-align: center; overflow: hidden; transition: transform var(--transition-speed), box-shadow var(--transition-speed); }
 .team-member-card:hover { transform: translateY(-10px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
@@ -462,7 +442,7 @@ section {
 #values { background-color: var(--light-gray); text-align: center; }
 .values-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
 .value-card { padding: 30px; }
-.value-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; }
+.value-card i { font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px; will-change: grid-template-columns, gap; }
 #about-cta { background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); color: var(--white); text-align: center; }
 #about-cta h2 { font-size: 2rem; }
 
@@ -835,16 +815,90 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 
 
 @media (max-width: 768px) {
-    section { padding: 60px 0; }
-    h2 { font-size: 1.8rem; }
-    .nav-links { position: fixed; top: 0; right: -100%; width: 70%; height: 100vh; background-color: var(--header-bg-scrolled); flex-direction: column; justify-content: center; align-items: center; box-shadow: -2px 0 10px rgba(0,0,0,0.1); transition: right 0.5s ease-in-out; }
-    .nav-links.nav-active { right: 0; }
-    .nav-links a, #main-header.scrolled .nav-links li.active a { color: var(--header-text-scrolled); border-bottom: none;}
-    .hamburger { display: block; }
+    section { 
+        padding: 60px 0; 
+    }
+    h2 { 
+        font-size: 1.8rem; 
+    }
+    .nav-links { 
+        position: fixed; 
+        top: 0; 
+        right: -100%; 
+        width: 80%; /* Increased width from 70% to 80% */
+        height: 100vh; 
+        /* background-color and box-shadow removed as they are applied by .nav-active */
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        transition: right 0.5s ease-in-out, background 0.3s ease, backdrop-filter 0.3s ease;
+        padding: 60px 20px; /* Added padding to top/bottom and sides */
+        box-sizing: border-box; /* Include padding in the width calculation */
+    }
+    .nav-links.nav-active { 
+        right: 0; 
+        /* Glassmorphism Effect for the open menu */
+        background: var(--glass-bg-light);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-left: 1px solid var(--glass-border-light);
+        box-shadow: -5px 0 35px rgba(0, 0, 0, 0.1);
+    }
+    [data-theme="dark"] .nav-links.nav-active {
+        background: var(--glass-bg-dark);
+        border-left: 1px solid var(--glass-border-dark);
+        box-shadow: -5px 0 35px rgba(0, 0, 0, 0.2);
+    }
+
+    /* --- NEW: Mobile Menu Link Sizing --- */
+    .nav-links li { 
+        margin-bottom: 25px; /* Increased vertical spacing */
+        margin-left: 0; /* Remove left margin for mobile list items */
+    }
+    .nav-links a { 
+        font-size: 1.8rem; /* Larger font size for main links */
+        color: var(--text-color); /* Ensures text is visible on the glass background */
+    }
+    /* Active and scrolled links within the mobile menu */
+    .nav-links li.active a, 
+    #main-header.scrolled .nav-links a {
+        color: var(--primary-color); /* Highlight active/scrolled links with primary color */
+        border-bottom: 2px solid var(--primary-color);
+    }
+
+    /* --- NEW: Mobile CTA Button Sizing --- */
+    .nav-links .cta-button {
+        padding: 15px 30px; /* Increased padding for tap target and text fit */
+        font-size: 1.2rem; /* Larger font size for button text */
+        width: auto; /* Allow button to size naturally */
+        min-width: 200px; /* Ensure a minimum width */
+        text-align: center; /* Center text within the button */
+    }
+    /* Ensure the CTA button's text is white when mobile menu is open */
+    .nav-links.nav-active .cta-button {
+        color: var(--white);
+    }
+
+
+    /* --- NEW: Mobile Theme Toggle Sizing --- */
+    #theme-toggle {
+        font-size: 2.2rem; /* Significantly larger icon */
+        margin-top: 25px; /* Space it out from the button */
+        color: var(--text-color); /* Visible color */
+    }
+    .nav-links.nav-active #theme-toggle {
+        color: var(--text-color); /* Ensure visible in open menu */
+    }
+
+    .hamburger { 
+        display: block; 
+    }
     .hamburger.toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
     .hamburger.toggle .bar:nth-child(2) { opacity: 0; }
     .hamburger.toggle .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
-    #main-header.scrolled .hamburger.toggle .bar, .hamburger.toggle .bar { background-color: var(--header-text-scrolled); }
+    #main-header.scrolled .hamburger .bar, .hamburger.toggle .bar { background-color: var(--text-color); } /* Changed to text-color for visibility */
+
+
     .hero-content h1 { font-size: 2.5rem; }
     .hero-content p { font-size: 1rem; }
     .full-viewport { min-height: 500px; height: auto; padding: 120px 0; }
@@ -853,6 +907,34 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     #contact-page-section { padding-top: 100px; }
     .contact-form-wrapper h2 { font-size: 2rem; }
     .story-content h2 { font-size: 2rem; } /* Responsive heading */
+
+    /* Mobile specific adjustments for .text-content */
+    .text-content {
+        padding: 30px 25px; /* Adds vertical and horizontal padding to the glass card */
+    }
+
+    .text-content .key-benefits ul {
+        display: inline-block;
+        text-align: left;
+        margin-top: 20px;
+    }
+
+    .text-content .modern-button {
+        margin: 0 auto;
+    }
+
+    /* Ensure logo and hamburger spacing in header */
+    #main-header nav {
+        padding: 0 20px; /* Added horizontal padding to the nav container */
+    }
+    .logo {
+        font-size: 1.3rem; /* Slightly smaller logo for mobile header */
+    }
+    .body-no-scroll .logo {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
 }
 
 /* ======================================================================== */
@@ -1204,6 +1286,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 .story-image img {
     border: 2px solid var(--glass-border-dark); /* Cohesive border style */
     box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.2); /* Subtle glow */
+     will-change: width, transform;
 }
 
 /* --- Vision & Mission Section --- */
@@ -1420,4 +1503,37 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 #page-loader.is-zooming #zoom-text {
     transform: scale(25); /* Massive scale value for full-screen effect */
     opacity: 0;
+}
+
+#main-header {
+    z-index: 98; /* Below page-loader (9999) but above everything else */
+}
+
+/* Overlay for Mobile Menu */
+#mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Darker, more opaque overlay */
+    backdrop-filter: blur(8px); /* Increased blur */
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 96; /* Below the mobile menu (97) but above all page content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    cursor: pointer;
+}
+
+#mobile-menu-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ensure the body does not scroll when the menu is open */
+.body-no-scroll {
+    overflow: hidden;
+    touch-action: none; /* Prevent touch scrolling */
+    -webkit-overflow-scrolling: none; /* For iOS */
 }

@@ -3,55 +3,50 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const body = document.body;
+    const html = document.documentElement; // Get the html element for scroll locking
     const heroSection = document.getElementById('hero');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     // --- SHARED LOGIC: This runs on ALL pages ---
 
-    // --- 1. NEW Custom Zoom Page Loader ---
+    // --- 1. Custom Zoom Page Loader (2-Second Duration, All Fixes) ---
     const pageLoader = document.getElementById('page-loader');
     const zoomText = document.getElementById('zoom-text');
+    let isLoaderRunning = false;
 
     if (pageLoader && zoomText) {
-
-        // Hides the loader and resets its state for the next use.
-        const hideLoader = () => {
+        
+        const forceHideLoader = () => {
+            isLoaderRunning = false;
             pageLoader.classList.add('hidden');
-            // Reset classes after hiding so it's ready for the next navigation
-            setTimeout(() => {
-                pageLoader.classList.remove('is-visible', 'is-zooming');
-            }, 500);
+            pageLoader.classList.remove('is-visible', 'is-zooming');
         };
 
-        // Runs the new zoom animation sequence.
         const runLoader = (destinationUrl = null) => {
+            if (isLoaderRunning) return; 
+            isLoaderRunning = true;
+            
             pageLoader.classList.remove('hidden');
 
-            // --- Animation Sequence ---
-            
-            // 1. Start: Set text to '0' and fade it in.
             setTimeout(() => {
                 zoomText.textContent = '0';
                 pageLoader.classList.add('is-visible');
-            }, 100); // Small delay to start
+            }, 100);
 
-            // 2. Middle: After a pause, change text to '100' and trigger the zoom.
             setTimeout(() => {
                 zoomText.textContent = '100';
                 pageLoader.classList.add('is-zooming');
-            }, 800); // This happens partway through the total duration
+            }, 800);
 
-            // 3. End: After 2 seconds, either go to the new page or hide the loader.
             setTimeout(() => {
                 if (destinationUrl) {
                     window.location.href = destinationUrl;
                 } else {
-                    hideLoader();
+                    forceHideLoader();
                 }
-            }, 2000); // Total animation duration
+            }, 2000); // Total animation duration is 2 seconds.
         };
         
-        // --- Trigger for Page Navigation ---
         const handleLinkClick = (e) => {
             const link = e.currentTarget;
             if (link.target === '_blank' || link.protocol.startsWith('mailto') || link.protocol.startsWith('tel') || link.getAttribute('href').startsWith('#')) {
@@ -70,7 +65,12 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', handleLinkClick);
         });
 
-        // --- Trigger for Initial Page Load ---
+        window.addEventListener('pageshow', (event) => {
+            if (event.persisted) {
+                forceHideLoader();
+            }
+        });
+
         runLoader();
     }
 
@@ -89,27 +89,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 3. Enhanced Mobile Hamburger Menu Logic ---
+    // --- 3. Enhanced Mobile Hamburger Menu Logic with Overlay & Scroll Lock ---
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
-    
-    if (hamburger && navLinks) {
-        const navLinksItems = document.querySelectorAll('.nav-links li');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    let currentScrollY = 0; // New variable to store scroll position
+
+    if (hamburger && navLinks && mobileMenuOverlay) {
+        // Close menu when clicking the overlay
+        mobileMenuOverlay.addEventListener('click', () => {
+            if (navLinks.classList.contains('nav-active')) {
+                toggleNav();
+            }
+        });
+        
         hamburger.addEventListener('click', () => {
             toggleNav();
         });
+
+        const navLinksItems = document.querySelectorAll('.nav-links li');
         navLinksItems.forEach(item => {
             const link = item.querySelector('a');
-            if (link && link.getAttribute('href').startsWith('#')) {
-                 if (navLinks.classList.contains('nav-active')) {
-                    toggleNav();
-                }
+            // Close menu for hash links or theme toggle when clicked, as they don't trigger page reload.
+            if (link && (link.getAttribute('href').startsWith('#') || item.contains(document.getElementById('theme-toggle')))) {
+                 item.addEventListener('click', () => {
+                    if (navLinks.classList.contains('nav-active')) {
+                        toggleNav();
+                    }
+                 });
             }
+            // For full page links, the global handleLinkClick manages loader and navigation.
         });
+
         function toggleNav() {
             navLinks.classList.toggle('nav-active');
             hamburger.classList.toggle('toggle');
-            body.classList.toggle('body-no-scroll');
+            mobileMenuOverlay.classList.toggle('is-active');
+
+            if (navLinks.classList.contains('nav-active')) {
+                // Lock body scroll
+                currentScrollY = window.scrollY; // Store current scroll position
+                body.style.position = 'fixed';
+                body.style.top = `-${currentScrollY}px`;
+                body.style.width = '100%';
+                body.style.overflowY = 'hidden'; // Hide vertical scrollbar on body
+                html.style.overflow = 'hidden'; // Hide scrollbar on html for full lock
+            } else {
+                // Unlock body scroll
+                body.style.position = '';
+                body.style.top = '';
+                body.style.width = '';
+                body.style.overflowY = '';
+                html.style.overflow = ''; // Restore html overflow
+                window.scrollTo(0, currentScrollY); // Restore scroll position
+            }
         }
     }
 
