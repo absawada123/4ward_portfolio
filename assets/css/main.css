@@ -1690,6 +1690,11 @@ html {
     cursor: pointer;
 }
 
+#mobile-menu-overlay.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
 /* Ensure the body does not scroll when the menu is open */
 .body-no-scroll {
     overflow: hidden;

@@ -68,11 +68,11 @@
         <nav>
             <div class="logo">4ward People Connect</div>
             <ul class="nav-links">
-                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="/contact" class="cta-button">Get in Touch</a></li>
+                <li><a href="/#projects">Projects</a></li>
+                <li><a href="/#services">Services</a></li>
+                <li class="active"><a href="/contact" class="cta-button">Get in Touch</a></li>
                 <!-- Theme Toggle Button -->
                 <li>
                     <button id="theme-toggle" title="Toggle dark/light mode">
@@ -122,20 +122,20 @@
                                     <option value="other">Other</option>
                                 </select>
                             </div>
-                            <div class="form-group modern">
+                            <div class="form-group modern" id="currency-group">
                                 <label for="currency-select">Currency*</label>
                                 <select id="currency-select" name="currency" required>
                                     <option value="usd" selected>International (USD)</option>
                                     <option value="php">Local (PHP)</option>
                                 </select>
                             </div>
-                            <div class="form-group modern">
+                            <div class="form-group modern" id="budget-group">
                                 <label for="budget-select">What is your estimate budget?*</label>
                                 <select id="budget-select" name="budget" required>
                                     <!-- Budget options will be populated by JavaScript -->
                                 </select>
                             </div>
-                            <div class="form-group modern" id="custom-budget-group">
+                            <div class="form-group modern" id="custom-budget-group" style="display: none;">
                                 <label for="custom-budget">Please specify your budget</label>
                                 <input type="text" id="custom-budget" name="custom-budget" placeholder="e.g., $50,000 - $75,000">
                             </div>
