@@ -52,18 +52,20 @@ body {
     line-height: 1.6;
     background-color: var(--background-color);
     color: var(--text-color);
-    overflow-x: hidden;
+    overflow-x: hidden; /* Prevent horizontal scrolling on the body */
     transition: background-color var(--transition-speed), color var(--transition-speed);
 }
 
 .body-no-scroll {
     overflow: hidden;
+    touch-action: none; /* Prevent touch scrolling */
+    -webkit-overflow-scrolling: none; /* For iOS */
 }
 
 .container {
     max-width: 1100px;
     margin: auto;
-    padding: 0 20px;
+    padding: 0 20px; /* Ensures consistent padding on all screen sizes */
 }
 
 h1, h2, h3, h4 {
@@ -85,8 +87,6 @@ section {
     overflow: hidden;
 }
 
-
-
 /* --- Glassmorphism Base Class --- */
 .glassmorphism-effect {
     background: var(--glass-bg-light);
@@ -106,14 +106,44 @@ section {
 
 /* --- Header / Navigation --- */
 #main-header {
-    position: fixed; /* (or just 'z-index: 10000;' for the second instance) */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10000; /* Set very high to be above the page loader (9999) */
+    z-index: 10000;
     padding: 20px 0;
     transition: background-color var(--transition-speed), padding var(--transition-speed);
+    background-color: transparent; /* Default for pages with dark hero (like index) */
 }
+
+/* NEW: Initial state for pages without a dark full-viewport hero (e.g., About, Contact) */
+#main-header.alt-header-initial {
+    background-color: var(--glass-bg-light); /* Start with a light glass background */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: 1px solid var(--glass-border-light);
+    box-shadow: var(--glass-shadow-light);
+    padding: 15px 0; /* Match scrolled padding */
+}
+
+[data-theme="dark"] #main-header.alt-header-initial {
+    background-color: var(--glass-bg-dark);
+    border-bottom: 1px solid var(--glass-border-dark);
+    box-shadow: var(--glass-shadow-dark);
+}
+
+#main-header.alt-header-initial .logo,
+#main-header.alt-header-initial .nav-links a {
+    color: var(--header-text-scrolled); /* Use scrolled text color for visibility */
+}
+
+#main-header.alt-header-initial .hamburger .bar {
+    background-color: var(--header-text-scrolled); /* Adjust hamburger color */
+}
+#main-header.alt-header-initial #theme-toggle {
+    color: var(--header-text-scrolled); /* Adjust theme toggle color */
+}
+
 
 #main-header nav {
     display: flex;
@@ -126,11 +156,13 @@ section {
 
 .logo {
     font-size: 1.5rem;
-    font-weight: 700; /* Bold for logo */
-    color: var(--header-text-initial);
+    font-weight: 700;
+    color: var(--header-text-initial); /* Default white for hero pages */
     transition: color var(--transition-speed);
     z-index: 101;
+    /* On desktop, this is fine. On mobile, flex and min-width will handle it. */
 }
+
 
 .nav-links {
     display: flex;
@@ -144,8 +176,8 @@ section {
 
 .nav-links a {
     text-decoration: none;
-    color: var(--header-text-initial);
-    font-weight: 600; /* Semi-bold for nav links */
+    color: var(--header-text-initial); /* Default white for hero pages */
+    font-weight: 600;
     transition: color var(--transition-speed);
     position: relative;
     padding-bottom: 5px;
@@ -157,8 +189,8 @@ section {
 
 .nav-links li.active a {
     color: var(--primary-color);
-    font-weight: 700; /* Bold for active link */
-    border-bottom: 2px solid var(--primary-color); /* Ensure underline is always visible */
+    font-weight: 700;
+    border-bottom: 2px solid var(--primary-color);
 }
 
 #main-header.scrolled .nav-links li.active a {
@@ -166,29 +198,28 @@ section {
 }
 
 .cta-button {
-    background-color: #6A0DAD; /* Changed from var(--primary-color) to purple */
+    background-color: #6A0DAD;
     color: var(--white);
     padding: 10px 20px;
-    border-radius: 8px; /* Increased from 5px for a rounder look */
+    border-radius: 8px;
     transition: background-color var(--transition-speed), transform 0.2s ease;
     border: none;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    font-weight: 600; /* Semi-bold for buttons */
+    font-weight: 600;
 }
 
 .cta-button:hover {
-    background-color: #5A009D; /* Darker purple for hover */
+    background-color: #5A009D;
     color: var(--white);
     transform: translateY(-2px);
 }
 #main-header.scrolled {
-    /* Existing styles are now part of glassmorphism effect for consistency */
-    background-color: var(--glass-bg-light); /* Use glass bg for header */
+    background-color: var(--glass-bg-light);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border-light); /* Subtle border */
+    border-bottom: 1px solid var(--glass-border-light);
     box-shadow: var(--glass-shadow-light);
     padding: 15px 0;
 }
@@ -209,9 +240,9 @@ section {
 }
 
 .hamburger {
-    display: none;
+    display: none; /* Hidden by default for desktop */
     cursor: pointer;
-    z-index: 10000; /* Set very high to be above the page loader (9999) */
+    z-index: 10000;
 }
 
 .hamburger .bar {
@@ -219,7 +250,7 @@ section {
     width: 25px;
     height: 3px;
     margin: 5px auto;
-    background-color: var(--header-text-initial);
+    background-color: var(--header-text-initial); /* Default white for hero pages */
     transition: all 0.3s ease-in-out;
 }
 
@@ -232,17 +263,17 @@ section {
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 1.5rem; /* Larger icon */
-    color: var(--header-text-initial);
+    font-size: 1.5rem;
+    color: var(--header-text-initial); /* Default white for hero pages */
     transition: color var(--transition-speed), transform 0.2s ease;
     padding: 5px;
-    position: relative; /* Set as container for the icons */
-    width: 24px;  /* Define a fixed size */
-    height: 24px; /* Define a fixed size */
+    position: relative;
+    width: 24px;
+    height: 24px;
 }
 
 #theme-toggle:hover {
-    transform: scale(1.1) rotate(22deg); /* Add rotation effect */
+    transform: scale(1.1) rotate(22deg);
     color: var(--primary-color);
 }
 #theme-toggle i {
@@ -254,7 +285,7 @@ section {
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .sun-icon {
-    opacity: 1; /* Sun is visible in light mode */
+    opacity: 1;
 }
 
 .moon-icon {
@@ -276,7 +307,7 @@ section {
 /* --- Hero Section (Homepage) --- */
 #hero {
     color: var(--white);
-    background-color: #1a1a1a; /* Fallback background for when video is loading */
+    background-color: #1a1a1a;
 }
 
 #hero::after {
@@ -286,8 +317,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-
-    z-index: 0; /* Positioned between video and text */
+    z-index: 0;
 }
 .animated-background {
     position: absolute;
@@ -295,28 +325,26 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ensures video covers the entire area */
+    object-fit: cover;
     z-index: -1;
-    /* The gradient background is removed to let the video show */
 }
 
-
 .hero-content {
-    z-index: 1; /* Increased z-index */
+    z-index: 1;
     padding: 0 10px;
-    position: relative; /* Added for stacking context */
-    isolation: isolate; /* <<<< FIXED: This prevents the text from disappearing */
+    position: relative;
+    isolation: isolate;
 }
 
 .hero-content h1 {
     font-size: 3.5rem;
     margin-bottom: 10px;
-    font-weight: 800; /* Extra-bold for main headline */
+    font-weight: 800;
 }
 
 .hero-content p {
     font-size: 1.2rem;
-    font-weight: 400; /* Regular weight for subheading */
+    font-weight: 400;
 }
 
 .kinetic-headline {
@@ -339,7 +367,6 @@ section {
 #about-hero { color: var(--white); }
 #about-hero .tagline { font-size: 1.5rem; font-weight: 400; margin-top: 10px; }
 
-/* NEW Story Section Styles */
 .story-grid {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -357,7 +384,7 @@ section {
 }
 .story-content .subtitle {
     font-size: 1.2rem;
-    font-weight: 500; /* Medium weight for subtitle */
+    font-weight: 500;
     color: var(--primary-color);
     margin-top: -15px;
     margin-bottom: 25px;
@@ -367,10 +394,23 @@ section {
     font-size: 1.05rem;
 }
 
-/* Empowering Business Section (About 4PC) - Glassmorphism applied to text content */
+/* --- Split Layout Section (About 4PC on Homepage) --- */
+#empowering-business {
+    padding: 100px 0;
+    overflow: hidden;
+    position: relative;
+}
+
+#empowering-business .split-layout-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
 #empowering-business .text-content {
-    padding: 40px; /* Add padding for the glassmorphism card */
-    /* Apply the glassmorphism effect */
+    flex: 1;
+    max-width: 50%;
+    padding: 40px;
     background: var(--glass-bg-light);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -387,23 +427,145 @@ section {
 }
 
 #empowering-business .section-headline {
-    color: var(--primary-color); /* Ensure headline stands out */
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    margin-bottom: 25px;
+    color: var(--primary-color);
 }
+
 #empowering-business .section-paragraph {
-    color: var(--text-color); /* Ensure good contrast */
-}
-#empowering-business .key-benefits-title {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    line-height: 1.7;
     color: var(--text-color);
 }
-#empowering-business .key-benefits li {
-    color: var(--text-color);
-}
-#empowering-business .key-benefits i {
-    color: var(--primary-color); /* Checkmark color */
-}
+
 #empowering-business .highlight {
-    color: var(--primary-color); /* Keep highlights purple */
     font-weight: 600;
+    color: var(--primary-color);
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+#empowering-business .key-benefits {
+    margin-bottom: 40px;
+}
+
+#empowering-business .key-benefits-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+}
+
+#empowering-business .key-benefits ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#empowering-business .key-benefits li {
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 30px;
+    color: var(--text-color);
+}
+
+#empowering-business .key-benefits .fa-check-circle {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    position: absolute;
+    left: 0;
+    top: 4px;
+}
+
+#empowering-business .modern-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 17px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--white);
+    border: none;
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    box-shadow: 0 5px 20px rgba(var(--primary-color-rgb), 0.5);
+}
+
+#empowering-business .modern-button .arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+#empowering-business .modern-button:hover {
+    color: var(--white);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(var(--primary-color-rgb), 0.6);
+}
+
+#empowering-business .modern-button:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+#empowering-business .visual-content {
+    flex: 1;
+    max-width: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#empowering-business .visual-content video {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    z-index: 2;
+    position: relative;
+    border: 2px solid var(--glass-border-light);
+}
+
+[data-theme="dark"] #empowering-business .visual-content video {
+    border: 2px solid var(--glass-border-dark);
+}
+
+#empowering-business .visual-accent-dots,
+#empowering-business .visual-accent-lines {
+    position: absolute;
+    z-index: 1;
+    opacity: 0.15;
+}
+
+#empowering-business .visual-accent-dots {
+    width: 100px;
+    height: 100px;
+    background-image: radial-gradient(var(--primary-color) 1.5px, transparent 1.5px);
+    background-size: 15px 15px;
+    top: -20px;
+    left: -20px;
+    animation: pulse 5s infinite ease-in-out;
+}
+
+#empowering-business .visual-accent-lines {
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(--primary-color);
+    border-radius: 15px;
+    bottom: -30px;
+    right: -30px;
+    transform: rotate(-30deg);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.15; }
+    50% { transform: scale(1.05); opacity: 0.3; }
 }
 
 
@@ -415,11 +577,9 @@ section {
 .vision-card h3, .mission-card h3 { color: var(--primary-color); }
 .team-grid {
     display: grid;
-    /* This is the key change: we use a fixed width for columns, not a flexible one. */
     grid-template-columns: repeat(auto-fit, 280px); 
     gap: 30px;
     margin-top: 40px;
-    /* This property will now correctly center the entire block of cards. */
     justify-content: center; 
     will-change: grid-template-columns, gap; 
 }
@@ -429,7 +589,7 @@ section {
 .team-member-card:hover .member-image img { transform: scale(1.05); }
 .member-info { padding: 25px 20px; }
 .member-info h3 { margin-bottom: 5px; font-size: 1.4rem; }
-.member-info .role { font-weight: 600; /* Semi-bold for role */ color: var(--primary-color); margin-bottom: 15px; }
+.member-info .role { font-weight: 600; color: var(--primary-color); margin-bottom: 15px; }
 .social-links { display: flex; justify-content: center; gap: 15px; }
 .social-links a { color: var(--dark-gray); font-size: 1.2rem; transition: color var(--transition-speed); }
 [data-theme="dark"] .social-links a { color: var(--text-color); }
@@ -454,34 +614,33 @@ section {
 .project-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px; /* Increased gap for better spacing */
+    gap: 30px;
     margin-top: 40px;
 }
 
-/* UPDATED PROJECT ITEM STYLES FOR GLASSMORPHISM */
 .project-item-link {
     text-decoration: none;
     color: inherit;
     display: block;
     overflow: hidden;
-    border-radius: 15px; /* Consistent with glassmorphism */
+    border-radius: 15px;
     position: relative;
-    isolation: isolate; /* For stacking context of pseudo-elements */
+    isolation: isolate;
 }
 
 .project-item {
-    height: 300px; /* Slightly taller for more visual impact */
-    background-color: var(--dark-gray); /* Fallback */
+    height: 300px;
+    background-color: var(--dark-gray);
     background-size: cover;
     background-position: center;
     position: relative;
     display: flex;
-    flex-direction: column; /* Stack content vertically */
-    justify-content: flex-end; /* Align content to the bottom */
-    align-items: flex-start; /* Align text to the left */
-    border-radius: 15px; /* Important for visual consistency */
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    border-radius: 15px;
     transition: transform 0.4s ease;
-    overflow: hidden; /* Ensure content stays within borders */
+    overflow: hidden;
 }
 
 .project-item-link:hover .project-item {
@@ -489,50 +648,45 @@ section {
 }
 
 .project-item .project-item-video,
-.project-item img { /* For images as well */
+.project-item img {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1; /* Behind the glass overlay */
-    filter: brightness(0.7); /* Darken media slightly */
+    z-index: -1;
+    filter: brightness(0.7);
     transition: filter 0.4s ease;
 }
 
 .project-item-link:hover .project-item .project-item-video,
 .project-item-link:hover .project-item img {
-    filter: brightness(0.9); /* Brighten on hover */
+    filter: brightness(0.9);
 }
 
-/* Glassmorphism overlay for content */
 .project-item-content {
-    position: relative; /* To be above the media and internal overlay */
+    position: relative;
     z-index: 2;
-    padding: 25px; /* Increased padding */
+    padding: 25px;
     width: 100%;
     text-align: left;
-    color: var(--white); /* Text color over dark background/glass */
-
-    /* Glassmorphism for the content box itself */
-    background: var(--glass-bg-dark); /* Darker glass for contrast over media */
-    backdrop-filter: blur(20px); /* Stronger blur for content */
+    color: var(--white);
+    background: var(--glass-bg-dark);
+    backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-top: 1px solid var(--glass-border-dark); /* Only top border for subtle separation */
-    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-
-    transform: translateY(100%); /* Start completely hidden */
+    border-top: 1px solid var(--glass-border-dark);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(100%);
     opacity: 0;
     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
 }
 
 .project-item-link:hover .project-item-content {
-    transform: translateY(0); /* Slide up into view */
+    transform: translateY(0);
     opacity: 1;
 }
 
-/* Inner subtle overlay to enhance contrast for text, within the glassmorphism block */
 .project-item-content::before {
     content: '';
     position: absolute;
@@ -540,7 +694,7 @@ section {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 70%); /* Darker gradient */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent 70%);
     z-index: -1;
     opacity: 0;
     transition: opacity 0.5s ease;
@@ -550,23 +704,22 @@ section {
     opacity: 1;
 }
 
-
 .project-item-content h3 {
-    margin: 0 0 8px 0; /* Adjusted margin */
-    font-size: 1.8rem; /* Larger title */
+    margin: 0 0 8px 0;
+    font-size: 1.8rem;
     font-weight: 700;
     line-height: 1.2;
 }
 
 .project-item-content p {
-    margin: 0 0 15px 0; /* Adjusted margin */
+    margin: 0 0 15px 0;
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.9); /* Lighter text for contrast */
+    color: rgba(255, 255, 255, 0.9);
 }
 
 .view-project-btn {
-    font-weight: 600; /* Semi-bold */
-    color: var(--primary-color); /* Maintain purple */
+    font-weight: 600;
+    color: var(--primary-color);
     display: inline-block;
     padding: 5px 0;
     position: relative;
@@ -591,19 +744,19 @@ section {
 }
 
 .project-item-link .view-project-btn.disabled {
-    color: var(--dark-gray); /* Gray out disabled button */
+    color: var(--dark-gray);
     cursor: not-allowed;
 }
 .project-item-link .view-project-btn.disabled::after {
     background-color: var(--dark-gray);
 }
 .project-item.coming-soon .project-item-content {
-    background: rgba(0,0,0,0.7); /* Solid background for coming soon */
+    background: rgba(0,0,0,0.7);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
     border: none;
     box-shadow: none;
-    transform: translateY(0); /* Always visible */
+    transform: translateY(0);
     opacity: 1;
     text-align: center;
     display: flex;
@@ -612,15 +765,14 @@ section {
     align-items: center;
 }
 .project-item.coming-soon::after {
-    content: none; /* Remove overlay for coming soon */
+    content: none;
 }
 .project-item.coming-soon .project-item-video,
 .project-item.coming-soon img {
-    filter: brightness(0.4); /* Darken background significantly */
+    filter: brightness(0.4);
 }
 .project-item.coming-soon h3 { font-size: 2rem; }
 .project-item.coming-soon p { margin-bottom: 20px; }
-
 
 #services { text-align: center; }
 .service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
@@ -660,7 +812,7 @@ section {
     margin-bottom: 8px;
     color: var(--dark-gray);
     text-transform: uppercase;
-    font-weight: 500; /* Medium weight for labels */
+    font-weight: 500;
 }
 [data-theme="dark"] .form-group.modern label {
     color: var(--text-color);
@@ -677,7 +829,7 @@ section {
     font-size: 1.2rem;
     color: var(--text-color);
     font-family: inherit;
-    border-radius: 0; /* Remove default radius */
+    border-radius: 0;
 }
 .form-group.modern select option {
     background: var(--background-color);
@@ -694,7 +846,7 @@ section {
     opacity: 0.8;
     text-transform: uppercase;
     font-style: italic;
-    font-weight: 400; /* Regular weight for placeholder */
+    font-weight: 400;
 }
 .form-group.modern select {
     appearance: none;
@@ -707,17 +859,16 @@ section {
      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23e0e0e0' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }
 #custom-budget-group {
-    display: none; /* Hidden by default */
+    display: none;
 }
 .modern-form .cta-button {
     padding: 15px 40px;
     font-size: 1rem;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
 }
 .contact-info-wrapper {
     padding: 40px;
-    border-radius: 15px; /* Consistent border-radius */
-    /* Apply glassmorphism */
+    border-radius: 15px;
     background: var(--glass-bg-light);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
@@ -742,7 +893,7 @@ section {
     opacity: 0.7;
     text-transform: uppercase;
     margin-bottom: 15px;
-    font-weight: 600; /* Semi-bold */
+    font-weight: 600;
 }
 .info-block p {
     display: flex;
@@ -753,7 +904,7 @@ section {
     color: var(--text-color);
     text-decoration: none;
     transition: color var(--transition-speed);
-    font-weight: 500; /* Medium */
+    font-weight: 500;
 }
 .info-block a:hover {
     color: var(--primary-color);
@@ -783,6 +934,12 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 #scroll-to-top { position: fixed; bottom: 20px; right: 20px; background-color: var(--primary-color); color: var(--white); border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 24px; cursor: pointer; display: none; z-index: 50; opacity: 0; transition: opacity var(--transition-speed); }
 
 /* --- Responsive Styles --- */
+/* Added to HTML for ultimate horizontal overflow prevention */
+html {
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
 @media (max-width: 992px) {
     .vision-mission-grid {
         grid-template-columns: 1fr;
@@ -791,7 +948,6 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     .vision-card, .mission-card {
         max-width: 600px;
         width: 100%;
-        /* THIS IS THE DEFINITIVE FIX */
         margin-left: auto;
         margin-right: auto;
     }
@@ -811,6 +967,9 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     .story-image { 
         margin-bottom: 30px; 
     }
+    #empowering-business .section-headline {
+        font-size: 2.2rem;
+    }
 }
 
 
@@ -825,19 +984,17 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
         position: fixed; 
         top: 0; 
         right: -100%; 
-        width: 80%; /* Increased width from 70% to 80% */
+        width: 80%;
         height: 100vh; 
-        /* background-color and box-shadow removed as they are applied by .nav-active */
         flex-direction: column; 
         justify-content: center; 
         align-items: center; 
         transition: right 0.5s ease-in-out, background 0.3s ease, backdrop-filter 0.3s ease;
-        padding: 60px 20px; /* Added padding to top/bottom and sides */
-        box-sizing: border-box; /* Include padding in the width calculation */
+        padding: 60px 20px;
+        box-sizing: border-box;
     }
     .nav-links.nav-active { 
         right: 0; 
-        /* Glassmorphism Effect for the open menu */
         background: var(--glass-bg-light);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
@@ -850,53 +1007,52 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
         box-shadow: -5px 0 35px rgba(0, 0, 0, 0.2);
     }
 
-    /* --- NEW: Mobile Menu Link Sizing --- */
     .nav-links li { 
-        margin-bottom: 25px; /* Increased vertical spacing */
-        margin-left: 0; /* Remove left margin for mobile list items */
+        margin-bottom: 25px;
+        margin-left: 0;
     }
     .nav-links a { 
-        font-size: 1.8rem; /* Larger font size for main links */
-        color: var(--text-color); /* Ensures text is visible on the glass background */
+        font-size: 1.8rem;
+        color: var(--text-color);
     }
-    /* Active and scrolled links within the mobile menu */
+
     .nav-links li.active a, 
     #main-header.scrolled .nav-links a {
-        color: var(--primary-color); /* Highlight active/scrolled links with primary color */
+        color: var(--primary-color);
         border-bottom: 2px solid var(--primary-color);
     }
 
-    /* --- NEW: Mobile CTA Button Sizing --- */
     .nav-links .cta-button {
-        padding: 15px 30px; /* Increased padding for tap target and text fit */
-        font-size: 1.2rem; /* Larger font size for button text */
-        width: auto; /* Allow button to size naturally */
-        min-width: 200px; /* Ensure a minimum width */
-        text-align: center; /* Center text within the button */
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        width: auto;
+        min-width: 200px;
+        text-align: center;
     }
-    /* Ensure the CTA button's text is white when mobile menu is open */
+
     .nav-links.nav-active .cta-button {
         color: var(--white);
     }
 
-
-    /* --- NEW: Mobile Theme Toggle Sizing --- */
     #theme-toggle {
-        font-size: 2.2rem; /* Significantly larger icon */
-        margin-top: 25px; /* Space it out from the button */
-        color: var(--text-color); /* Visible color */
+        font-size: 2.2rem;
+        margin-top: 25px;
+        color: var(--text-color);
     }
     .nav-links.nav-active #theme-toggle {
-        color: var(--text-color); /* Ensure visible in open menu */
+        color: var(--text-color);
     }
 
-    .hamburger { 
-        display: block; 
+    /* UPDATED HAMBURGER RULE FOR SPECIFICITY AND FLEXBEHAVIOR */
+    #main-header nav .hamburger { 
+        display: block !important; /* Added !important to ensure visibility */
+        flex-shrink: 0; /* Prevent it from shrinking */
+        margin-left: 10px; /* Space from theme toggle */
     }
     .hamburger.toggle .bar:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
     .hamburger.toggle .bar:nth-child(2) { opacity: 0; }
     .hamburger.toggle .bar:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
-    #main-header.scrolled .hamburger .bar, .hamburger.toggle .bar { background-color: var(--text-color); } /* Changed to text-color for visibility */
+    #main-header.scrolled .hamburger .bar, .hamburger.toggle .bar { background-color: var(--text-color); }
 
 
     .hero-content h1 { font-size: 2.5rem; }
@@ -906,35 +1062,85 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     .values-grid { grid-template-columns: 1fr; }
     #contact-page-section { padding-top: 100px; }
     .contact-form-wrapper h2 { font-size: 2rem; }
-    .story-content h2 { font-size: 2rem; } /* Responsive heading */
+    .story-content h2 { font-size: 2rem; }
 
-    /* Mobile specific adjustments for .text-content */
-    .text-content {
-        padding: 30px 25px; /* Adds vertical and horizontal padding to the glass card */
+    #main-header nav {
+        width: 100%; /* Force full width of viewport */
+        padding: 0 15px; /* Apply padding directly here for consistency */
+    }
+    .logo {
+        font-size: 1.1rem; /* Slightly smaller font for logo on very small screens */
+        flex: 1; /* Allow logo to take up available space */
+        min-width: 0; /* Allow the flex item to shrink below its content size */
+        white-space: nowrap; /* Prevent breaking into multiple lines */
+        overflow: hidden; /* Hide overflowing text */
+        text-overflow: ellipsis; /* Add ellipsis for overflowing text */
+        margin-right: 10px; /* Reduced space between logo and hamburger/theme toggle */
+    }
+    /* Ensure theme toggle doesn't unexpectedly expand */
+    #main-header nav #theme-toggle {
+        flex-shrink: 0; /* Prevent it from shrinking */
     }
 
-    .text-content .key-benefits ul {
+    .body-no-scroll .logo {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    #empowering-business {
+        padding: 60px 0;
+    }
+
+    #empowering-business .split-layout-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #empowering-business .text-content,
+    #empowering-business .visual-content {
+        max-width: 100%;
+    }
+    
+    #empowering-business .text-content {
+        padding: 30px 25px;
+    }
+
+    #empowering-business .visual-content {
+        margin-top: 40px;
+    }
+
+    #empowering-business .text-content .key-benefits ul {
         display: inline-block;
         text-align: left;
         margin-top: 20px;
     }
 
-    .text-content .modern-button {
+    #empowering-business .modern-button {
         margin: 0 auto;
     }
 
-    /* Ensure logo and hamburger spacing in header */
-    #main-header nav {
-        padding: 0 20px; /* Added horizontal padding to the nav container */
+    /* Ensure videos and images inside fluid containers are responsive */
+    #about-hero video,
+    #empowering-business .visual-content video {
+        max-width: 100%; /* Ensure videos don't overflow */
+        height: auto; /* Maintain aspect ratio */
     }
-    .logo {
-        font-size: 1.3rem; /* Slightly smaller logo for mobile header */
+    .story-image img {
+        max-width: 100%; /* Ensure images don't overflow */
+        height: auto;
     }
-    .body-no-scroll .logo {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+
+    /* And content inside sections, specifically containers */
+    .main-content-wrapper .container {
+        padding: 0 15px; /* Match header padding for consistency */
+    }
+    /* Also ensure individual sections that contain full-width elements are properly constrained */
+    .main-content-wrapper section {
+        width: 100%;
+        overflow-x: hidden; /* Explicitly prevent overflow within sections */
+    }
+
 }
 
 /* ======================================================================== */
@@ -943,7 +1149,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 
 #services {
     position: relative;
-    overflow: hidden; /* Contains the animated shapes */
+    overflow: hidden;
     background: linear-gradient(170deg, var(--background-color) 0%, var(--light-gray) 100%);
     text-align: center;
 }
@@ -957,7 +1163,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     margin-bottom: 40px;
     font-size: 1.1rem;
     color: var(--dark-gray);
-    font-weight: 400; /* Regular */
+    font-weight: 400;
 }
 
 [data-theme="dark"] #services .section-subtitle {
@@ -965,7 +1171,6 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
      opacity: 0.7;
 }
 
-/* --- Animated Background Shapes --- */
 .animated-background-shapes {
     position: absolute;
     top: 0;
@@ -1006,8 +1211,6 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     to { transform: translateY(-30px) rotate(45deg); }
 }
 
-
-/* --- Filter Buttons --- */
 .filters {
     margin-bottom: 40px;
     display: flex;
@@ -1017,7 +1220,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 }
 
 .filter-btn {
-    background: var(--glass-bg-light); /* Make filter buttons glassmorphic */
+    background: var(--glass-bg-light);
     border: 1px solid var(--glass-border-light);
     color: var(--text-color);
     padding: 10px 25px;
@@ -1040,18 +1243,16 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     color: var(--white);
     border-color: var(--primary-color);
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.4); /* Use RGB variable */
+    box-shadow: 0 8px 20px rgba(var(--primary-color-rgb), 0.4);
 }
 
 .filter-btn.active {
     background-color: var(--primary-color);
     color: var(--white);
     border-color: var(--primary-color);
-    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.4); /* Use RGB variable */
+    box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.4);
 }
 
-
-/* --- Services Grid --- */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -1060,7 +1261,6 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     z-index: 2;
 }
 
-/* --- Service Card (Glassmorphism) --- */
 .service-card {
     position: relative;
     border-radius: 15px;
@@ -1068,10 +1268,8 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     text-align: left;
     padding: 30px;
     transition: transform 0.4s ease, box-shadow 0.4s ease;
-
-    /* Glassmorphism Effect - Using new variables */
     background: var(--glass-bg-light);
-    backdrop-filter: blur(15px); /* Consistent blur */
+    backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border-light);
     box-shadow: var(--glass-shadow-light);
@@ -1085,14 +1283,13 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15); /* Slightly stronger shadow on hover */
+    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15);
 }
 
 [data-theme="dark"] .service-card:hover {
      box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3);
 }
 
-/* --- Card Content --- */
 .card-icon {
     font-size: 2.5rem;
     color: var(--primary-color);
@@ -1107,7 +1304,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 .card-title {
     font-size: 1.5rem;
     font-family: 'Poppins', sans-serif;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
 }
 
 .animated-divider {
@@ -1133,7 +1330,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     position: relative;
     padding-left: 20px;
     transition: color var(--transition-speed);
-    font-weight: 400; /* Regular */
+    font-weight: 400;
 }
 
 .service-list li::before {
@@ -1154,7 +1351,6 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     width: 100%;
 }
 
-/* --- "Recommended" Badge --- */
 .popular-badge {
     position: absolute;
     top: 15px;
@@ -1163,15 +1359,13 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     color: var(--white);
     padding: 5px 40px;
     font-size: 0.8rem;
-    font-weight: 700; /* Bold */
+    font-weight: 700;
     text-transform: uppercase;
     transform: rotate(45deg);
     box-shadow: 0 0 15px var(--primary-color);
     z-index: 3;
 }
 
-
-/* --- Card Filtering Animation --- */
 .service-card.hide {
     transform: scale(0);
     opacity: 0;
@@ -1182,8 +1376,6 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     transition: transform 0.4s ease, opacity 0.4s ease, width 0.4s ease, height 0.4s ease, padding 0.4s ease, margin 0.4s ease;
 }
 
-
-/* --- Responsive Grid for Services --- */
 @media (max-width: 1200px) {
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -1200,13 +1392,11 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     }
 }
 
-/* --- Fix for old services styles, can be removed if old HTML is gone --- */
 #services .service-cards { display: none; }
 
-/* --- Main Content Background Video --- */
 .main-content-wrapper {
   position: relative;
-  isolation: isolate; /* Creates a new stacking context to contain the z-indexed video */
+  isolation: isolate;
 }
 
 .main-content-wrapper > .animated-background {
@@ -1216,25 +1406,20 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1; /* Place video behind the section content */
-  filter: brightness(0.6); /* Darken video for better text contrast */
+  z-index: -1;
+  filter: brightness(0.6);
 }
 
-/* Make sections transparent and set a base text color for readability */
 .main-content-wrapper section {
-  background: transparent !important; /* Override any inline or specific styles */
-  /* color: var(--white); Removed to allow individual elements to define color */
+  background: transparent !important;
 }
 
-/* Ensure headings are also white */
 .main-content-wrapper section h2,
 .main-content-wrapper section h3,
 .main-content-wrapper section p {
   color: var(--white);
 }
 
-/* The project items already have a dark overlay and white text, so they are fine. */
-/* However, the service cards have their own light/blurry background, so the text inside them should revert to the default theme text color. */
 .main-content-wrapper .service-card,
 .main-content-wrapper .service-card h3,
 .main-content-wrapper .service-card li {
@@ -1242,12 +1427,11 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 }
 
 .main-content-wrapper .service-card .card-icon {
-    color: var(--primary-color); /* Icons should remain primary color */
+    color: var(--primary-color);
 }
 
-/* Keep the highlight color visible */
 .main-content-wrapper .highlight {
-    color: #8ec8ff; /* A lighter blue that works on dark backgrounds */
+    color: #8ec8ff;
     font-weight: 600;
 }
 
@@ -1262,14 +1446,13 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: 0; /* Behind the overlay and content */
+    z-index: 0;
 }
 
 /* ======================================================================== */
 /* ========================= ABOUT PAGE REDESIGN ========================== */
 /* ======================================================================== */
 
-/* --- General Adjustments for Glass Cards on About Page --- */
 .main-content-wrapper .story-content,
 .main-content-wrapper .vision-card,
 .main-content-wrapper .mission-card,
@@ -1277,27 +1460,23 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     padding: 40px;
 }
 
-/* --- Story Section --- */
 .main-content-wrapper .story-content .subtitle {
-    color: rgba(255, 255, 255, 0.8); /* Softer white for the subtitle */
+    color: rgba(255, 255, 255, 0.8);
     opacity: 1;
 }
 
 .story-image img {
-    border: 2px solid var(--glass-border-dark); /* Cohesive border style */
-    box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.2); /* Subtle glow */
+    border: 2px solid var(--glass-border-dark);
+    box-shadow: 0 0 20px rgba(var(--primary-color-rgb), 0.2);
      will-change: width, transform;
 }
 
-/* --- Vision & Mission Section --- */
 .main-content-wrapper .vision-card h3,
 .main-content-wrapper .mission-card h3 {
-    color: var(--white); /* Ensure headings are white */
+    color: var(--white);
 }
 
-/* --- Team Section --- */
 .team-member-card {
-    /* Base styles are now handled by .glassmorphism-effect, remove conflicting old styles */
     background: transparent;
     box-shadow: none;
     overflow: hidden;
@@ -1306,11 +1485,10 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 
 .team-member-card:hover {
     transform: translateY(-10px);
-    /* Box-shadow is now handled by the glassmorphism hover state */
 }
 
 .main-content-wrapper .team-member-card {
-    border-color: var(--glass-border-dark); /* Ensure border is visible in dark theme wrapper */
+    border-color: var(--glass-border-dark);
 }
 
 .main-content-wrapper .member-info h3 {
@@ -1318,11 +1496,11 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 }
 
 .main-content-wrapper .member-info .role {
-    color: var(--primary-color); /* Keep role color for brand consistency */
+    color: var(--primary-color);
 }
 
 .main-content-wrapper .social-links a {
-    color: rgba(255, 255, 255, 0.7); /* Use a softer white for icons */
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .main-content-wrapper .social-links a:hover {
@@ -1330,27 +1508,20 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 }
 
 .member-image img {
-    border-radius: 0; /* Image fits flush inside the card */
+    border-radius: 0;
 }
 
 .member-info {
     padding: 30px 20px;
 }
 
-/* --- Values Section --- */
 .main-content-wrapper .value-card i {
-    color: var(--primary-color); /* This already looks great, no change needed */
+    color: var(--primary-color);
 }
 
 .main-content-wrapper .value-card h3,
 .main-content-wrapper .value-card p {
     color: var(--white);
-}
-
-/* --- Partnership & CTA Sections --- */
-#partnership {
-    /* These sections look good, no changes needed */
-    /* .btn-tekmakon is replaced by .modern-button in HTML */
 }
 
 #about-cta .cta-button {
@@ -1366,14 +1537,12 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     transform: translateY(-3px) scale(1.05);
 }
 
-
 .main-content-wrapper .contact-form-wrapper,
 .main-content-wrapper .contact-info-wrapper {
     padding: 40px;
-    border-color: var(--glass-border-dark); /* Ensure border is visible in dark theme wrapper */
+    border-color: var(--glass-border-dark);
 }
 
-/* --- Form Text --- */
 .main-content-wrapper .contact-form-wrapper h2,
 .main-content-wrapper .contact-form-wrapper p,
 .main-content-wrapper .form-group.modern label {
@@ -1382,45 +1551,39 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 
 .main-content-wrapper .contact-form-wrapper p,
 .main-content-wrapper .form-group.modern label {
-    opacity: 0.8; /* Slightly softer for secondary text */
+    opacity: 0.8;
 }
 
-/* --- Form Inputs --- */
 .main-content-wrapper .form-group.modern input,
 .main-content-wrapper .form-group.modern textarea,
 .main-content-wrapper .form-group.modern select {
     color: var(--white);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Softer bottom border */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .main-content-wrapper .form-group.modern input:focus,
 .main-content-wrapper .form-group.modern textarea:focus,
 .main-content-wrapper .form-group.modern select:focus {
-    border-bottom-color: var(--primary-color); /* Highlight with purple on focus */
+    border-bottom-color: var(--primary-color);
 }
 
 .main-content-wrapper .form-group.modern ::placeholder {
     color: var(--white);
-    opacity: 0.6; /* More subtle placeholder */
+    opacity: 0.6;
 }
 
-/* --- Select Dropdown Options & Arrow --- */
 .main-content-wrapper .form-group.modern select option {
-    background: var(--background-color); /* Keep this dark */
-    color: var(--text-color); /* But use the theme's text color */
+    background: var(--background-color);
+    color: var(--text-color);
 }
 
 [data-theme="dark"] .main-content-wrapper .form-group.modern select {
-    /* Override the default dark theme arrow to be white */
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }
 [data-theme="light"] .main-content-wrapper .form-group.modern select {
-    /* In light mode, the default black arrow is fine, but we'll make it white for consistency on this dark background */
      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
 }
 
-
-/* --- Info Block --- */
 .main-content-wrapper .info-block h4,
 .main-content-wrapper .info-block p,
 .main-content-wrapper .info-block a,
@@ -1433,7 +1596,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 }
 
 .main-content-wrapper .info-block i {
-    color: var(--primary-color); /* Keep icons purple for branding */
+    color: var(--primary-color);
 }
 
 .main-content-wrapper .info-block a:hover,
@@ -1447,12 +1610,12 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 [data-theme="light"] .main-content-wrapper .vision-card p,
 [data-theme="light"] .main-content-wrapper .mission-card h3,
 [data-theme="light"] .main-content-wrapper .mission-card p {
-    color: var(--text-color); /* Uses the theme's dark text color for light mode */
+    color: var(--text-color);
 }
 
 [data-theme="light"] .main-content-wrapper .story-content .subtitle {
     color: var(--text-color);
-    opacity: 0.7; /* Keep the subtitle slightly faded for hierarchy */
+    opacity: 0.7;
 }
 
 #page-loader {
@@ -1463,7 +1626,6 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     height: 100%;
     z-index: 9999;
     background-color: var(--background-color);
-    /* UPDATE THE TRANSITION PROPERTY ON THIS LINE */
     transition: opacity 0.5s ease, visibility 0.5s ease, background-color 1.0s ease 0.2s;
     opacity: 1;
     visibility: visible;
@@ -1480,29 +1642,27 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     justify-content: center;
     align-items: center;
     height: 100%;
-    overflow: hidden; /* Prevent scrollbars during zoom */
+    overflow: hidden;
 }
 
 #zoom-text {
-    font-size: 10vw; /* Responsive base size */
-    font-weight: 800; /* Extra bold for impact */
+    font-size: 10vw;
+    font-weight: 800;
     color: var(--primary-color);
     text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.5);
-    transform: scale(0.5); /* Start small */
-    opacity: 0; /* Start invisible */
-    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.5s ease; /* Main transition for zoom */
-    will-change: transform, opacity; /* Performance optimization */
+    transform: scale(0.5);
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.5s ease;
+    will-change: transform, opacity;
 }
 
-/* State 1: The '0' becomes visible and correctly sized */
 #page-loader.is-visible #zoom-text {
     transform: scale(1);
     opacity: 1;
 }
 
-/* State 2: The '100' zooms up to fill the screen and fades out */
 #page-loader.is-zooming #zoom-text {
-    transform: scale(25); /* Massive scale value for full-screen effect */
+    transform: scale(25);
     opacity: 0;
 }
 
@@ -1511,29 +1671,23 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 }
 
 #main-header {
-    z-index: 98; /* Below page-loader (9999) but above everything else */
+    z-index: 98;
 }
 
-/* Overlay for Mobile Menu */
 #mobile-menu-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Darker, more opaque overlay */
-    backdrop-filter: blur(8px); /* Increased blur */
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    z-index: 96; /* Below the mobile menu (97) but above all page content */
+    z-index: 96;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
     cursor: pointer;
-}
-
-#mobile-menu-overlay.is-active {
-    opacity: 1;
-    visibility: visible;
 }
 
 /* Ensure the body does not scroll when the menu is open */

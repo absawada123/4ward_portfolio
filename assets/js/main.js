@@ -93,14 +93,29 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 2. Sticky Header Logic ---
     const header = document.getElementById('main-header');
     if (header) {
+        // Initial check for scroll position on load
         if (window.scrollY > 50) {
             header.classList.add('scrolled');
+            header.classList.remove('alt-header-initial'); // Ensure alt-header is removed if scrolled
+        } else {
+            // If not scrolled and on a page that needs initial alt styles (contact/about)
+            if (window.location.pathname === '/contact' || window.location.pathname === '/about') {
+                 header.classList.add('alt-header-initial');
+            } else {
+                 header.classList.remove('alt-header-initial');
+            }
         }
+
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
+                header.classList.remove('alt-header-initial'); // Remove alt-header if scrolled
             } else {
                 header.classList.remove('scrolled');
+                // Re-apply alt-header-initial only if not scrolled and on specific pages
+                if (window.location.pathname === '/contact' || window.location.pathname === '/about') {
+                    header.classList.add('alt-header-initial');
+                }
             }
         });
     }
@@ -148,15 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 body.style.position = 'fixed';
                 body.style.top = `-${currentScrollY}px`;
                 body.style.width = '100%';
-                body.style.overflowY = 'hidden'; // Hide vertical scrollbar on body
-                html.style.overflow = 'hidden'; // Hide scrollbar on html for full lock
+                html.classList.add('body-no-scroll'); // Use a class for HTML overflow
             } else {
                 // Unlock body scroll
                 body.style.position = '';
                 body.style.top = '';
                 body.style.width = '';
-                body.style.overflowY = '';
-                html.style.overflow = ''; // Restore html overflow
+                html.classList.remove('body-no-scroll'); // Remove class for HTML overflow
                 window.scrollTo(0, currentScrollY); // Restore scroll position
             }
         }
