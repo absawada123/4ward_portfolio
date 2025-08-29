@@ -1121,7 +1121,7 @@ html {
     }
 
     /* Ensure videos and images inside fluid containers are responsive */
-    #about-hero video,
+    #about-hero
     #empowering-business .visual-content video {
         max-width: 100%; /* Ensure videos don't overflow */
         height: auto; /* Maintain aspect ratio */
