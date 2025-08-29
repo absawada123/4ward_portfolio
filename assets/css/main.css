@@ -1463,7 +1463,8 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
     height: 100%;
     z-index: 9999;
     background-color: var(--background-color);
-    transition: opacity 0.5s ease, visibility 0.5s ease; /* No more delay */
+    /* UPDATE THE TRANSITION PROPERTY ON THIS LINE */
+    transition: opacity 0.5s ease, visibility 0.5s ease, background-color 1.0s ease 0.2s;
     opacity: 1;
     visibility: visible;
 }
@@ -1471,7 +1472,7 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 #page-loader.hidden {
     opacity: 0;
     visibility: hidden;
-    transition-delay: 0s; /* No delay when hiding immediately */
+    transition-delay: 0s;
 }
 
 .loader-content {
@@ -1503,6 +1504,10 @@ footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10
 #page-loader.is-zooming #zoom-text {
     transform: scale(25); /* Massive scale value for full-screen effect */
     opacity: 0;
+}
+
+#page-loader.is-zooming {
+    background-color: transparent;
 }
 
 #main-header {

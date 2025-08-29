@@ -9,70 +9,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- SHARED LOGIC: This runs on ALL pages ---
 
-    // --- 1. Custom Zoom Page Loader (2-Second Duration, All Fixes) ---
+    // --- 1. Advanced Page Loader ---
     const pageLoader = document.getElementById('page-loader');
     const zoomText = document.getElementById('zoom-text');
-    let isLoaderRunning = false;
 
     if (pageLoader && zoomText) {
-        
+        // Hides the loader forcefully. Used for bfcache restores or at the end of the animation.
         const forceHideLoader = () => {
-            isLoaderRunning = false;
             pageLoader.classList.add('hidden');
             pageLoader.classList.remove('is-visible', 'is-zooming');
         };
 
-        const runLoader = (destinationUrl = null) => {
-            if (isLoaderRunning) return; 
-            isLoaderRunning = true;
-            
+        // This is the main "arrival" animation (0 -> 100 -> zoom).
+        // It runs on initial load and after an internal page navigation.
+        const runArrivalAnimation = () => {
+            // Ensure loader is visible and reset its state for the animation
             pageLoader.classList.remove('hidden');
+            zoomText.textContent = '0';
+            
+            // We use requestAnimationFrame to ensure the browser has painted the initial state
+            // before we apply the classes that trigger the CSS transitions.
+            requestAnimationFrame(() => {
+                // State 1: Make '0' visible and scale it to normal size.
+                setTimeout(() => {
+                    pageLoader.classList.add('is-visible');
+                }, 50);
 
-            setTimeout(() => {
+                // State 2: Change text to '100' and trigger the main zoom-out animation.
+                setTimeout(() => {
+                    zoomText.textContent = '100';
+                    pageLoader.classList.add('is-zooming');
+                }, 800);
+
+                // State 3: Hide the loader completely after the CSS animations have finished.
+                // The total duration is roughly 800ms (for '0') + 1200ms (zoom transition) = 2000ms.
+                setTimeout(() => {
+                    forceHideLoader();
+                }, 2000);
+            });
+        };
+
+        // --- Link Interception Logic ---
+        document.querySelectorAll('a[href]').forEach(link => {
+            link.addEventListener('click', e => {
+                const href = link.getAttribute('href');
+                const isExternal = link.hostname !== '' && link.hostname !== window.location.hostname;
+
+                // Let the browser handle internal links, special links, and links opening in a new tab
+                if (!isExternal || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') {
+                    return;
+                }
+
+                // Handle external links as per the requirements
+                e.preventDefault();
+
+                // Show the loader immediately
+                pageLoader.classList.remove('hidden', 'is-visible', 'is-zooming');
                 zoomText.textContent = '0';
                 pageLoader.classList.add('is-visible');
-            }, 100);
 
-            setTimeout(() => {
-                zoomText.textContent = '100';
-                pageLoader.classList.add('is-zooming');
-            }, 800);
-
-            setTimeout(() => {
-                if (destinationUrl) {
-                    window.location.href = destinationUrl;
-                } else {
-                    forceHideLoader();
-                }
-            }, 2000); // Total animation duration is 2 seconds.
-        };
-        
-        const handleLinkClick = (e) => {
-            const link = e.currentTarget;
-            if (link.target === '_blank' || link.protocol.startsWith('mailto') || link.protocol.startsWith('tel') || link.getAttribute('href').startsWith('#')) {
-                return;
-            }
-            if (link.href === window.location.href) {
-                e.preventDefault();
-                return;
-            }
-            e.preventDefault();
-            runLoader(link.href);
-        };
-
-        const internalLinks = document.querySelectorAll('a[href]:not([href^="#"]):not([target="_blank"])');
-        internalLinks.forEach(link => {
-            link.addEventListener('click', handleLinkClick);
+                // Navigate to the external site after a short delay
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 500);
+            });
         });
 
+        // --- Page Load Logic ---
+
+        // Handle browser Back/Forward Cache (bfcache) restores
         window.addEventListener('pageshow', (event) => {
             if (event.persisted) {
+                // If the page is restored from cache, the loader might be stuck. Hide it instantly.
                 forceHideLoader();
             }
         });
 
-        runLoader();
+        // Run the main arrival animation on any page load (initial, refresh, or internal navigation)
+        runArrivalAnimation();
     }
+
 
     // --- 2. Sticky Header Logic ---
     const header = document.getElementById('main-header');
