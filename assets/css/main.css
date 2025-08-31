@@ -116,6 +116,25 @@ section {
     background-color: transparent; /* Default for pages with dark hero (like index) */
 }
 
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--header-text-initial); /* Default white for hero pages */
+    transition: color var(--transition-speed);
+    z-index: 101;
+    /* On desktop, this is fine. On mobile, flex and min-width will handle it. */
+}
+.logo img {
+    height: 75px; /* Adjust as needed for your logo's desired height */
+    vertical-align: middle; /* Align the image vertically with other elements */
+    width: auto; /* Maintain aspect ratio */
+    transition: height var(--transition-speed);
+}
+#main-header.scrolled .logo img {
+    height: 60px; /* Slightly smaller logo when scrolled, adjust if desired */
+}
+
+
 /* NEW: Initial state for pages without a dark full-viewport hero (e.g., About, Contact) */
 #main-header.alt-header-initial {
     background-color: var(--glass-bg-light); /* Start with a light glass background */
