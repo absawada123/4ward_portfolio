@@ -793,8 +793,8 @@ section {
 .project-item.coming-soon h3 { font-size: 2rem; }
 .project-item.coming-soon p { margin-bottom: 20px; }
 
-#services { text-align: center; }
-.service-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+#solutions { text-align: center; }
+.solution-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
 .card { background: var(--background-color); padding: 40px 20px; border-radius: 8px; box-shadow: var(--box-shadow); }
 
 /* --- CONTACT PAGE STYLES --- */
@@ -1163,21 +1163,21 @@ html {
 }
 
 /* ======================================================================== */
-/* ========================= NEW SERVICES SECTION ========================= */
+/* ========================= NEW SOLUTIONS SECTION ========================= */
 /* ======================================================================== */
 
-#services {
+#solutions {
     position: relative;
     overflow: hidden;
     background: linear-gradient(170deg, var(--background-color) 0%, var(--light-gray) 100%);
     text-align: center;
 }
 
-[data-theme="dark"] #services {
+[data-theme="dark"] #solutions {
     background: linear-gradient(170deg, var(--background-color) 0%, #1a1a1a 100%);
 }
 
-#services .section-subtitle {
+#solutions .section-subtitle {
     margin-top: -15px;
     margin-bottom: 40px;
     font-size: 1.1rem;
@@ -1185,7 +1185,7 @@ html {
     font-weight: 400;
 }
 
-[data-theme="dark"] #services .section-subtitle {
+[data-theme="dark"] #solutions .section-subtitle {
      color: var(--text-color);
      opacity: 0.7;
 }
@@ -1272,7 +1272,7 @@ html {
     box-shadow: 0 4px 15px rgba(var(--primary-color-rgb), 0.4);
 }
 
-.services-grid {
+.solutions-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
@@ -1280,7 +1280,7 @@ html {
     z-index: 2;
 }
 
-.service-card {
+.solution-card {
     position: relative;
     border-radius: 15px;
     overflow: hidden;
@@ -1294,18 +1294,18 @@ html {
     box-shadow: var(--glass-shadow-light);
 }
 
-[data-theme="dark"] .service-card {
+[data-theme="dark"] .solution-card {
     background: var(--glass-bg-dark);
     border: 1px solid var(--glass-border-dark);
     box-shadow: var(--glass-shadow-dark);
 }
 
-.service-card:hover {
+.solution-card:hover {
     transform: translateY(-10px);
     box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15);
 }
 
-[data-theme="dark"] .service-card:hover {
+[data-theme="dark"] .solution-card:hover {
      box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3);
 }
 
@@ -1316,7 +1316,7 @@ html {
     transition: transform 0.4s ease;
 }
 
-.service-card:hover .card-icon {
+.solution-card:hover .card-icon {
     transform: scale(1.1) rotate(-10deg);
 }
 
@@ -1334,17 +1334,17 @@ html {
     transition: width 0.4s ease;
 }
 
-.service-card:hover .animated-divider {
+.solution-card:hover .animated-divider {
     width: 100%;
 }
 
-.service-list {
+.solution-list {
     list-style: none;
     padding: 0;
     margin: 20px 0 30px 0;
 }
 
-.service-list li {
+.solution-list li {
     margin-bottom: 12px;
     position: relative;
     padding-left: 20px;
@@ -1352,7 +1352,7 @@ html {
     font-weight: 400;
 }
 
-.service-list li::before {
+.solution-list li::before {
     content: '✓';
     color: var(--primary-color);
     position: absolute;
@@ -1360,12 +1360,12 @@ html {
     font-weight: bold;
 }
 
-.service-list li:hover {
+.solution-list li:hover {
     color: var(--primary-color);
     cursor: default;
 }
 
-.service-card .cta-button {
+.solution-card .cta-button {
     text-align: center;
     width: 100%;
 }
@@ -1385,7 +1385,7 @@ html {
     z-index: 3;
 }
 
-.service-card.hide {
+.solution-card.hide {
     transform: scale(0);
     opacity: 0;
     width: 0;
@@ -1396,13 +1396,13 @@ html {
 }
 
 @media (max-width: 1200px) {
-    .services-grid {
+    .solutions-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .services-grid {
+    .solutions-grid {
         grid-template-columns: 1fr;
     }
     .filter-btn {
@@ -1411,7 +1411,7 @@ html {
     }
 }
 
-#services .service-cards { display: none; }
+#solutions .solution-cards { display: none; }
 
 .main-content-wrapper {
   position: relative;
@@ -1439,13 +1439,13 @@ html {
   color: var(--white);
 }
 
-.main-content-wrapper .service-card,
-.main-content-wrapper .service-card h3,
-.main-content-wrapper .service-card li {
+.main-content-wrapper .solution-card,
+.main-content-wrapper .solution-card h3,
+.main-content-wrapper .solution-card li {
     color: var(--text-color);
 }
 
-.main-content-wrapper .service-card .card-icon {
+.main-content-wrapper .solution-card .card-icon {
     color: var(--primary-color);
 }
 
