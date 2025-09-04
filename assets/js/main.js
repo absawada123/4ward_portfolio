@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroSection = document.getElementById('hero');
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+    let lenis; // Declare lenis in a scope accessible by expandCard/collapseCards
+
     // --- SHARED LOGIC: This runs on ALL pages ---
 
     // --- 1. Advanced Page Loader ---
@@ -56,22 +58,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 const isExternal = link.hostname !== '' && link.hostname !== window.location.hostname;
 
                 // Let the browser handle internal links, special links, and links opening in a new tab
-                if (!isExternal || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') {
+                // unless it's a solution card that is about to expand (handled by specific logic below)
+                if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') {
                     return;
                 }
 
-                // Handle external links as per the requirements
-                e.preventDefault();
+                // If it's an internal link and not handled by the solution card logic,
+                // allow default behavior (the page loader should still cover navigation).
+                // The solution card logic itself will call e.preventDefault() if it needs to expand.
+                if (!isExternal && !link.classList.contains('solution-card')) {
+                    return; 
+                }
+                
+                // For external links, prevent default and show loader
+                if (isExternal) {
+                    e.preventDefault();
 
-                // Show the loader immediately
-                pageLoader.classList.remove('hidden', 'is-visible', 'is-zooming');
-                zoomText.textContent = '0';
-                pageLoader.classList.add('is-visible');
+                    // Show the loader immediately
+                    pageLoader.classList.remove('hidden', 'is-visible', 'is-zooming');
+                    zoomText.textContent = '0';
+                    pageLoader.classList.add('is-visible');
 
-                // Navigate to the external site after a short delay
-                setTimeout(() => {
-                    window.location.href = href;
-                }, 500);
+                    // Navigate after a short delay
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 500);
+                }
+                // If it's an internal link that is *not* a solution card,
+                // and it didn't match external/special links, we let default behavior proceed.
+                // If it's a solution card, the specific logic below will handle its prevention.
             });
         });
 
@@ -199,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 800, 
-            once: true,
+            once: true, // Only animate once when elements come into view
         });
     }
 
@@ -299,18 +314,101 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- 9. Solutions Card Expansion Logic ---
+    const solutionsGrid = document.querySelector('.solutions-grid');
+    const solutionCards = document.querySelectorAll('.solution-card');
+    const backButtonContainer = document.querySelector('.solution-back-button-container');
+    const backButton = document.querySelector('.back-button');
+    const solutionsSection = document.getElementById('solutions'); // Get the solutions section
+
+    if (solutionsGrid && solutionCards.length > 0 && backButtonContainer && backButton && solutionsSection) {
+        solutionCards.forEach(card => {
+            // Store original AOS attributes
+            card.dataset.originalAos = card.getAttribute('data-aos');
+            card.dataset.originalAosDelay = card.getAttribute('data-aos-delay');
+
+            card.addEventListener('click', (event) => {
+                // Prevent default navigation if we are expanding (not already expanded)
+                if (!card.classList.contains('expanded')) {
+                    event.preventDefault(); // Stop the <a> from navigating immediately
+                    expandCard(card);
+                }
+            });
+        });
+
+        backButton.addEventListener('click', collapseCards);
+
+        function expandCard(cardToExpand) {
+            solutionsGrid.classList.add('expanded-view'); // Apply 1-column grid layout
+
+            solutionCards.forEach(card => {
+                if (card === cardToExpand) {
+                    card.classList.add('expanded');
+                    card.style.cursor = 'default';
+
+                    // Ensure AOS attributes are removed to prevent unexpected animations
+                    card.removeAttribute('data-aos');
+                    card.removeAttribute('data-aos-delay');
+                } else {
+                    card.classList.add('hidden');
+                    // Remove AOS from hidden cards too
+                    card.removeAttribute('data-aos');
+                    card.removeAttribute('data-aos-delay');
+                }
+            });
+
+            backButtonContainer.classList.add('visible'); // Show back button
+
+        }
+
+        function collapseCards() {
+            solutionsGrid.classList.remove('expanded-view'); // Revert grid layout
+
+            solutionCards.forEach(card => {
+                card.classList.remove('expanded');
+                card.classList.remove('hidden');
+
+                // Restore href and cursor for all cards
+                if (card.dataset.originalHref) {
+                    card.setAttribute('href', card.dataset.originalHref);
+                }
+                card.style.cursor = 'pointer';
+
+                // Restore original AOS attributes
+                if (card.dataset.originalAos) {
+                    card.setAttribute('data-aos', card.dataset.originalAos);
+                }
+                if (card.dataset.originalAosDelay) {
+                    card.setAttribute('data-aos-delay', card.dataset.originalAosDelay);
+                }
+            });
+
+            backButtonContainer.classList.remove('visible'); // Hide back button
+
+            // Re-scan and possibly re-animate elements using AOS.refreshHard()
+            // This is crucial when elements are hidden/shown to allow AOS to re-evaluate their state.
+            if (typeof AOS !== 'undefined') {
+                AOS.refreshHard(); // Forces AOS to re-scan all elements and reapply classes if needed
+            }
+        }
+    }
+
+
     // --- Page-Specific Logic: Run animations ONLY on the homepage ---
-    if (heroSection && !prefersReducedMotion.matches) {
-        
-        const lenis = new Lenis();
+    // Initialize Lenis unconditionally (unless reduced motion is preferred)
+    if (!prefersReducedMotion.matches) { 
+        lenis = new Lenis(); // Initialize lenis
         lenis.on('scroll', ScrollTrigger.update);
         gsap.ticker.add((time) => {
-            lenis.raf(time * 1000);
+            if (lenis) lenis.raf(time * 1000); // Check if lenis exists before calling raf
         });
         gsap.ticker.lagSmoothing(0);
 
-        gsap.registerPlugin(ScrollTrigger);
+        gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger here if Lenis is initialized
+    }
 
+    if (heroSection && !prefersReducedMotion.matches) {
+        
         const heroContent = document.querySelector('.hero-content');
         if (heroContent) {
             const chars = heroContent.querySelectorAll('.char');
@@ -348,11 +446,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollToTopBtn = document.getElementById('scroll-to-top');
         if (scrollToTopBtn) {
             scrollToTopBtn.addEventListener('click', () => {
-                lenis.scrollTo(0, { duration: 1.5 });
+                if (lenis) { // Use lenis if initialized
+                    lenis.scrollTo(0, { duration: 1.5 });
+                } else { // Fallback
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
             });
         }
 
     } else {
+        // Fallback for pages without Lenis/GSAP or with reduced motion
         const scrollToTopBtn = document.getElementById('scroll-to-top');
         if (scrollToTopBtn) {
             scrollToTopBtn.addEventListener('click', () => {
