@@ -5,6 +5,7 @@
     --secondary-color: #5A009D; /* Darker Purple */
     --background-color: #ffffff;
     --text-color: #333333;
+    --subtext-color: #666666;
     --header-bg-initial: transparent;
     --header-bg-scrolled: transparent; /* Will be overridden by glassmorphism */
     --header-text-initial: #ffffff;
@@ -27,6 +28,7 @@
     --secondary-color: #6A0DAD;
     --background-color: #121212;
     --text-color: #e0e0e0;
+    --subtext-color: #999999;
     --header-bg-scrolled: transparent; /* Will be overridden by glassmorphism */
     --header-text-scrolled: #e0e0e0;
     --dark-gray: #333333;
@@ -199,6 +201,10 @@ section {
     font-weight: 600;
     transition: color var(--transition-speed);
     position: relative;
+    
+}
+
+.nav-links a:not(:last-of-type) {
     padding-bottom: 5px;
 }
 
@@ -219,7 +225,7 @@ section {
 .cta-button {
     background-color: #6A0DAD;
     color: var(--white);
-    padding: 10px 20px;
+    padding: 0.65em 1.8em;
     border-radius: 8px;
     transition: background-color var(--transition-speed), transform 0.2s ease;
     border: none;
@@ -596,19 +602,22 @@ section {
 .vision-card h3, .mission-card h3 { color: var(--primary-color); }
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, 280px); 
-    gap: 30px;
+    grid-template-columns: 280px 1fr 280px 1fr 280px;
+    grid-template-rows: auto 1fr auto;
+    gap: 30px 0;
     margin-top: 40px;
-    justify-content: center; 
+    max-width: 1400px; /* Increase overall grid container width */
+
     will-change: grid-template-columns, gap; 
+    position: relative;
 }
 .team-member-card { background: var(--background-color); border-radius: 10px; box-shadow: var(--box-shadow); text-align: center; overflow: hidden; transition: transform var(--transition-speed), box-shadow var(--transition-speed); }
 .team-member-card:hover { transform: translateY(-10px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-.member-image img { width: 100%; height: auto; display: block; transition: transform var(--transition-speed); }
+.member-image img { width: 85%; height: auto; display: block; transition: transform var(--transition-speed); margin:auto; margin-top: 1em;}
 .team-member-card:hover .member-image img { transform: scale(1.05); }
 .member-info { padding: 25px 20px; }
-.member-info h3 { margin-bottom: 5px; font-size: 1.4rem; }
-.member-info .role { font-weight: 600; color: var(--primary-color); margin-bottom: 15px; }
+.member-info h3 { font-size: 1.4rem; line-height: 1.15em;}
+.member-info .role { font-weight: 600; color: var(--primary-color); margin-bottom: 15px; margin-top: -1em; line-height: 1.2em }
 .social-links { display: flex; justify-content: center; gap: 15px; }
 .social-links a { color: var(--dark-gray); font-size: 1.2rem; transition: color var(--transition-speed); }
 [data-theme="dark"] .social-links a { color: var(--text-color); }
@@ -945,7 +954,7 @@ section {
 }
 
 /* --- Footer --- */
-footer { background-color: var(--dark-gray); color: var(--white); padding: 40px 0; text-align: center; }
+footer { background-color: var(--dark-gray); color: var(--white); padding: 40px 0; }
 [data-theme="dark"] footer { background-color: #1e1e1e; }
 footer .quick-links a { color: var(--white); text-decoration: none; margin: 0 10px; font-weight: 500; }
 
@@ -1160,6 +1169,39 @@ html {
         overflow-x: hidden; /* Explicitly prevent overflow within sections */
     }
 
+    .team-grid {
+        grid-template-columns: 1fr !important; /* Stack cards one by one (full width) on mobile */
+        grid-template-rows: auto !important; /* Reset to auto rows */
+        gap: 30px;
+        max-width: 80% !important; /* Allow grid to take full width */
+        margin-left: auto;
+        margin-right: auto;
+        position: static !important; /* Reset positioning context on mobile for lines */
+        justify-items: center !important; /* Keeps cards horizontally centered if the container is wider than the card's content */
+        align-items: start !important; /* Revert to default align for stacking */
+    }
+
+     .team-grid .team-member-card:nth-child(1),
+    .team-grid .team-member-card:nth-child(2),
+    .team-grid .team-member-card:nth-child(3),
+    .team-grid .team-member-card:nth-child(4),
+    .team-grid .team-member-card:nth-child(5) {
+        grid-column: auto !important; /* Revert to default column placement */
+        grid-row: auto !important;    /* Revert to default row placement */
+        justify-self: auto;/* Revert horizontal alignment */
+        align-self: auto;  /* Revert vertical alignment */
+        width: 100%;       /* Allows cards to be full width of the grid column */
+        height: auto;      /* Revert height */
+        z-index: auto;     /* Revert z-index */
+        transform: none;   /* Remove any transforms */
+        box-shadow: var(--box-shadow); /* Revert to default box-shadow */
+        transition: transform var(--transition-speed), box-shadow var(--transition-speed); /* Re-enable general transitions */
+        margin: 0; /* Also reset specific margins */
+    }
+
+    [data-theme="dark"] .team-grid .team-member-card:nth-child(3) {
+        box-shadow: var(--box-shadow);
+    }
 }
 
 /* ======================================================================== */
@@ -1175,19 +1217,6 @@ html {
 
 [data-theme="dark"] #solutions {
     background: linear-gradient(170deg, var(--background-color) 0%, #1a1a1a 100%);
-}
-
-#solutions .section-subtitle {
-    margin-top: -15px;
-    margin-bottom: 40px;
-    font-size: 1.1rem;
-    color: var(--dark-gray);
-    font-weight: 400;
-}
-
-[data-theme="dark"] #solutions .section-subtitle {
-     color: var(--text-color);
-     opacity: 0.7;
 }
 
 .animated-background-shapes {
@@ -1278,20 +1307,44 @@ html {
     gap: 30px;
     position: relative;
     z-index: 2;
+    transition: grid-template-columns 0.6s ease-in-out, gap 0.6s ease-in-out;
 }
 
+.solutions-grid.expanded-view {
+    grid-template-columns: 1fr; /* One column when a card is expanded */
+    gap: 0; /* Remove gap between cards when only one is visible */
+}
+
+.solutions-grid a {
+    text-decoration: none;;
+}
+
+
 .solution-card {
+    display:block;
     position: relative;
     border-radius: 15px;
     overflow: hidden;
     text-align: left;
-    padding: 30px;
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    padding: 1.8em;
+    transition: transform 0.4s ease, box-shadow 0.4s ease !important;
     background: var(--glass-bg-light);
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid var(--glass-border-light);
     box-shadow: var(--glass-shadow-light);
+    text-decoration: none;
+    color: var(--text-color);
+
+    transition: 
+        transform 0.4s ease, 
+        box-shadow 0.4s ease, 
+        opacity 0.6s ease, 
+        grid-column 0.6s ease, 
+        padding 0.6s ease, 
+        font-size 0.6s ease,
+        background 0.6s ease,
+        border 0.6s ease; /* Add transition for background and border */
 }
 
 [data-theme="dark"] .solution-card {
@@ -1300,14 +1353,201 @@ html {
     box-shadow: var(--glass-shadow-dark);
 }
 
-.solution-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15);
+.solution-card:hover{
+    transform: translateY(-10px) !important;
+    box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.15) !important;
 }
 
 [data-theme="dark"] .solution-card:hover {
-     box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3);
+     box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.3) !important;
 }
+
+
+.solution-card.expanded {
+    grid-column: 1 / -1; /* Occupy full width of the grid */
+    transform: translateY(0) !important; /* Override hover transform */
+    box-shadow: 0 16px 40px 0 rgba(var(--primary-color-rgb), 0.35) !important; /* More prominent shadow */
+
+    text-align: center; /* Center content when expanded */
+    cursor: default; /* No pointer when expanded */
+    max-height: 1000px; /* Ensure it can fully expand, adjust if content is much longer */
+    overflow: visible; /* Ensure content is not cut off */
+    opacity: 1; /* Ensure it's fully visible */
+    pointer-events: auto; /* Ensure it's interactive */
+
+    /* Glassmorphism properties for expanded state */
+    background: var(--glass-bg-light);
+    border: 1px solid var(--glass-border-light);
+}
+
+[data-theme="dark"] .solution-card.expanded {
+    box-shadow: 0 16px 40px 0 rgba(var(--primary-color-rgb), 0.45) !important;
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+}
+
+.solution-card.expanded .card-icon {
+    transform: none !important; /* Reset icon transform from hover */
+    font-size: 3.5rem; /* Larger icon */
+    margin-bottom: 30px;
+}
+
+.solution-card.expanded .card-title {
+    font-size: 2.5rem; /* Larger title */
+    color: var(--primary-color); /* Make title stand out */
+    margin-bottom:0;
+}
+
+.solution-card.expanded .animated-divider {
+    width: 80px; /* Shorter divider for centered content */
+    margin: 15px auto; /* Center divider */
+}
+
+.solution-card.expanded .solution-list {
+    text-align: left; /* Keep list left-aligned */
+    max-width: 85%; /* Limit width of list for readability */
+    margin: 20px auto 30px auto; /* Center the list */
+    font-size: 1.15rem; /* Larger list items */
+}
+
+.solution-card.expanded .solution-list li {
+    color: var(--text-color); /* Ensure list items are readable */
+}
+[data-theme="dark"] .solution-card.expanded .solution-list li {
+    color: var(--text-color);
+}
+
+
+/* State for cards that are not selected (hidden) */
+.solution-card.hidden {
+    opacity: 0;
+    pointer-events: none; /* Make non-interactive */
+    max-height: 0; /* Collapse height */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    border: none; /* Remove border */
+    transform: translateY(20px) scale(0.8); /* Shrink slightly */
+}
+
+/* Back button container */
+.solution-back-button-container {
+    display: none;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    min-height: 40px; /* Reserve space to prevent layout jump */
+    z-index: 10; /* ADD THIS: Ensure it's above the background video */
+    position: relative; /* ADD THIS: To make z-index effective in some cases */
+}
+
+.solution-back-button-container.visible {
+    opacity: 1;
+    display:flex;
+    visibility: visible;
+}
+
+/* Default hidden state for subtext */
+.subtext {
+    display: block; /* Ensures it takes its own line */
+    font-size: 0.85em; /* Smaller font size relative to main list item */
+    color: var(--subtext-color); /* A bit lighter color for subtlety in light mode */
+    margin-top: 4px; /* Space from main list item text */
+    line-height: 1.4;
+    max-height: 0; /* Initially hidden, will animate height */
+    overflow: hidden; /* Hide overflow during transition */
+    opacity: 0; /* Fade effect */
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out, color var(--transition-speed);
+}
+
+/* Visible state when the card is expanded */
+.solution-card.expanded .subtext {
+    max-height: 100px; /* Adjust to a value greater than expected max height of subtext */
+    opacity: 1; /* Fade in */
+    transition-delay: 0.2s; /* Delay for a nicer effect after card expands */
+    color: var(--subtext-color)
+}
+
+.tekmakon-subtext {
+    font-size: 1.2rem;
+    margin-bottom: 2em;
+    display:none;
+}
+
+.solution-card.expanded .tekmakon-subtext {
+    display:block;
+}
+
+
+/* Back button styling */
+.back-button {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
+
+.back-button i {
+    font-size: 1.1rem;
+}
+
+
+/* Adjust media queries for the expanded state responsiveness */
+@media (max-width: 1200px) {
+    .solutions-grid {
+        grid-template-columns: repeat(2, 1fr); /* Default for medium screens */
+    }
+    .solution-card.expanded {
+        padding: 40px 25px; /* Adjust padding for expanded card */
+    }
+    .solution-card.expanded .card-icon {
+        font-size: 3rem;
+    }
+    .solution-card.expanded .card-title {
+        font-size: 2rem;
+    }
+    .solution-card.expanded .solution-list {
+        font-size: 1.05rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .solutions-grid {
+        grid-template-columns: 1fr !important; /* Default for small screens */
+        width: 80%;
+        margin:auto;
+    }
+    .solution-card.expanded {
+        padding: 30px 20px;
+    }
+    .solution-card.expanded .card-icon {
+        font-size: 2.5rem;
+    }
+    .solution-card.expanded .card-title {
+        font-size: 1.8rem;
+    }
+    .solution-card.expanded .solution-list {
+        font-size: 1rem;
+    }
+    .solution-back-button-container {
+        justify-content: center; /* Center back button on small screens */
+    }
+}
+
 
 .card-icon {
     font-size: 2.5rem;
@@ -1342,6 +1582,7 @@ html {
     list-style: none;
     padding: 0;
     margin: 20px 0 30px 0;
+    
 }
 
 .solution-list li {
@@ -1362,7 +1603,6 @@ html {
 
 .solution-list li:hover {
     color: var(--primary-color);
-    cursor: default;
 }
 
 .solution-card .cta-button {
@@ -1402,9 +1642,6 @@ html {
 }
 
 @media (max-width: 768px) {
-    .solutions-grid {
-        grid-template-columns: 1fr;
-    }
     .filter-btn {
         padding: 8px 20px;
         font-size: 0.9rem;
@@ -1479,6 +1716,10 @@ html {
     padding: 40px;
 }
 
+#partnership .modern-button {
+    margin-top: 1em;
+}
+
 .main-content-wrapper .story-content .subtitle {
     color: rgba(255, 255, 255, 0.8);
     opacity: 1;
@@ -1493,6 +1734,39 @@ html {
 .main-content-wrapper .vision-card h3,
 .main-content-wrapper .mission-card h3 {
     color: var(--white);
+}
+
+.team-grid .team-member-card:nth-child(1) {
+    grid-column: 1; /* First column */
+    grid-row: 1;   /* First row */
+}
+
+.team-grid .team-member-card:nth-child(2) {
+    grid-column: 5; /* Fifth column */
+    grid-row: 1;   /* First row */
+}
+
+
+
+.team-grid .team-member-card:nth-child(3) {
+    grid-column: 3; /* Place in the central (third) column */
+    grid-row: 1 / span 3;
+    justify-self: center;
+    align-self: center; 
+    height: auto;
+    z-index: 10; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: all var(--transition-speed); 
+}
+
+.team-grid .team-member-card:nth-child(4) {
+    grid-column: 1; /* First column */
+    grid-row: 3; /* Place in the third row */
+}
+
+.team-grid .team-member-card:nth-child(5) {
+    grid-column: 5; /* Fifth column */
+    grid-row: 3; /* Place in the third row */
 }
 
 .team-member-card {
@@ -1637,6 +1911,14 @@ html {
     opacity: 0.7;
 }
 
+[data-theme="light"] #main-header.scrolled .nav-links .cta-button {
+    color: var(--white)
+}
+
+[data-theme="light"] .team-grid .team-member-card {
+        background-color: var(--glass-bg-light);
+    }
+
 #page-loader {
     position: fixed;
     top: 0;
@@ -1719,4 +2001,15 @@ html {
     overflow: hidden;
     touch-action: none; /* Prevent touch scrolling */
     -webkit-overflow-scrolling: none; /* For iOS */
+}
+
+
+/* ======================================================================== */
+/* ========================= HR SOLUTIONS PAGE ========================== */
+/* ======================================================================== */
+
+#hr-solutions-hero {
+    background-color: var(--background-color);
+    display: flex;
+    flex-direction: column;
 }
