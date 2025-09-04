@@ -1392,6 +1392,8 @@ html {
     margin-bottom: 30px;
 }
 
+
+
 .solution-card.expanded .card-title {
     font-size: 2.5rem; /* Larger title */
     color: var(--primary-color); /* Make title stand out */
@@ -1406,7 +1408,7 @@ html {
 .solution-card.expanded .solution-list {
     text-align: left; /* Keep list left-aligned */
     max-width: 85%; /* Limit width of list for readability */
-    margin: 20px auto 30px auto; /* Center the list */
+    margin-inline: auto;
     font-size: 1.15rem; /* Larger list items */
 }
 
@@ -1532,7 +1534,7 @@ html {
         margin:auto;
     }
     .solution-card.expanded {
-        padding: 30px 20px;
+        padding: 0 20px;
     }
     .solution-card.expanded .card-icon {
         font-size: 2.5rem;
@@ -1915,9 +1917,7 @@ html {
     color: var(--white)
 }
 
-[data-theme="light"] .team-grid .team-member-card {
-        background-color: var(--glass-bg-light);
-    }
+
 
 #page-loader {
     position: fixed;
