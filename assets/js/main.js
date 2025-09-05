@@ -415,6 +415,27 @@ document.addEventListener('DOMContentLoaded', () => {
         // --- END: EVENT-DRIVEN FIX ---
     }
 
+    // --- New: Team Carousel Touch-to-Pause Logic (for mobile) ---
+    const teamCarouselTrack = document.querySelector('.team-carousel-track');
+    if (teamCarouselTrack) {
+        // Function to check if a touch device is being used
+        const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+
+        if (isTouchDevice()) {
+            teamCarouselTrack.addEventListener('touchstart', () => {
+                teamCarouselTrack.style.animationPlayState = 'paused';
+            }, { passive: true }); // Using passive: true for better scroll performance
+
+            teamCarouselTrack.addEventListener('touchend', () => {
+                teamCarouselTrack.style.animationPlayState = 'running';
+            }, { passive: true });
+
+            teamCarouselTrack.addEventListener('touchcancel', () => {
+                teamCarouselTrack.style.animationPlayState = 'running';
+            }, { passive: true });
+        }
+    }
+
 
     // --- Page-Specific Logic: Run animations ONLY on the homepage ---
     // Initialize Lenis unconditionally (unless reduced motion is preferred)
