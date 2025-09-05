@@ -57,276 +57,269 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 <body>
-    <!-- Full-screen loading overlay -->
-    <div id="page-loader">
-        <div class="loader-content">
-            <span id="zoom-text">0%</span>
-        </div>
+<div id="page-loader">
+    <div class="loader-content">
+        <span id="zoom-text"></span>
     </div>
+</div>
+<div id="mobile-menu-overlay"></div>
+    <header id="main-header">
+        <nav>
+            <div class="logo"><img src="assets/media/header.png" alt="4ward People Connect Logo"></div>
+            <ul class="nav-links">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#solutions">Solutions</a></li>
+                <li><a href="/contact" class="cta-button">Hire 4PC</a></li>
+                <!-- Theme Toggle Button -->
+                <li>
+                    <button id="theme-toggle" title="Toggle dark/light mode">
+                        <i class="fas fa-sun sun-icon"></i>
+                        <i class="fas fa-moon moon-icon"></i>
+                    </button>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section id="hero" class="full-viewport">
+            <div class="hero-content">
+                <h1 class="kinetic-headline" aria-label="Connecting People. Empowering Growth.">
+                    <span class="word">
+                        <span class="char">R</span><span class="char">e</span><span class="char">a</span><span class="char">d</span><span class="char">y</span>
+                                    <span class="word">
+                        <span class="char">t</span><span class="char">o</span>
+                    <span class="word">
+                        <span class="char">m</span><span class="char">o</span><span class="char">v</span><span class="char">e</span>
+                    </span></span>
+                    <br>
+                    <span class="word">
+                        <span class="char">y</span><span class="char">o</span><span class="char">u</span><span class="char">r</span>
 
-    <!-- Mobile Menu Overlay (already existing, outside content-wrapper) -->
-    <div id="mobile-menu-overlay"></div>
+                    <span class="word">
+                        <span class="char">b</span><span class="char">u</span><span class="char">s</span><span class="char">i</span><span class="char">n</span><span class="char">e</span><span class="char">s</span><span class="char">s</span>
 
-    <!-- Main Content Wrapper - hidden until all assets are loaded -->
-    <div id="content-wrapper" style="opacity: 0; visibility: hidden;">
-        <header id="main-header">
-            <nav>
-                <div class="logo"><img src="assets/media/header.png" alt="4ward People Connect Logo"></div>
-                <ul class="nav-links">
-                    <li class="active"><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#solutions">Solutions</a></li>
-                    <li><a href="/contact" class="cta-button">Hire 4PC</a></li>
-                    <!-- Theme Toggle Button -->
-                    <li>
-                        <button id="theme-toggle" title="Toggle dark/light mode">
-                            <i class="fas fa-sun sun-icon"></i>
-                            <i class="fas fa-moon moon-icon"></i>
-                        </button>
-                    </li>
-                </ul>
-                <div class="hamburger">
-                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                    <span class="word">
+                        <span class="char">4</span><span class="char">w</span><span class="char">a</span><span class="char">r</span><span class="char">d</span><span class="char">?</span>
+                    </span>
+                </h1>
+                                <p class="kinetic-subheading">
+                    <span class="char">W</span><span class="char">e</span><span class="char">&nbsp;</span><span class="char">c</span><span class="char">o</span><span class="char">n</span><span class="char">n</span><span class="char">e</span><span class="char">c</span><span class="char">t</span><span class="char">&nbsp;</span><span class="char">t</span><span class="char">h</span><span class="char">e</span><span class="char">&nbsp;</span><span class="char">d</span><span class="char">o</span><span class="char">t</span><span class="char">s</span><span class="char">&nbsp;</span><span class="char">s</span><span class="char">o</span><span class="char">&nbsp;</span><span class="char">y</span><span class="char">o</span><span class="char">u</span><span class="char">r</span><span class="char">&nbsp;</span><span class="char">b</span><span class="char">u</span><span class="char">s</span><span class="char">i</span><span class="char">n</span><span class="char">e</span><span class="char">s</span><span class="char">s</span><span class="char">&nbsp;</span><span class="char">g</span><span class="char">r</span><span class="char">o</span><span class="char">w</span><span class="char">s</span><span class="char">.</span>
+                </p>
+            </div>
+            <video autoplay loop muted playsinline class="animated-background">
+                <source src="assets/media/Intro.mp4" type="video/mp4">
+            </video>
+        </section>
+
+     
+            
+            <section id="empowering-business" data-aos="fade-up">
+                <div class="container split-layout-container">
+                    <!-- Left Side: Text Content -->
+                    <div class="text-content">
+                        <h2 class="section-headline">About 4PC</h2>
+                        <p class="section-paragraph">
+                            4ward People Connect (4PC) provides comprehensive <strong class="highlight">HR&nbsp;Solutions</strong>, meticulous <strong class="highlight">Accounting</strong>, and innovative <strong class="highlight">IT&nbsp;Solutions</strong> designed to build stronger systems and drive sustainable growth.
+                        </p>
+                        <div class="key-benefits">
+                            <h3 class="key-benefits-title">Key Benefits:</h3>
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> Simplify processes and reduce expenses.</li>
+                                <li><i class="fas fa-check-circle"></i> Focus on your core business goals.</li>
+                                <li><i class="fas fa-check-circle"></i> Get reliable support from our <strong class="highlight">Virtual&nbsp;Assistant</strong> agency.</li>
+                            </ul>
+                        </div>
+                        <a href="/about" class="cta-button modern-button">
+                            Learn More <span class="arrow-icon">→</span>
+                        </a>
+                    </div>
+
+                    <!-- Right Side: Image/Visual -->
+                    <div class="visual-content">
+                        <video autoplay loop muted playsinline>
+                            <source src="assets/media/about.mp4" type="video/mp4">
+                        </video>
+                        <div class="visual-accent-dots"></div>
+                        <div class="visual-accent-lines"></div>
+                    </div>
                 </div>
-            </nav>
-        </header>
-        <main>
-            <section id="hero" class="full-viewport">
-                <div class="hero-content">
-                    <h1 class="kinetic-headline" aria-label="Connecting People. Empowering Growth.">
-                        <span class="word">
-                            <span class="char">R</span><span class="char">e</span><span class="char">a</span><span class="char">d</span><span class="char">y</span>
-                                        <span class="word">
-                            <span class="char">t</span><span class="char">o</span>
-                        <span class="word">
-                            <span class="char">m</span><span class="char">o</span><span class="char">v</span><span class="char">e</span>
-                        </span></span>
-                        <br>
-                        <span class="word">
-                            <span class="char">y</span><span class="char">o</span><span class="char">u</span><span class="char">r</span>
+            </section>
+   <div class="main-content-wrapper">
+            <video autoplay loop muted playsinline class="animated-background">
+                <source src="assets/media/background.mp4" type="video/mp4">
+            </video>
+            <section id="projects">
+                <div class="container">
+                    <h2>Our Projects</h2>
+                    <div class="project-grid">
+                        <!-- Coming Soon Project 1 - Updated Structure -->
+                        <a href="#" class="project-item-link">
+                            <div class="project-item coming-soon">
+                                <!-- Background Image/Video can go here, e.g., <img src="..."/> -->
+                                <div class="project-item-content">
+                                    <h3>Coming Soon</h3>
+                                    <p>Stay tuned for our next project!</p>
+                                    <span class="view-project-btn disabled">Details Unavailable</span>
+                                </div>
+                            </div>
+                        </a>
 
-                        <span class="word">
-                            <span class="char">b</span><span class="char">u</span><span class="char">s</span><span class="char">i</span><span class="char">n</span><span class="char">e</span><span class="char">s</span><span class="char">s</span>
-
-                        <span class="word">
-                            <span class="char">4</span><span class="char">w</span><span class="char">a</span><span class="char">r</span><span class="char">d</span><span class="char">?</span>
-                        </span>
-                    </h1>
-                                    <p class="kinetic-subheading">
-                        <span class="char">W</span><span class="char">e</span><span class="char">&nbsp;</span><span class="char">c</span><span class="char">o</span><span class="char">n</span><span class="char">n</span><span class="char">e</span><span class="char">c</span><span class="char">t</span><span class="char">&nbsp;</span><span class="char">t</span><span class="char">h</span><span class="char">e</span><span class="char">&nbsp;</span><span class="char">d</span><span class="char">o</span><span class="char">t</span><span class="char">s</span><span class="char">&nbsp;</span><span class="char">s</span><span class="char">o</span><span class="char">&nbsp;</span><span class="char">y</span><span class="char">o</span><span class="char">u</span><span class="char">r</span><span class="char">&nbsp;</span><span class="char">b</span><span class="char">u</span><span class="char">s</span><span class="char">i</span><span class="char">n</span><span class="char">e</span><span class="char">s</span><span class="char">s</span><span class="char">&nbsp;</span><span class="char">g</span><span class="char">r</span><span class="char">o</span><span class="char">w</span><span class="char">s</span><span class="char">.</span>
-                    </p>
+                        <!-- Coming Soon Project 2 - Updated Structure -->
+                        <a href="#" class="project-item-link">
+                            <div class="project-item coming-soon">
+                                <!-- Background Image/Video can go here -->
+                                <div class="project-item-content">
+                                    <h3>Coming Soon</h3>
+                                    <p>Another exciting project is on the way!</p>
+                                    <span class="view-project-btn disabled">Details Unavailable</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <video autoplay loop muted playsinline class="animated-background">
-                    <source src="assets/media/Intro.mp4" type="video/mp4">
-                </video>
             </section>
 
-        
-                
-                <section id="empowering-business" data-aos="fade-up">
-                    <div class="container split-layout-container">
-                        <!-- Left Side: Text Content -->
-                        <div class="text-content">
-                            <h2 class="section-headline">About 4PC</h2>
-                            <p class="section-paragraph">
-                                4ward People Connect (4PC) provides comprehensive <strong class="highlight">HR&nbsp;Solutions</strong>, meticulous <strong class="highlight">Accounting</strong>, and innovative <strong class="highlight">IT&nbsp;Solutions</strong> designed to build stronger systems and drive sustainable growth.
-                            </p>
-                            <div class="key-benefits">
-                                <h3 class="key-benefits-title">Key Benefits:</h3>
-                                <ul>
-                                    <li><i class="fas fa-check-circle"></i> Simplify processes and reduce expenses.</li>
-                                    <li><i class="fas fa-check-circle"></i> Focus on your core business goals.</li>
-                                    <li><i class="fas fa-check-circle"></i> Get reliable support from our <strong class="highlight">Virtual&nbsp;Assistant</strong> agency.</li>
-                                </ul>
-                            </div>
-                            <a href="/about" class="cta-button modern-button">
-                                Learn More <span class="arrow-icon">→</span>
-                            </a>
-                        </div>
+            <section id="solutions">
+    <div class="animated-background-shapes">
+        <!-- Decorative shapes will be added via CSS -->
+    </div>
+    <div class="container">
+        <h2>Our Solutions</h2>
 
-                        <!-- Right Side: Image/Visual -->
-                        <div class="visual-content">
-                            <video autoplay loop muted playsinline>
-                                <source src="assets/media/about.mp4" type="video/mp4">
-                            </video>
-                            <div class="visual-accent-dots"></div>
-                            <div class="visual-accent-lines"></div>
-                        </div>
-                    </div>
-                </section>
-        <div class="main-content-wrapper">
-                <video autoplay loop muted playsinline class="animated-background">
-                    <source src="assets/media/background.mp4" type="video/mp4">
-                </video>
-                <section id="projects">
-                    <div class="container">
-                        <h2>Our Projects</h2>
-                        <div class="project-grid">
-                            <!-- Coming Soon Project 1 - Updated Structure -->
-                            <a href="#" class="project-item-link">
-                                <div class="project-item coming-soon">
-                                    <!-- Background Image/Video can go here, e.g., <img src="..."/> -->
-                                    <div class="project-item-content">
-                                        <h3>Coming Soon</h3>
-                                        <p>Stay tuned for our next project!</p>
-                                        <span class="view-project-btn disabled">Details Unavailable</span>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <!-- Coming Soon Project 2 - Updated Structure -->
-                            <a href="#" class="project-item-link">
-                                <div class="project-item coming-soon">
-                                    <!-- Background Image/Video can go here -->
-                                    <div class="project-item-content">
-                                        <h3>Coming Soon</h3>
-                                        <p>Another exciting project is on the way!</p>
-                                        <span class="view-project-btn disabled">Details Unavailable</span>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="solutions">
-        <div class="animated-background-shapes">
-            <!-- Decorative shapes will be added via CSS -->
+        <!-- NEW: Back button container -->
+        <div class="solution-back-button-container">
+            <button class="back-button" aria-label="Go back to all solutions">
+                <i class="fas fa-arrow-left"></i> All Solutions
+            </button>
         </div>
-        <div class="container">
-            <h2>Our Solutions</h2>
 
-            <!-- NEW: Back button container -->
-            <div class="solution-back-button-container">
-                <button class="back-button" aria-label="Go back to all solutions">
-                    <i class="fas fa-arrow-left"></i> All Solutions
-                </button>
-            </div>
+        <!-- Solutions Grid -->
+        <div class="solutions-grid">
+            <!-- HR Solutions Card -->
+                <div class="solution-card" data-category="hr" data-aos="fade-up">
+                <div class="card-content">
+                    <div class="card-icon"><i class="fas fa-users-cog"></i></div>
+                    <h3 class="card-title">HR Solutions</h3>
+                    <div class="animated-divider"></div>
+                    <ul class="solution-list">
+                        <li>Recruitment and Staffing <span class="subtext">We help you find the right people by sourcing, screening, and onboarding qualified professionals who fit your company culture.</span></li>
+                        <li>Employee Relations & Compliance <span class="subtext">We take care of workplace policies, conflict resolution, and compliance so you can maintain a positive and legally sound workplace.</span></li>
+                        <li>Payroll & Benefits Administration <span class="subtext">We ensure accurate and timely payroll and benefits management, keeping your employees satisfied and your business compliant.</span></li>
+                        <li>Employee Handbook Creation <span class="subtext">We create customized handbooks that set clear expectations, reflect your culture, and reduce workplace misunderstandings.</span></li>
+                        <li>HR Consultancy & Outsourcing <span class="subtext">We provide expert advice or manage your HR processes fully, giving you flexibility and cost-effective HR solutions.</span></li>
+                    </ul>
+                </div>
+                        </div>
 
-            <!-- Solutions Grid -->
-            <div class="solutions-grid">
-                <!-- HR Solutions Card -->
-                    <div class="solution-card" data-category="hr" data-aos="fade-up">
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-users-cog"></i></div>
-                        <h3 class="card-title">HR Solutions</h3>
-                        <div class="animated-divider"></div>
-                        <ul class="solution-list">
-                            <li>Recruitment and Staffing <span class="subtext">We help you find the right people by sourcing, screening, and onboarding qualified professionals who fit your company culture.</span></li>
-                            <li>Employee Relations & Compliance <span class="subtext">We take care of workplace policies, conflict resolution, and compliance so you can maintain a positive and legally sound workplace.</span></li>
-                            <li>Payroll & Benefits Administration <span class="subtext">We ensure accurate and timely payroll and benefits management, keeping your employees satisfied and your business compliant.</span></li>
-                            <li>Employee Handbook Creation <span class="subtext">We create customized handbooks that set clear expectations, reflect your culture, and reduce workplace misunderstandings.</span></li>
-                            <li>HR Consultancy & Outsourcing <span class="subtext">We provide expert advice or manage your HR processes fully, giving you flexibility and cost-effective HR solutions.</span></li>
-                        </ul>
-                    </div>
-                            </div>
+            <!-- Accounting Solutions Card -->
+                <div class="solution-card" data-category="accounting" data-aos-delay="100">
+                <div class="card-content">
+                    <div class="card-icon"><i class="fas fa-calculator"></i></div>
+                    <h3 class="card-title">Accounting Solutions</h3>
+                    <p class="subtext tekmakon-subtext">Powered by Tekmakon</p>
+                    <div class="animated-divider"></div>
+                    <ul class="solution-list">
+                        <li>Bookkeeping & Reporting <span class="subtext">We keep your financial records organized and deliver clear reports that help you track performance and make better business decisions.</span></li>
+                        <li>Tax Compliance <span class="subtext">We handle tax preparation and filing with accuracy, ensuring your business stays compliant and avoids costly penalties.</span></li>
+                        <li>Accounts Payable & Receivable <span class="subtext">We manage your incoming and outgoing payments efficiently so you can maintain healthy cash flow and focus on growth.</span></li>
+                        <li>Payroll Processing <span class="subtext">We process employee payroll on time and with precision, giving your team confidence while reducing your administrative workload.</span></li>
+                        <li>Budgeting & Forecasting <span class="subtext">We create realistic budgets and financial forecasts that guide your business planning and help you stay ahead of challenges.</span></li>
+                    </ul>
+                </div>
+                        </div>
 
-                <!-- Accounting Solutions Card -->
-                    <div class="solution-card" data-category="accounting" data-aos-delay="100">
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-calculator"></i></div>
-                        <h3 class="card-title">Accounting Solutions</h3>
-                        <p class="subtext tekmakon-subtext">Powered by Tekmakon</p>
-                        <div class="animated-divider"></div>
-                        <ul class="solution-list">
-                            <li>Bookkeeping & Reporting <span class="subtext">We keep your financial records organized and deliver clear reports that help you track performance and make better business decisions.</span></li>
-                            <li>Tax Compliance <span class="subtext">We handle tax preparation and filing with accuracy, ensuring your business stays compliant and avoids costly penalties.</span></li>
-                            <li>Accounts Payable & Receivable <span class="subtext">We manage your incoming and outgoing payments efficiently so you can maintain healthy cash flow and focus on growth.</span></li>
-                            <li>Payroll Processing <span class="subtext">We process employee payroll on time and with precision, giving your team confidence while reducing your administrative workload.</span></li>
-                            <li>Budgeting & Forecasting <span class="subtext">We create realistic budgets and financial forecasts that guide your business planning and help you stay ahead of challenges.</span></li>
-                        </ul>
-                    </div>
-                            </div>
+            <!-- IT Solutions Card -->
+                <div class="solution-card" data-category="it" data-aos-delay="200">
+                <div class="card-content">
+                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3 class="card-title">IT Solutions</h3>
+                    <p class="subtext tekmakon-subtext">Powered by Tekmakon</p>
+                    <div class="animated-divider"></div>
+                    <ul class="solution-list">
+                        <li>System Setup & Maintenance <span class="subtext">We set up and maintain your IT systems to keep your operations running smoothly and without disruptions.</span></li>
+                        <li>Network & Data Security <span class="subtext">We protect your business from threats with strong security measures that safeguard your data and networks.</span></li>
+                        <li>Software Development <span class="subtext">We build custom software tailored to your processes, helping you work smarter and achieve better results.</span></li>
+                        <li>Website Development & Support <span class="subtext">We design and maintain professional websites that represent your brand and support your business goals.</span></li>
+                        <li>IT Consultancy <span class="subtext">We provide expert guidance on technology solutions that fit your needs and help your business stay competitive.</span></li>
+                    </ul>
+                </div>
+                        </div>
 
-                <!-- IT Solutions Card -->
-                    <div class="solution-card" data-category="it" data-aos-delay="200">
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="card-title">IT Solutions</h3>
-                        <p class="subtext tekmakon-subtext">Powered by Tekmakon</p>
-                        <div class="animated-divider"></div>
-                        <ul class="solution-list">
-                            <li>System Setup & Maintenance <span class="subtext">We set up and maintain your IT systems to keep your operations running smoothly and without disruptions.</span></li>
-                            <li>Network & Data Security <span class="subtext">We protect your business from threats with strong security measures that safeguard your data and networks.</span></li>
-                            <li>Software Development <span class="subtext">We build custom software tailored to your processes, helping you work smarter and achieve better results.</span></li>
-                            <li>Website Development & Support <span class="subtext">We design and maintain professional websites that represent your brand and support your business goals.</span></li>
-                            <li>IT Consultancy <span class="subtext">We provide expert guidance on technology solutions that fit your needs and help your business stay competitive.</span></li>
-                        </ul>
-                    </div>
-                            </div>
-
-                <!-- Virtual Assistant Solutions Card -->
-                    <div class="solution-card" data-category="va" data-aos-delay="300">
-                    <div class="card-content">
-                        <div class="card-icon"><i class="fas fa-headset"></i></div>
-                        <h3 class="card-title">Virtual Assistant Solutions</h3>
-                        <div class="animated-divider"></div>
-                        <ul class="solution-list">
-                            <li>Data Entry & Research <span class="subtext">Accurate and reliable support to organize data, gather insights, and keep your business information up-to-date.</span></li>
-                            <li>Admin Assistance <span class="subtext">Streamlined scheduling, email handling, and daily admin tasks so you can focus on growth.</span></li>
-                            <li>Sales & Lead Generation <span class="subtext">Targeted outreach and lead qualification to help you attract and convert more clients.</span></li>
-                            <li>Customer Service <span class="subtext">Professional support that enhances customer satisfaction and builds lasting relationships.</span></li>
-                            <li>Social Media Management <span class="subtext">Consistent posting, engagement, and content curation to strengthen your online presence.</span></li>
-                        </ul>
-                    </div>
-                            </div>
-            </div>
+            <!-- Virtual Assistant Solutions Card -->
+                <div class="solution-card" data-category="va" data-aos-delay="300">
+                <div class="card-content">
+                    <div class="card-icon"><i class="fas fa-headset"></i></div>
+                    <h3 class="card-title">Virtual Assistant Solutions</h3>
+                    <div class="animated-divider"></div>
+                    <ul class="solution-list">
+                        <li>Data Entry & Research <span class="subtext">Accurate and reliable support to organize data, gather insights, and keep your business information up-to-date.</span></li>
+                        <li>Admin Assistance <span class="subtext">Streamlined scheduling, email handling, and daily admin tasks so you can focus on growth.</span></li>
+                        <li>Sales & Lead Generation <span class="subtext">Targeted outreach and lead qualification to help you attract and convert more clients.</span></li>
+                        <li>Customer Service <span class="subtext">Professional support that enhances customer satisfaction and builds lasting relationships.</span></li>
+                        <li>Social Media Management <span class="subtext">Consistent posting, engagement, and content curation to strengthen your online presence.</span></li>
+                    </ul>
+                </div>
+                        </div>
         </div>
-        </section>
-            </div>
+    </div>
+</section>
+        </div>
 
-        </main>
+    </main>
 
-        <footer id="main-footer-new">
-            <div class="container footer-container">
-                <div class="footer-main">
-                    <!-- Column 1: Quick Links -->
-                    <div class="footer-column">
-                        <h4>Quick Links</h4>
-                        <ul>
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="#projects">Projects</a></li>
-                            <li><a href="#solutions">Solutions</a></li>
-                            <li><a href="/contact">Contact</a></li>
-                        </ul>
+    <footer id="main-footer-new">
+        <div class="container footer-container">
+            <div class="footer-main">
+                <!-- Column 1: Quick Links -->
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#solutions">Solutions</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Our Solutions -->
+                <div class="footer-column">
+                    <h4>Our Solutions</h4>
+                    <ul>
+                        <li><a href="#solutions">HR Solutions</a></li>
+                        <li><a href="#solutions">Accounting Solutions</a></li>
+                        <li><a href="#solutions">IT Solutions</a></li>
+                        <li><a href="#solutions">Virtual Assistant Solutions</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact Info -->
+                <div class="footer-column">
+                    <h4>Get in Touch</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
+                        <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
                     </div>
-
-                    <!-- Column 2: Our Solutions -->
-                    <div class="footer-column">
-                        <h4>Our Solutions</h4>
-                        <ul>
-                            <li><a href="#solutions">HR Solutions</a></li>
-                            <li><a href="#solutions">Accounting Solutions</a></li>
-                            <li><a href="#solutions">IT Solutions</a></li>
-                            <li><a href="#solutions">Virtual Assistant Solutions</a></li>
-                        </ul>
-                    </div>
-
-                    <!-- Column 3: Contact Info -->
-                    <div class="footer-column">
-                        <h4>Get in Touch</h4>
-                        <div class="contact-info">
-                            <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
-                            <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
-                            <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
-                        </div>
-                        <div class="footer-social-links">
-                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
-                        </div>
+                    <div class="footer-social-links">
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>&copy; 2025 4ward People Connect | Powered by Tekmakon. All rights reserved.</p>
-                </div>
             </div>
-        </footer>
+            <div class="footer-bottom">
+                <p>&copy; 2025 4ward People Connect | Powered by Tekmakon. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-        <button id="scroll-to-top" title="Go to top">&uarr;</button>
-    </div> <!-- End of content-wrapper -->
+    <button id="scroll-to-top" title="Go to top">&uarr;</button>
 
     <!-- Animation & Smooth Scroll Libraries -->
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>

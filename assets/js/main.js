@@ -14,149 +14,41 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 1. Advanced Page Loader ---
     const pageLoader = document.getElementById('page-loader');
     const zoomText = document.getElementById('zoom-text');
-    const contentWrapper = document.getElementById('content-wrapper'); // Main content wrapper
 
-    if (pageLoader && zoomText && contentWrapper) {
-        let loadedAssetsCount = 0;
-        let totalAssetsToLoad = 0;
-        let loaderAnimationStarted = false; // Flag to prevent re-initialization on bfcache
-
-        const updateProgress = () => {
-            if (totalAssetsToLoad === 0) { // Handle case with no assets to load
-                zoomText.textContent = '100%';
-                return;
-            }
-            const progress = Math.min(100, Math.floor((loadedAssetsCount / totalAssetsToLoad) * 100));
-            zoomText.textContent = `${progress}%`;
-        };
-
+    if (pageLoader && zoomText) {
+        // Hides the loader forcefully. Used for bfcache restores or at the end of the animation.
         const forceHideLoader = () => {
             pageLoader.classList.add('hidden');
             pageLoader.classList.remove('is-visible', 'is-zooming');
-            // Show main content wrapper
-            contentWrapper.style.opacity = '1';
-            contentWrapper.style.visibility = 'visible';
-            contentWrapper.style.transition = 'opacity 0.8s ease'; // Smooth reveal
-
-            // Remove scroll lock
-            html.classList.remove('body-no-scroll');
-            body.classList.remove('body-no-scroll');
         };
 
-        const preloadAllAssets = () => {
-            return new Promise(resolve => {
-                const assetPromises = [];
-                const imgElements = document.querySelectorAll('img:not([data-preload-ignore])');
-                const videoElements = document.querySelectorAll('video:not([data-preload-ignore])');
+        // This is the main "arrival" animation (0 -> 100 -> zoom).
+        // It runs on initial load and after an internal page navigation.
+        const runArrivalAnimation = () => {
+            // Ensure loader is visible and reset its state for the animation
+            pageLoader.classList.remove('hidden');
+            zoomText.textContent = '0';
+            
+            // We use requestAnimationFrame to ensure the browser has painted the initial state
+            // before we apply the classes that trigger the CSS transitions.
+            requestAnimationFrame(() => {
+                // State 1: Make '0' visible and scale it to normal size.
+                setTimeout(() => {
+                    pageLoader.classList.add('is-visible');
+                }, 50);
 
-                // Collect all images (excluding those explicitly ignored)
-                imgElements.forEach(img => {
-                    // Only preload if src exists and image isn't already loaded
-                    if (img.src && !img.complete) {
-                        assetPromises.push(new Promise(imgResolve => {
-                            const tempImg = new Image();
-                            tempImg.onload = tempImg.onerror = () => {
-                                loadedAssetsCount++;
-                                updateProgress();
-                                imgResolve();
-                            };
-                            tempImg.src = img.src; // This triggers download
-                        }));
-                    } else if (img.complete && img.src) { // Count already loaded images
-                        loadedAssetsCount++;
-                    }
-                });
+                // State 2: Change text to '100' and trigger the main zoom-out animation.
+                setTimeout(() => {
+                    zoomText.textContent = '100';
+                    pageLoader.classList.add('is-zooming');
+                }, 800);
 
-                // Collect all videos (excluding those explicitly ignored)
-                videoElements.forEach(video => {
-                    const videoSrc = video.src || (video.querySelector('source') && video.querySelector('source').src);
-                    if (videoSrc) {
-                        assetPromises.push(new Promise(videoResolve => {
-                            // If video already has enough data, count it
-                            if (video.readyState >= 3) { // HAVE_FUTURE_DATA
-                                loadedAssetsCount++;
-                                updateProgress();
-                                videoResolve();
-                                return;
-                            }
-                            
-                            const handleVideoLoad = () => {
-                                video.removeEventListener('loadeddata', handleVideoLoad);
-                                video.removeEventListener('error', handleVideoLoad);
-                                video.removeEventListener('canplaythrough', handleVideoLoad);
-                                loadedAssetsCount++;
-                                updateProgress();
-                                videoResolve();
-                            };
-
-                            video.addEventListener('loadeddata', handleVideoLoad, { once: true });
-                            video.addEventListener('error', handleVideoLoad, { once: true });
-                            video.addEventListener('canplaythrough', handleVideoLoad, { once: true });
-                            
-                            // Ensure the video attempts to load
-                            video.load();
-                        }));
-                    }
-                });
-
-                totalAssetsToLoad = assetPromises.length;
-
-                // If no assets to load, resolve immediately
-                if (totalAssetsToLoad === 0) {
-                    resolve();
-                    return;
-                }
-                
-                updateProgress(); // Initial progress (e.g., 0% or more if some were already complete)
-
-                Promise.all(assetPromises)
-                    .then(() => {
-                        // Ensure progress is 100% even if some assets failed or were skipped initially
-                        loadedAssetsCount = totalAssetsToLoad;
-                        updateProgress();
-                        resolve();
-                    })
-                    .catch(error => {
-                        console.error("Error preloading some assets:", error);
-                        // Even if some fail, we should still proceed to show the page
-                        resolve();
-                    });
+                // State 3: Hide the loader completely after the CSS animations have finished.
+                // The total duration is roughly 800ms (for '0') + 1200ms (zoom transition) = 2000ms.
+                setTimeout(() => {
+                    forceHideLoader();
+                }, 2000);
             });
-        };
-
-        const runPreloaderAnimation = async () => {
-            if (loaderAnimationStarted) return; // Prevent double initialization
-            loaderAnimationStarted = true;
-
-            // Lock scrolling
-            html.classList.add('body-no-scroll');
-            body.classList.add('body-no-scroll');
-
-            // Set loader to initial visible state
-            pageLoader.classList.remove('hidden', 'is-zooming');
-            zoomText.textContent = '0%';
-            pageLoader.classList.add('is-visible');
-
-            // Give a tiny moment for CSS to apply initial state before starting preload
-            await new Promise(r => setTimeout(r, 50));
-
-            // Start preloading and wait for it to complete
-            await preloadAllAssets();
-
-            // All assets loaded, now trigger the final animation
-            // Ensure 100% is displayed
-            zoomText.textContent = '100%';
-
-            // Short delay to show 100% before zoom-out
-            setTimeout(() => {
-                pageLoader.classList.add('is-zooming');
-            }, 300);
-
-            // Hide loader completely after zoom-out animation
-            // The is-zooming transition is 1.2s, so wait a bit more
-            setTimeout(() => {
-                forceHideLoader();
-            }, 1500); // 300ms delay + 1.2s CSS transition = ~1.5s
         };
 
         // --- Link Interception Logic ---
@@ -175,24 +67,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 // allow default behavior (the page loader should still cover navigation).
                 // The solution card logic itself will call e.preventDefault() if it needs to expand.
                 if (!isExternal && !link.classList.contains('solution-card')) {
-                    // For internal navigation, the runPreloaderAnimation will be triggered by pageshow on the new page.
                     return; 
                 }
                 
-                // For external links, prevent default and show a quick loader
+                // For external links, prevent default and show loader
                 if (isExternal) {
                     e.preventDefault();
 
-                    // Show the loader immediately (quick version for external links)
+                    // Show the loader immediately
                     pageLoader.classList.remove('hidden', 'is-visible', 'is-zooming');
-                    zoomText.textContent = '0%'; // Updated to match percentage format
+                    zoomText.textContent = '0';
                     pageLoader.classList.add('is-visible');
 
-                    // Navigate after a short delay
+                    // Navigate after a a short delay
                     setTimeout(() => {
                         window.location.href = href;
                     }, 500);
                 }
+                // If it's an internal link that is *not* a solution card,
+                // and it didn't match external/special links, we let default behavior proceed.
+                // If it's a solution card, the specific logic below will handle its prevention.
             });
         });
 
@@ -203,18 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
             if (event.persisted) {
                 // If the page is restored from cache, the loader might be stuck. Hide it instantly.
                 forceHideLoader();
-            } else {
-                // For initial load or fresh navigation, run the preloader animation
-                runPreloaderAnimation();
             }
         });
 
-        // Fallback for initial load if 'pageshow' event is not reliable or missed (e.g., in some dev environments)
-        // Check if the preloader hasn't been started yet by pageshow.
-        // This is a safety measure, 'pageshow' is generally preferred.
-        if (!loaderAnimationStarted && (window.performance.getEntriesByType("navigation")[0]?.type === 'navigate' || window.performance.getEntriesByType("navigation")[0]?.type === 'reload')) {
-            runPreloaderAnimation();
-        }
+        // Run the main arrival animation on any page load (initial, refresh, or internal navigation)
+        runArrivalAnimation();
     }
 
 
@@ -563,10 +450,9 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.registerPlugin(ScrollTrigger); // Register ScrollTrigger here if Lenis is initialized
     }
 
-    const heroContent = document.querySelector('.hero-content'); // Moved outside conditional block for wider access
-
     if (heroSection && !prefersReducedMotion.matches) {
         
+        const heroContent = document.querySelector('.hero-content');
         if (heroContent) {
             const chars = heroContent.querySelectorAll('.char');
             gsap.fromTo(chars, {
