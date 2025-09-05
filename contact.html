@@ -62,167 +62,171 @@
 </head>
 <body>
     <div id="page-loader">
-    <div class="loader-content">
-        <span id="zoom-text"></span>
+        <div class="loader-content">
+            <span id="zoom-text">0%</span>
+        </div>
     </div>
-</div>
-<div id="mobile-menu-overlay"></div>
-    <header id="main-header">
-        <nav>
-            <div class="logo"><img src="assets/media/header.png" alt="4ward People Connect Logo"></div>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/#projects">Projects</a></li>
-                <li><a href="/#solutions">Solutions</a></li>
-                <li class="active"><a href="/contact" class="cta-button">Get in Touch</a></li>
-                <!-- Theme Toggle Button -->
-                <li>
-                    <button id="theme-toggle" title="Toggle dark/light mode">
-                        <i class="fas fa-sun sun-icon"></i>
-                        <i class="fas fa-moon moon-icon"></i>
-                    </button>
-                </li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-            </div>
-        </nav>
-    </header>
+    <div id="mobile-menu-overlay"></div>
 
-    <main>
-        <div class="main-content-wrapper">
-            <video autoplay loop muted playsinline class="animated-background">
-                <source src="assets/media/background.mp4" type="video/mp4">
-            </video>
-            <section id="contact-page-section">
-                <div class="container contact-page-container">
-                    <!-- Left Column: Form -->
-                    <div class="contact-form-wrapper glassmorphism-effect" data-aos="fade-right">
-                        <h2>Get in Touch</h2>
-                        <p>Have a project in mind? We’d love to hear from you.</p>
-                        <form class="modern-form" id="contact-form">
-                            <div class="form-group modern">
-                                <label for="name">Your Name*</label>
-                                <input type="text" id="name" name="name" placeholder="YOUR NAME*" required>
-                            </div>
-                            <div class="form-group modern">
-                                <label for="email">Email*</label>
-                                <input type="email" id="email" name="email" placeholder="YOUR EMAIL*" required>
-                            </div>
-                            <div class="form-group modern">
-                                <label for="company">Your company</label>
-                                <input type="text" id="company" name="company" placeholder="COMPANY NAME">
-                            </div>
-                            <div class="form-group modern">
-                                <label for="solution">Choose a solution*</label>
-                                <select id="solution" name="solution" required>
-                                    <option value="" disabled selected hidden>APPLICATION DESIGN</option>
-                                    <option value="hr-solutions">HR Solutions</option>
-                                    <option value="accounting">Accounting Solutions</option>
-                                    <option value="it-solutions">IT Solutions</option>
-                                    <option value="virtual-assistant">Virtual Assistant Solutions</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="form-group modern" id="currency-group">
-                                <label for="currency-select">Currency*</label>
-                                <select id="currency-select" name="currency" required>
-                                    <option value="usd" selected>International (USD)</option>
-                                    <option value="php">Local (PHP)</option>
-                                </select>
-                            </div>
-                            <div class="form-group modern" id="budget-group">
-                                <label for="budget-select">What is your estimate budget?*</label>
-                                <select id="budget-select" name="budget" required>
-                                    <!-- Budget options will be populated by JavaScript -->
-                                </select>
-                            </div>
-                            <div class="form-group modern" id="custom-budget-group" style="display: none;">
-                                <label for="custom-budget">Please specify your budget</label>
-                                <input type="text" id="custom-budget" name="custom-budget" placeholder="e.g., $50,000 - $75,000">
-                            </div>
-                            <div class="form-group modern">
-                                <label for="message">Describe Your project</label>
-                                <textarea id="message" name="message" placeholder="WRITE HERE*" rows="4" required></textarea>
-                            </div>
-                            <button type="submit" class="cta-button modern-button">Submit</button>
-                        </form>
-                    </div>
-                    
-                    <!-- Right Column: Info -->
-                    <div class="contact-info-wrapper glassmorphism-effect" data-aos="fade-left" data-aos-delay="200">
-                        <div class="info-block">
-                            <h4>General Contact</h4>
-                            <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
-                            <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
+    <!-- Main Content Wrapper - hidden until all assets are loaded -->
+    <div id="content-wrapper" style="opacity: 0; visibility: hidden;">
+        <header id="main-header">
+            <nav>
+                <div class="logo"><img src="assets/media/header.png" alt="4ward People Connect Logo"></div>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/#projects">Projects</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li class="active"><a href="/contact" class="cta-button">Get in Touch</a></li>
+                    <!-- Theme Toggle Button -->
+                    <li>
+                        <button id="theme-toggle" title="Toggle dark/light mode">
+                            <i class="fas fa-sun sun-icon"></i>
+                            <i class="fas fa-moon moon-icon"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="main-content-wrapper">
+                <video autoplay loop muted playsinline class="animated-background">
+                    <source src="assets/media/background.mp4" type="video/mp4">
+                </video>
+                <section id="contact-page-section">
+                    <div class="container contact-page-container">
+                        <!-- Left Column: Form -->
+                        <div class="contact-form-wrapper glassmorphism-effect" data-aos="fade-right">
+                            <h2>Get in Touch</h2>
+                            <p>Have a project in mind? We’d love to hear from you.</p>
+                            <form class="modern-form" id="contact-form">
+                                <div class="form-group modern">
+                                    <label for="name">Your Name*</label>
+                                    <input type="text" id="name" name="name" placeholder="YOUR NAME*" required>
+                                </div>
+                                <div class="form-group modern">
+                                    <label for="email">Email*</label>
+                                    <input type="email" id="email" name="email" placeholder="YOUR EMAIL*" required>
+                                </div>
+                                <div class="form-group modern">
+                                    <label for="company">Your company</label>
+                                    <input type="text" id="company" name="company" placeholder="COMPANY NAME">
+                                </div>
+                                <div class="form-group modern">
+                                    <label for="solution">Choose a solution*</label>
+                                    <select id="solution" name="solution" required>
+                                        <option value="" disabled selected hidden>APPLICATION DESIGN</option>
+                                        <option value="hr-solutions">HR Solutions</option>
+                                        <option value="accounting">Accounting Solutions</option>
+                                        <option value="it-solutions">IT Solutions</option>
+                                        <option value="virtual-assistant">Virtual Assistant Solutions</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group modern" id="currency-group">
+                                    <label for="currency-select">Currency*</label>
+                                    <select id="currency-select" name="currency" required>
+                                        <option value="usd" selected>International (USD)</option>
+                                        <option value="php">Local (PHP)</option>
+                                    </select>
+                                </div>
+                                <div class="form-group modern" id="budget-group">
+                                    <label for="budget-select">What is your estimate budget?*</label>
+                                    <select id="budget-select" name="budget" required>
+                                        <!-- Budget options will be populated by JavaScript -->
+                                    </select>
+                                </div>
+                                <div class="form-group modern" id="custom-budget-group" style="display: none;">
+                                    <label for="custom-budget">Please specify your budget</label>
+                                    <input type="text" id="custom-budget" name="custom-budget" placeholder="e.g., $50,000 - $75,000">
+                                </div>
+                                <div class="form-group modern">
+                                    <label for="message">Describe Your project</label>
+                                    <textarea id="message" name="message" placeholder="WRITE HERE*" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="cta-button modern-button">Submit</button>
+                            </form>
                         </div>
-        
-                        <div class="info-block">
-                            <h4>Office</h4>
+                        
+                        <!-- Right Column: Info -->
+                        <div class="contact-info-wrapper glassmorphism-effect" data-aos="fade-left" data-aos-delay="200">
+                            <div class="info-block">
+                                <h4>General Contact</h4>
+                                <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
+                                <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
+                            </div>
+            
+                            <div class="info-block">
+                                <h4>Office</h4>
+                                <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
+                            </div>
+                            <div class="info-block">
+                                <h4>Social Media</h4>
+                                <div class="social-links-contact">
+                                    <a href="https://www.linkedin.com/company/4ward-people-connect" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="https://twitter.com/4wardPeopleConnect" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.facebook.com/4wardPeopleConnect" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer id="main-footer-new">
+            <div class="container footer-container">
+                <div class="footer-main">
+                    <!-- Column 1: Quick Links -->
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/about">About Us</a></li>
+                            <li><a href="/#projects">Projects</a></li>
+                            <li><a href="/#solutions">Solutions</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 2: Our Solutions -->
+                    <div class="footer-column">
+                        <h4>Our Solutions</h4>
+                        <ul>
+                            <li><a href="/#solutions">HR Solutions</a></li>
+                            <li><a href="/#solutions">Accounting Solutions</a></li>
+                            <li><a href="/#solutions">IT Solutions</a></li>
+                            <li><a href="/#solutions">Virtual Assistant Solutions</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Column 3: Contact Info -->
+                    <div class="footer-column">
+                        <h4>Get in Touch</h4>
+                        <div class="contact-info">
                             <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
+                            <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
+                            <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
                         </div>
-                        <div class="info-block">
-                            <h4>Social Media</h4>
-                            <div class="social-links-contact">
-                                <a href="https://www.linkedin.com/company/4ward-people-connect" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="https://twitter.com/4wardPeopleConnect" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                                <a href="https://www.facebook.com/4wardPeopleConnect" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                            </div>
+                        <div class="footer-social-links">
+                            <a href="https://www.linkedin.com/company/4ward-people-connect" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            <a href="https://twitter.com/4wardPeopleConnect" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.facebook.com/4wardPeopleConnect" title="Facebook"><i class="fab fa-facebook"></i></a>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer id="main-footer-new">
-        <div class="container footer-container">
-            <div class="footer-main">
-                <!-- Column 1: Quick Links -->
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about">About Us</a></li>
-                        <li><a href="/#projects">Projects</a></li>
-                        <li><a href="/#solutions">Solutions</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 2: Our Solutions -->
-                <div class="footer-column">
-                    <h4>Our Solutions</h4>
-                    <ul>
-                        <li><a href="/#solutions">HR Solutions</a></li>
-                        <li><a href="/#solutions">Accounting Solutions</a></li>
-                        <li><a href="/#solutions">IT Solutions</a></li>
-                        <li><a href="/#solutions">Virtual Assistant Solutions</a></li>
-                    </ul>
-                </div>
-
-                <!-- Column 3: Contact Info -->
-                <div class="footer-column">
-                    <h4>Get in Touch</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Calamba City, Philippines</p>
-                        <p><i class="fas fa-envelope"></i> <a href="mailto:contact@4pc.com">contact@4pc.com</a></p>
-                        <p><i class="fas fa-phone"></i> <a href="tel:0495608835">0495608835</a></p>
-                    </div>
-                    <div class="footer-social-links">
-                        <a href="https://www.linkedin.com/company/4ward-people-connect" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-                        <a href="https://twitter.com/4wardPeopleConnect" title="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.facebook.com/4wardPeopleConnect" title="Facebook"><i class="fab fa-facebook"></i></a>
-                    </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2025 4ward People Connect | Powered by Tekmakon. All rights reserved.</p>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 4ward People Connect | Powered by Tekmakon. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+        </footer>
+    </div> <!-- End of content-wrapper -->
 
     <!-- EmailJS CDN -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>

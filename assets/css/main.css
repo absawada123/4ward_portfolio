@@ -2019,11 +2019,11 @@ html {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 9999;
-    background-color: var(--background-color);
-    transition: opacity 0.5s ease, visibility 0.5s ease, background-color 1.0s ease 0.2s;
+    z-index: 9999; /* Ensure it's on top of everything */
+    background-color: var(--background-color); /* Use theme background */
     opacity: 1;
     visibility: visible;
+    transition: opacity 0.5s ease, visibility 0.5s ease, background-color 1.0s ease 0.2s;
 }
 
 #page-loader.hidden {
@@ -2037,18 +2037,18 @@ html {
     justify-content: center;
     align-items: center;
     height: 100%;
-    overflow: hidden;
+    overflow: hidden; /* Prevent content overflow during zoom */
 }
 
 #zoom-text {
-    font-size: 10vw;
+    font-size: 10vw; /* Responsive font size */
     font-weight: 800;
     color: var(--primary-color);
-    text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.5);
-    transform: scale(0.5);
-    opacity: 0;
+    text-shadow: 0 0 10px rgba(var(--primary-color-rgb), 0.5); /* Subtle glow */
+    transform: scale(0.5); /* Start smaller */
+    opacity: 0; /* Start invisible */
     transition: transform 1.2s cubic-bezier(0.2, 1, 0.3, 1), opacity 0.5s ease;
-    will-change: transform, opacity;
+    will-change: transform, opacity; /* Optimize for animation */
 }
 
 #page-loader.is-visible #zoom-text {
