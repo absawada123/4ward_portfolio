@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     zoomText.textContent = '0';
                     pageLoader.classList.add('is-visible');
 
-                    // Navigate after a short delay
+                    // Navigate after a a short delay
                     setTimeout(() => {
                         window.location.href = href;
                     }, 500);
@@ -322,15 +322,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const solutionsSection = document.getElementById('solutions'); // Get the solutions section
 
     if (solutionsGrid && solutionCards.length > 0 && backButtonContainer && backButton && solutionsSection) {
+        
+        // --- START: EVENT-DRIVEN FIX ---
+        
+        // Helper function to handle scrolling consistently.
+        const scrollToSolutionsSection = () => {
+            const header = document.getElementById('main-header');
+            const headerHeight = header ? header.offsetHeight : 0; // Get sticky header height
+
+            if (lenis) {
+                lenis.scrollTo(solutionsSection, {
+                    offset: -(headerHeight + 20), // Add a 20px margin for spacing
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
+            } else {
+                const targetPosition = solutionsSection.getBoundingClientRect().top + window.scrollY - headerHeight - 20;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        };
+
         solutionCards.forEach(card => {
-            // Store original AOS attributes
             card.dataset.originalAos = card.getAttribute('data-aos');
             card.dataset.originalAosDelay = card.getAttribute('data-aos-delay');
 
             card.addEventListener('click', (event) => {
-                // Prevent default navigation if we are expanding (not already expanded)
                 if (!card.classList.contains('expanded')) {
-                    event.preventDefault(); // Stop the <a> from navigating immediately
+                    event.preventDefault();
                     expandCard(card);
                 }
             });
@@ -339,42 +360,43 @@ document.addEventListener('DOMContentLoaded', () => {
         backButton.addEventListener('click', collapseCards);
 
         function expandCard(cardToExpand) {
-            solutionsGrid.classList.add('expanded-view'); // Apply 1-column grid layout
+            // Add an event listener that waits for the CSS transition to finish, then scrolls.
+            // { once: true } ensures it only runs once per click and cleans itself up.
+            cardToExpand.addEventListener('transitionend', scrollToSolutionsSection, { once: true });
+
+            solutionsGrid.classList.add('expanded-view');
 
             solutionCards.forEach(card => {
                 if (card === cardToExpand) {
                     card.classList.add('expanded');
                     card.style.cursor = 'default';
-
-                    // Ensure AOS attributes are removed to prevent unexpected animations
                     card.removeAttribute('data-aos');
                     card.removeAttribute('data-aos-delay');
                 } else {
                     card.classList.add('hidden');
-                    // Remove AOS from hidden cards too
                     card.removeAttribute('data-aos');
                     card.removeAttribute('data-aos-delay');
                 }
             });
 
-            backButtonContainer.classList.add('visible'); // Show back button
-
+            backButtonContainer.classList.add('visible');
         }
 
         function collapseCards() {
-            solutionsGrid.classList.remove('expanded-view'); // Revert grid layout
+            // Find the currently expanded card to listen for its transition.
+            const expandedCard = document.querySelector('.solution-card.expanded');
+            
+            // If an expanded card exists, wait for its transition to end before scrolling.
+            if (expandedCard) {
+                expandedCard.addEventListener('transitionend', scrollToSolutionsSection, { once: true });
+            }
+
+            solutionsGrid.classList.remove('expanded-view');
 
             solutionCards.forEach(card => {
-                card.classList.remove('expanded');
-                card.classList.remove('hidden');
-
-                // Restore href and cursor for all cards
-                if (card.dataset.originalHref) {
-                    card.setAttribute('href', card.dataset.originalHref);
-                }
+                card.classList.remove('expanded', 'hidden');
                 card.style.cursor = 'pointer';
 
-                // Restore original AOS attributes
                 if (card.dataset.originalAos) {
                     card.setAttribute('data-aos', card.dataset.originalAos);
                 }
@@ -383,14 +405,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            backButtonContainer.classList.remove('visible'); // Hide back button
-
-            // Re-scan and possibly re-animate elements using AOS.refreshHard()
-            // This is crucial when elements are hidden/shown to allow AOS to re-evaluate their state.
+            backButtonContainer.classList.remove('visible');
+            
             if (typeof AOS !== 'undefined') {
-                AOS.refreshHard(); // Forces AOS to re-scan all elements and reapply classes if needed
+                AOS.refreshHard();
             }
         }
+        
+        // --- END: EVENT-DRIVEN FIX ---
     }
 
 
