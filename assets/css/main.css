@@ -379,13 +379,18 @@ section {
 
 .kinetic-headline .word {
     display: inline-block;
-    margin-right: 0.4em;
+    margin-right: 0.2em; /* Adjusted from 0.4em to 0.2em for tighter spacing */
     white-space: nowrap;
 }
 
 .kinetic-headline .char {
     display: inline-block;
     will-change: transform;
+}
+
+/* Hide mobile break by default on larger screens */
+.mobile-break {
+    display: none;
 }
 
 /* --- ABOUT PAGE STYLES --- */
@@ -1155,6 +1160,11 @@ html {
 
 
 @media (max-width: 768px) {
+    /* Make the mobile break visible on small screens */
+    .mobile-break {
+        display: block;
+    }
+
     section { 
         padding: 60px 0; 
     }
@@ -1899,51 +1909,6 @@ html {
     color: var(--white);
 }
 
-/* REMOVED: Specific grid placement for team members */
-/* .team-grid .team-member-card:nth-child(1) {
-    grid-column: 1; 
-    grid-row: 1; 
-}
-
-.team-grid .team-member-card:nth-child(2) {
-    grid-column: 5; 
-    grid-row: 1; 
-}
-
-
-
-.team-grid .team-member-card:nth-child(3) {
-    grid-column: 3; 
-    grid-row: 1 / span 3;
-    justify-self: center;
-    align-self: center; 
-    height: auto;
-    z-index: 10; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transition: all var(--transition-speed); 
-}
-
-.team-grid .team-member-card:nth-child(4) {
-    grid-column: 1; 
-    grid-row: 3; 
-}
-
-.team-grid .team-member-card:nth-child(5) {
-    grid-column: 5; 
-    grid-row: 3; 
-} */
-
-/* These are now handled by the .team-member-card global style and its glassmorphism effect */
-/* .team-member-card {
-    background: transparent;
-    box-shadow: none;
-    overflow: hidden;
-    transition: transform var(--transition-speed);
-}
-
-.team-member-card:hover {
-    transform: translateY(-10px);
-} */
 
 .main-content-wrapper .team-member-card {
     border-color: var(--glass-border-dark);
