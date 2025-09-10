@@ -27,7 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mainImage && thumbnails.length > 0) {
         thumbnails.forEach(thumb => {
             thumb.addEventListener('click', function() {
-                mainImage.src = this.src;
+                // Use data-src for more flexibility, fall back to src if not present
+                mainImage.src = this.dataset.src || this.src;
                 thumbnails.forEach(t => t.classList.remove('active'));
                 this.classList.add('active');
             });

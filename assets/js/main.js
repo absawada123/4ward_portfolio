@@ -552,4 +552,34 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+       const filterButtons = document.querySelectorAll('.project-filters .filter-btn');
+    const projectItems = document.querySelectorAll('.project-grid .project-item');
+
+    // Check if filter buttons and project items exist on the page
+    if (filterButtons.length > 0 && projectItems.length > 0) {
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filterCategory = button.getAttribute('data-filter');
+
+                // 1. Update the 'active' class on buttons
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                button.classList.add('active');
+
+                // 2. Show or hide project items based on the selected category
+                projectItems.forEach(item => {
+                    const itemCategory = item.getAttribute('data-category');
+
+                    // If 'all' is selected, or if the item's category matches the filter, show it. Otherwise, hide it.
+                    if (filterCategory === 'all' || itemCategory === filterCategory) {
+                        item.classList.remove('hide'); // Make sure the 'hide' class is defined in your CSS to have 'display: none;'
+                    } else {
+                        item.classList.add('hide');
+                    }
+                });
+            });
+        });
+    }
 });
