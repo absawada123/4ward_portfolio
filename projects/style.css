@@ -129,7 +129,7 @@
 
 /* --- About Section --- */
 #project-about h2,
-#project-features h2,
+.project-section h2,
 #project-showcase h2,
 #project-tech h2 {
     margin-bottom: 40px;
@@ -389,11 +389,7 @@
         font-size: 1.2rem;
     }
 
-    #project-about h2,
-    #project-features h2,
-    #project-showcase h2,
-    #project-tech h2,
-    #project-cta h2 {
+    .project-section h2 {
         font-size: 1.8rem;
     }
 
